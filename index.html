@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreeSixty Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Bai Jamjuree', sans-serif;
+  color: white;
+  position: relative; /* Para colocar el degradado encima */
+}
+
+body::before {
+  content: ""; /* Necesario para crear el pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0)); /* Degradado sutil */
+  pointer-events: none; /* Para que no interfiera con los elementos interactivos */
+}
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); /* Negro con opacidad */
+      z-index: -1; /* Coloca la capa encima del video pero debajo del contenido */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      text-align: center;
+      padding: 20px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      
+    }
+
+    /* Zona superior */
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo img {
+      max-width: 150px; /* Ajusta el tamaño según necesites */
+      height: auto;
+    }
+
+    .separator {
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin-top: 3px;
+    }
+
+    /* Zona central */
+    .middle {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      flex-grow: 1;
+      text-align: left;
+      padding-bottom: 50px;
+    }
+
+    .middle h1 {
+      font-size: 30px;
+      font-style: italic;
+      font-weight: bold; 
+      padding-bottom: 30px;
+    }
+
+    .middle p {
+      font-size: 32px;
+      text-transform: uppercase;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .middle p span {
+      color: orange;
+    }
+
+    /* Zona inferior */
+    .bottom {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 0px;
+    }
+
+    .bottom button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 16px;
+      padding: 6px 24px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-style: italic; /* Cursiva para Learn More */
+    }
+
+    .bottom button:hover {
+      background: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay loop muted playsinline>
+    <source src="video1.mp4" type="video/mp4">
+    Tu navegador no soporta videos en HTML5.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <!-- Zona superior -->
+    <div class="top">
+      <div class="logo">
+        <img src="LogoBlanco.png" alt="Logo">
+      </div>
+      <div class="separator"></div>
+    </div>
+
+    <!-- Zona central -->
+    <div class="middle">
+      <h1>ThreeSixty</h1>
+      <p>Experience Life<br>Like You <span>Never</span><br>Did Before</p>
+    </div>
+
+    <!-- Zona inferior -->
+    <div class="bottom">
+      <a href="p6.html">
+        <button>Learn More</button>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
