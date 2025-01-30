@@ -21,17 +21,6 @@
   position: relative; /* Para colocar el degradado encima */
 }
 
-body::before {
-  content: ""; /* Necesario para crear el pseudo-elemento */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0)); /* Degradado sutil */
-  pointer-events: none; /* Para que no interfiera con los elementos interactivos */
-}
-
     video {
       position: fixed;
       top: 0;
@@ -48,7 +37,7 @@ body::before {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6); /* Negro con opacidad */
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.296) 0.1%, rgba(0, 0, 0, 0.512) 100%); /* Negro con opacidad */
       z-index: -1; /* Coloca la capa encima del video pero debajo del contenido */
     }
 
