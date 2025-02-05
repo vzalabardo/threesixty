@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreeSixty Experience - Learn More</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Bai Jamjuree', sans-serif;
+      color: white;
+      background: black;
+    }
+
+    .container {
+      display: flex;    
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    .separator {
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      margin-top: 3px;
+      margin-bottom: 1px;
+    }
+
+    .middle {
+      flex-grow: 1; /* Hace que ocupe todo el espacio disponible */
+      background: 
+        linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%), 
+        linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%),
+        url('p3a/background.png') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: calc(100% + 40px); /* Expande más allá del padding */
+      margin-left: -20px; /* Ajusta el desplazamiento negativo */
+      margin-right: -20px;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    .middle h3 {
+      font-size: 28px;
+      color: rgb(224, 184, 109);
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .info-box {
+      border: 2px solid white;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-transform: uppercase;
+      width: 90%;
+      max-width: 400px;
+      margin: 10px 0;
+      text-align: center;
+      opacity: 0; /* Comienza invisible */
+      animation: fadeInUp 1s forwards; /* Aparece y se mueve hacia arriba */
+    }
+
+    /* Definir la animación de aparición */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px); /* Comienza un poco hacia abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Llega a su posición normal */
+      }
+    }
+
+    /* Retrasos para que cada info-box aparezca en secuencia */
+    .info-box:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .info-box:nth-child(3) {
+      animation-delay: 1s;
+    }
+
+    .info-box:nth-child(4) {
+      animation-delay: 1.5s;
+    }
+
+    .info-box:nth-child(5) {
+      animation-delay: 2s;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .bottom button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 16px;
+      padding: 6px 64px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .bottom button:hover {
+      background: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Zona superior -->
+    <div class="top">
+      <div class="logo">
+        <img src="assets/LogoBlanco.png" alt="Logo">
+      </div>
+      <div class="separator"></div>
+    </div>
+
+    <!-- Zona central -->
+    <div class="middle">
+      <h3>But... who are we?</h3>
+      <div class="info-box">UHNW PRIVATE CLUB</div>
+      <div class="info-box">LIMITED TO <br>25 FOUNDER MEMBERS<br>+<br>125 MEMBERS WORLDWIDE</div>
+      <div class="info-box">REDEFINING HIGH-END LUXURY EXPERIENCES</div>
+      <div class="info-box">NO ADVERTISMENT, <br>NO WEBSITE, <br><br>ONLY WORD TO MOUTH</div>
+    </div>
+
+    <!-- Zona inferior -->
+    <div class="bottom">
+      <a href="p3b.html">
+        <button>Next</button>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
