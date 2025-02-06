@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreeSixty Experience - Learn More</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Bai Jamjuree', sans-serif;
+      color: white;
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.573) 0.1%, black 100%);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      text-align: center;
+      padding: 20px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    .separator {
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin-top: 3px;
+      margin-bottom: 9px;
+    }
+
+    .middle {
+      padding: 0px;
+      padding-top: 0px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top h2 {
+      font-size: 20px;
+      padding: 0px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .middle .separator {
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin-top: 9px;
+    }
+
+
+    .full-width-item.selected {
+      box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8);
+      transform: scale(1.05);
+    }
+
+    /* Texto antes de la imagen grande */
+    .full-width-text {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Última imagen que ocupa todo el ancho */
+    .full-width-item {
+      grid-column: span 3;
+      width: 90%;
+      max-width: 640px;
+      aspect-ratio: 2  / 1;
+      border: 1px solid white;
+      overflow: hidden;
+      cursor: pointer;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-left: auto; /* Centra el div */
+      margin-right: auto;
+  }
+
+    .full-width-item img {
+      width: 100%;
+      height: 95%;
+      object-fit: cover;
+    }
+
+    .full-width-item p {
+      margin-top: 0px;
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 375px) {
+      .full-width-item {
+        width: 90%; /* Reduce el ancho en móviles */
+        aspect-ratio: 2.5 / 1; /* Evita que sean demasiado altas */
+      }
+
+      .full-width-item p {
+        font-size: 12px; /* Reduce tamaño del texto en móviles */
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 1024px) {
+      .full-width-item {
+        width: 90%; /* Reduce el ancho en móviles */
+        aspect-ratio: 2.5 / 1; /* Evita que sean demasiado altas */
+      }
+
+      .full-width-item p {
+        font-size: 12px; /* Reduce tamaño del texto en móviles */
+      }
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .bottom button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 16px;
+      padding: 6px 24px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .bottom button:hover {
+      background: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Zona superior -->
+    <div class="top">
+      <div class="logo">
+        <img src="assets/LogoBlanco.png" alt="Logo">
+      </div>
+      <div class="separator"></div>
+      <h2>1/6. Which of these defines you best?</h2>
+      <div class="separator"></div>
+    </div>
+
+    <!-- Zona central -->
+    <div class="middle">
+      <!-- Imagen grande de ancho completo -->
+      <div class="full-width-item" onclick="selectItem(this)">
+        <img src="p8/Warm.jpg" alt="Special Choice">
+        <p>WARM AND SUNNY</p>
+      </div>
+
+      <div class="full-width-item" onclick="selectItem(this)">
+        <img src="p8/Mountain.jpg" alt="Special Choice">
+        <p>FRESH AND COOL MOUNTAIN WEATHER</p>
+      </div>
+
+      <div class="full-width-item" onclick="selectItem(this)">
+        <img src="p8/Snow.jpg" alt="Special Choice">
+        <p>CRISPY SNOWY</p>
+      </div>
+
+    </div>
+    
+    <!-- Zona inferior -->
+    <div class="bottom">
+      <a href="p9.html">
+        <button>Next Question</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function selectItem(item) {
+      // Elimina la selección de cualquier otro elemento
+      let items = document.querySelectorAll('.grid-item, .full-width-item'); // Incluye ambos tipos de elementos
+      items.forEach(function(i) {
+        i.classList.remove('selected');
+      });
+  
+      // Añade la clase 'selected' solo al elemento clicado
+      item.classList.add('selected');
+    }
+  </script>
+  
+
+</body>
+</html>
