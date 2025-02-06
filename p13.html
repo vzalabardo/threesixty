@@ -26,10 +26,9 @@
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
-      width: 100%;
-      background: url('p4/background.jpg') no-repeat center center;
+      width: 100%;  
+      background-color: black;
       background-size: cover;
-      padding: 20px;
       position: relative; /* Para que el overlay cubra toda la pantalla */
     }
 
@@ -58,7 +57,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 3;
     }
 
     .logo img {
@@ -75,17 +73,12 @@
     }
 
     .middle {
-        flex-grow: 1; /* Hace que ocupe todo el espacio disponible */
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: calc(100% + 40px); /* Expande más allá del padding */
-        margin-left: -20px; /* Ajusta el desplazamiento negativo */
-        margin-right: -20px;
-        z-index: 3; /* Asegura que esté sobre el overlay */
-
+      flex-grow: 1; /* Ocupa todo el espacio disponible */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding-bottom: 100px;
     }
 
     .middle h3 {
@@ -96,22 +89,20 @@
     }
 
     .info-box {
-      border: 2px solid white;
+      border: 0px;
       color: white;
-      font-size: 20px;
-      font-weight: bold;
-      padding: 12px 24px;
-      text-transform: uppercase;
-      width: 90%;
-      max-width: 400px;
-      margin: 5px 0;
+      font-size: 26px;
+      padding: 0px 0px;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 0;
       text-align: center;
       opacity: 0; /* Comienza invisible */
-      animation: fadeInUp 1s forwards;
+      animation: fadeInUp 1s forwards; /* Aparece y se mueve hacia arriba */
     }
 
-        /* Definir la animación de aparición */
-        @keyframes fadeInUp {
+    /* Definir la animación de aparición */
+    @keyframes fadeInUp {
       0% {
         opacity: 0;
         transform: translateY(20px); /* Comienza un poco hacia abajo */
@@ -139,32 +130,38 @@
       animation-delay: 2s;
     }
 
-    .info-box:nth-child(5) {
-      animation-delay: 2.5s;
+    /* Estilos adicionales font-style: italic;*/
+    .italic {
+      font-weight: bold;
+      font-size: 26px;
     }
 
-    .info-box:nth-child(6) {
-      animation-delay: 3s;
+    .italic2 {
+      font-style: italic;
+      font-weight: bold;
     }
 
-    .info-box:nth-child(7) {
-      animation-delay: 3.5s;
+    .invest {
+      color: rgb(224, 184, 109);
+      font-style: italic;
+      font-weight: bold;
+
     }
 
     .bottom {
       display: flex;
       justify-content: center;
       padding: 20px 0;
-      z-index: 3;
-      padding-bottom: 30px;
     }
 
     .bottom button {
       background: transparent;
       border: 2px solid white;
       color: white;
-      font-size: 16px;
-      padding: 6px 64px;
+      font-size: 18px;
+      font-weight: bold;
+      font-style: italic;
+      padding: 6px 32px;
       cursor: pointer;
       text-transform: uppercase;
     }
@@ -173,55 +170,36 @@
       background: white;
       color: black;
     }
-
-    @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
-      .bottom button {
-        margin-bottom: env(safe-area-inset-bottom); /* Se ajusta automáticamente en dispositivos con notch o gestos (iOS) */
-      }
-    }
-
-    @media (max-width: 375px) {
-      .info-box {
-        font-size: 14px; /* Reducir tamaño de fuente */
-        padding: 8px 20px;
-      }
-
-      .bottom button {
-        font-size: 14px;
-        padding: 4px 40px;
-      }
-    }
-
   </style>
 </head>
 <body>
 
   <div class="container">
     <div class="overlay"></div> <!-- Capa oscura -->
-    <!-- Zona superior -->
-    <div class="top">
-      <div class="logo">
-        <img src="assets/LogoBlanco.png" alt="Logo">
+
+    <div class="content"> 
+      <!-- Zona superior -->
+      <div class="top">
+        <div class="logo">
+          <img src="assets/LogoBlanco.png" alt="Logo">
+        </div>
+        <div class="separator"></div>
       </div>
-      <div class="separator"></div>
-    </div>
 
-    <!-- Zona central -->
-    <div class="middle">
-      <div class="info-box">8% ANUAL CREDIT</div>
-      <div class="info-box">MEMBERSHIP W/O<br>EXPIRATION</div>
-      <div class="info-box">75% OFF ON VEHICLE<br>USAGE</div>
-      <div class="info-box">FREE USAGE OF CLUB<br>PROPERTIES</div>
-      <div class="info-box">RIGHT OF SALE</div>
-      <div class="info-box">SEAT ON THE NON-<br>EXECUTIVE BOARD</div>
-      <div class="info-box">PERSONAL ASSISTANT<br>EVERY 10 MEMBERS</div>
-    </div>
+      <!-- Zona central -->
+      <div class="middle">
+        <div class="info-box"><span class="invest">Oh... We almost forgot</span></div>
+        <div class="info-box">The club will provide you<br> with the most exclusive<br> villas around Europe. From<br> South Portugal, to<br> Toscana, beautiful villas in <br> la Costa Brava... and more.</div>
+        <div class="info-box">Free acces only for<br> <span class="italic">FOUNDER</span> members and <br> their guests, all year <br> round.</div>
+        <div class="info-box"><span class="italic2">Are you ready to <br> discover the real <br> Europe?</span> </div>
+      </div>
 
-    <!-- Zona inferior -->
-    <div class="bottom">
-      <a href="p5.html">
-        <button>KEEP GOING</button>
-      </a>
+      <!-- Zona inferior -->
+      <div class="bottom">
+        <a href="index.html">
+          <button>SEE BENEFITS</button>
+        </a>
+      </div>
     </div>
   </div>
 
