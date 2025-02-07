@@ -55,8 +55,6 @@
       padding: 0px;
       padding-top: 0px;
       text-align: center;
-      display: flex;
-      flex-direction: column;
     }
 
     .top h2 {
@@ -77,7 +75,8 @@
     /* Cuadrícula de fotos 3x3 */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
       gap: 10px;
       justify-items: center;
     }
@@ -85,13 +84,12 @@
     /* Cada item de la cuadrícula */
     .grid-item {
       width: 100%; /* Ocupa todo el espacio disponible */
-      aspect-ratio: 1 / 1.65; /* Relación 2:1 (doble de alto que de ancho) */
-      max-width: 200px; /* Ajusta el tamaño máximo */
-      max-height: 400px; /* Ajusta el tamaño máximo */
+      aspect-ratio: 1.3 / 1; /* Relación 2:1 (doble de alto que de ancho) */
+      max-width: 220px; /* Ajusta el tamaño máximo */
       border: 1px solid white;
       text-align: center;
       overflow: hidden;
-      position: relative;
+      position: relative; /* Para posicionar el overlay correctamente */
     }
 
     .grid-item::after {
@@ -105,76 +103,23 @@
       pointer-events: none; /* Para que no bloquee clics */
     }
 
-
     .grid-item img {
       width: 100%;
-      height: 90%;
+      height: 80%;
       object-fit: cover;
     }
 
     .grid-item p {
       margin-top: 0px;
-      margin-bottom: 5px;
-      padding-bottom: 10px;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-    .grid-item.selected, .full-width-item.selected {
-      box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8);
-      transform: scale(1.05);
-    }
-
-    /* Texto antes de la imagen grande */
-    .full-width-text {
-      margin-top: 15px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    /* Última imagen que ocupa todo el ancho */
-    .full-width-item {
-      grid-column: span 3;
-      width: 100%;
-      max-width: 640px;
-      aspect-ratio: 3 / 1;
-      border: 1px solid white;
-      overflow: hidden;
-      cursor: pointer;
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-left: auto; /* Centra el div */
-      margin-right: auto;
-      position: relative;
-  }
-
-  .full-width-item::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 90%;
-      background: rgba(0, 0, 0, 0.35); /* Ajusta el nivel de opacidad */
-      pointer-events: none; /* Para que no bloquee clics */
-    }
-
-    .full-width-item img {
-      width: 100%;
-      height: 95%;
-      object-fit: cover;
-    }
-
-    .full-width-item p {
-      margin-top: 0px;
-      margin-bottom: 5px;
-      padding-bottom: 10px;
+      margin-bottom: 15px;
       font-size: 14px;
       text-transform: uppercase;
     }
 
+    .grid-item.selected {
+      box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8); /* Resplandor naranja-blanco */
+      transform: scale(1.05); /* Efecto de agrandar ligeramente */
+    }
 
     /* Medias queries para pantallas pequeñas */
     @media screen and (max-width: 768px) {
@@ -277,6 +222,12 @@
       background: white;
       color: black;
     }
+
+    @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+      .bottom button {
+        margin-bottom: env(safe-area-inset-bottom); /* Se ajusta automáticamente en dispositivos con notch o gestos (iOS) */
+      }
+    }
   </style>
 </head>
 <body>
@@ -288,52 +239,31 @@
         <img src="assets/LogoBlanco.png" alt="Logo">
       </div>
       <div class="separator"></div>
-      <h2>2/6. Where do you want your next adventure?</h2>
+      <h2>5/6. Choose your car</h2>
       <div class="separator"></div>
     </div>
 
     <!-- Zona central -->
     <div class="middle">
-      <div class="grid">
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p7/Spain.jpg" alt="Foodie">
-          <p>Spain</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p7/Portugal.jpg" alt="Challenger">
-          <p>Portugal</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p7/Germany.jpg" alt="Racing Addict">
-          <p>Germany</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p7/Greece.jpg" alt="Europe Lover">
-          <p>Greece</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p7/Italy.jpg" alt="Sports Fan">
-          <p>Italy</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p7/Morocco.jpg" alt="Wellness Seeker">
-          <p>Morocco</p>
-        </div>
-      </div>
-
-      <!-- Texto antes de la imagen grande -->
-      <div class="full-width-text">AND OF COURSE...</div>
-
-      <!-- Imagen grande de ancho completo -->
-      <div class="full-width-item" onclick="selectItem(this)">
-        <img src="p7/USA.jpg" alt="Special Choice">
-        <p>USA</p>
+        <div class="grid">
+          <div class="grid-item"><img src="p10/1.png" alt="992 Turbo S"><p>992 TURBO S</p></div>
+          <div class="grid-item"><img src="p10/2.png" alt="992 GT3 RS"><p>992 GT3 RS</p></div>
+          <div class="grid-item"><img src="p10/3.png" alt="992 Targa 4 GTS"><p>992 TARGA 4 GTS</p></div>
+          <div class="grid-item"><img src="p10/4.png" alt="Spider 720 S"><p>SPIDER 720 S</p></div>
+          <div class="grid-item"><img src="p10/5.png" alt="Huracan STO"><p>HURACAN STO</p></div>
+          <div class="grid-item"><img src="p10/6.png" alt="296 GTB"><p>296 GTB</p></div>
+          <div class="grid-item"><img src="p10/7.png" alt="G63 AMG"><p>G63 AMG</p></div>
+          <div class="grid-item"><img src="p10/8.png" alt="Cayenne Turbo S"><p>CAYENNE TURBO S</p></div>
+          <div class="grid-item"><img src="p10/9.png" alt="AMG GT"><p>AMG GT</p></div>
+          <div class="grid-item"><img src="p10/10.png" alt="930 Turbo 1975"><p>930 TURBO 1975</p></div>
+          <div class="grid-item"><img src="p10/11.png" alt="Jaguar Type E 1962"><p>JAGUAR TYPE E 1962</p></div>
+          <div class="grid-item"><img src="p10/12.png" alt="Testarossa TR 1992"><p>TESTAROSSA TR 1992</p></div>
       </div>
     </div>
-    
+
     <!-- Zona inferior -->
     <div class="bottom">
-      <a href="p8.html">
+      <a href="p12.html">
         <button>Next Question</button>
       </a>
     </div>
@@ -342,16 +272,26 @@
   <script>
     function selectItem(item) {
       // Elimina la selección de cualquier otro elemento
-      let items = document.querySelectorAll('.grid-item, .full-width-item'); // Incluye ambos tipos de elementos
+      let items = document.querySelectorAll('.grid-item');
       items.forEach(function(i) {
         i.classList.remove('selected');
       });
-  
-      // Añade la clase 'selected' solo al elemento clicado
+      // Añade la clase 'selected' al elemento clicado
       item.classList.add('selected');
     }
   </script>
-  
 
 </body>
+
+<script>
+  document.querySelectorAll(".grid-item").forEach(item => {
+    item.addEventListener("click", () => {
+      // Remover la clase "selected" de todos los elementos
+      document.querySelectorAll(".grid-item").forEach(el => el.classList.remove("selected"));
+      
+      // Agregar la clase "selected" solo al elemento clicado
+      item.classList.add("selected");
+    });
+  });
+</script>
 </html>

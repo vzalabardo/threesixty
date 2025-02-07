@@ -89,6 +89,18 @@
       border: 1px solid white;
       text-align: center;
       overflow: hidden;
+      position: relative; /* Para posicionar el overlay correctamente */
+    }
+
+    .grid-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90%;
+      background: rgba(0, 0, 0, 0.35); /* Ajusta el nivel de opacidad */
+      pointer-events: none; /* Para que no bloquee clics */
     }
 
     .grid-item img {
@@ -193,6 +205,7 @@
       display: flex;
       justify-content: center;
       padding: 20px 0;
+      padding-bottom: 45px;
     }
 
     .bottom button {
