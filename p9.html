@@ -90,8 +90,8 @@
     /* Última imagen que ocupa todo el ancho */
     .full-width-item {
       grid-column: span 3;
-      width: 90%;
-      max-width: 640px;
+      width: 80%;
+      max-width: 600px;
       aspect-ratio: 2  / 1;
       border: 1px solid white;
       overflow: hidden;
@@ -129,7 +129,7 @@
       margin-top: 0px;
       margin-bottom: 5px;
       padding-bottom: 15px;
-      font-size: 12px;
+      font-size: 10px;
       text-transform: uppercase;
     }
 
@@ -140,18 +140,18 @@
       }
 
       .full-width-item p {
-        font-size: 12px; /* Reduce tamaño del texto en móviles */
+        font-size: 10px; /* Reduce tamaño del texto en móviles */
       }
     }
 
     @media (min-width: 600px) and (max-width: 1024px) {
       .full-width-item {
-        width: 90%; /* Reduce el ancho en móviles */
+        width: 80%; /* Reduce el ancho en móviles */
         aspect-ratio: 2.5 / 1; /* Evita que sean demasiado altas */
       }
 
       .full-width-item p {
-        font-size: 12px; /* Reduce tamaño del texto en móviles */
+        font-size: 10px; /* Reduce tamaño del texto en móviles */
       }
     }
 
