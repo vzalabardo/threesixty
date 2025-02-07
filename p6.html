@@ -58,7 +58,7 @@
     }
 
     .top h2 {
-      font-size: 20px;
+      font-size: 30px;
       padding: 0px;
       margin-bottom: 8px;
       font-weight: bold;
@@ -74,22 +74,28 @@
 
     /* Cuadrícula de fotos 3x3 */
     .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
-      gap: 10px;
-      justify-items: center;
-    }
-
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  grid-template-rows: repeat(4, auto); /* 4 filas de altura automática */
+  gap: 10px;
+  justify-items: center; /* Centra los elementos en cada celda */
+  
+}
+/* Centra el último ítem (el noveno) */
+.grid-item:nth-child(9) {
+  grid-column: span 2; /* Hace que ocupe ambas columnas */
+  justify-self: center; /* Alinea este ítem al centro */
+}
     /* Cada item de la cuadrícula */
     .grid-item {
-      width: 100%; /* Ocupa todo el espacio disponible */
-      aspect-ratio: 1 / 1.65; /* Relación 2:1 (doble de alto que de ancho) */
-      max-width: 200px; /* Ajusta el tamaño máximo */
-      max-height: 400px; /* Ajusta el tamaño máximo */
+      width: 100%;
+      aspect-ratio: 1 / 1.65;
+      max-width: 200px;
+      max-height: 400px;
       border: 1px solid white;
       text-align: center;
       overflow: hidden;
-      position: relative; /* Para posicionar el overlay correctamente */
+      position: relative;
     }
 
     .grid-item::after {
@@ -98,58 +104,40 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 87%;
+      height: 90%;
       background: rgba(0, 0, 0, 0.35); /* Ajusta el nivel de opacidad */
       pointer-events: none; /* Para que no bloquee clics */
     }
 
     .grid-item img {
       width: 100%;
-      height: 87%;
+      height: 90%;
       object-fit: cover;
     }
 
     .grid-item p {
       margin-top: 0px;
-      font-size: 14px;
+      font-size: 18px;
       text-transform: uppercase;
     }
 
     .grid-item.selected {
       box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8); /* Resplandor naranja-blanco */
-      transform: scale(1.05); /* Efecto de agrandar ligeramente */
+      transform: scale(1.00); /* Efecto de agrandar ligeramente */
     }
 
     /* Medias queries para pantallas pequeñas */
     @media screen and (max-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  }
+}
 
-      .grid-item {
-        max-width: 150px; /* Reducir el tamaño máximo de los rectángulos */
-        max-height: 300px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 12px; /* Reducir el tamaño del texto */
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 120px; /* Reducir aún más el tamaño máximo de los rectángulos */
-        max-height: 240px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 10px; /* Reducir el tamaño del texto */
-      }
-    }
+@media screen and (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  }
+}
 
     @media screen and (max-height: 680px) {
       .grid {
@@ -211,7 +199,7 @@
       background: transparent;
       border: 2px solid white;
       color: white;
-      font-size: 16px;
+      font-size: 24px;
       padding: 6px 24px;
       cursor: pointer;
       text-transform: uppercase;
