@@ -72,25 +72,7 @@
       margin-top: 9px;
     }
 
-    /* Cuadrícula de fotos 3x3 */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);
-      gap: 10px;
-      justify-items: center;
-    }
 
-    /* Cada item de la cuadrícula */
-    .grid-item {
-      width: 100%; /* Ocupa todo el espacio disponible */
-      aspect-ratio: 1.3 / 1; /* Relación 2:1 (doble de alto que de ancho) */
-      max-width: 220px; /* Ajusta el tamaño máximo */
-      border: 1px solid white;
-      text-align: center;
-      overflow: hidden;
-      position: relative; /* Para posicionar el overlay correctamente */
-    }
 
     .grid-item::after {
       content: "";
@@ -103,102 +85,38 @@
       pointer-events: none; /* Para que no bloquee clics */
     }
 
+    /* GRID - 2 columnas y 6 filas fijas */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(6, auto);
+      gap: 15px; /* Aumenta el espacio entre los elementos */
+      justify-items: center;
+      overflow: visible;
+    }
+
+    .grid-item {
+      width: 100%;
+      max-width: 220px;
+      aspect-ratio: 1.3 / 1;
+      border: 1px solid white;
+      text-align: center;
+      overflow: visible; /* Cambiado de hidden a visible */
+      position: relative;
+    }
+
     .grid-item img {
       width: 100%;
-      height: 75%;
+      height: 80%;
       object-fit: cover;
     }
 
-    .grid-item p {
-      margin-top: 0px;
-      margin-bottom: 15px;
-      font-size: 14px;
-      text-transform: uppercase;
+    .grid-item.selected, .full-width-item.selected {
+      box-shadow: 0 0 5px 3px rgba(255, 165, 0, 0.8);
+      transform: scale(1.00);
+      z-index: 10000;
+      
     }
-
-    .grid-item.selected {
-      box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8); /* Resplandor naranja-blanco */
-      transform: scale(1.05); /* Efecto de agrandar ligeramente */
-    }
-
-    /* Medias queries para pantallas pequeñas */
-    @media screen and (max-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 150px; /* Reducir el tamaño máximo de los rectángulos */
-        max-height: 300px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 12px; /* Reducir el tamaño del texto */
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 120px; /* Reducir aún más el tamaño máximo de los rectángulos */
-        max-height: 240px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 10px; /* Reducir el tamaño del texto */
-      }
-    }
-
-    @media screen and (max-height: 680px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 80px; /* Reducir aún más el tamaño máximo de los rectángulos */
-        max-height: 200px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 8px; /* Reducir el tamaño del texto */
-      }
-    }
-
-    @media screen and (max-height: 740px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 80px; /* Reducir aún más el tamaño máximo de los rectángulos */
-        max-height: 200px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 8px; /* Reducir el tamaño del texto */
-      }
-    }
-
-    @media screen and (width: 820px) and (height: 1180px) {
-    .grid-item {
-      max-width: 180px; /* Ajustar el tamaño máximo de las imágenes */
-      max-height: 350px; /* Ajustar la altura máxima */
-    }
-
-    .grid-item img {
-      height: 85%; /* Ajustar la altura de las imágenes */
-    }
-
-    .grid-item p {
-      font-size: 12px; /* Reducir el tamaño del texto */
-    }
-  }
-
-    
-
     
 
     .bottom {
@@ -212,7 +130,7 @@
       background: transparent;
       border: 2px solid white;
       color: white;
-      font-size: 16px;
+      font-size: 24px;
       padding: 6px 24px;
       cursor: pointer;
       text-transform: uppercase;
@@ -245,21 +163,21 @@
 
     <!-- Zona central -->
     <div class="middle">
-        <div class="grid">
-          <div class="grid-item"><img src="p10/1.png" alt="992 Turbo S"><p>992 TURBO S</p></div>
-          <div class="grid-item"><img src="p10/2.png" alt="992 GT3 RS"><p>992 GT3 RS</p></div>
-          <div class="grid-item"><img src="p10/3.png" alt="992 Targa 4 GTS"><p>992 TARGA 4 GTS</p></div>
-          <div class="grid-item"><img src="p10/4.png" alt="Spider 720 S"><p>SPIDER 720 S</p></div>
-          <div class="grid-item"><img src="p10/5.png" alt="Huracan STO"><p>HURACAN STO</p></div>
-          <div class="grid-item"><img src="p10/6.png" alt="296 GTB"><p>296 GTB</p></div>
-          <div class="grid-item"><img src="p10/7.png" alt="G63 AMG"><p>G63 AMG</p></div>
-          <div class="grid-item"><img src="p10/8.png" alt="Cayenne Turbo S"><p>CAYENNE TURBO S</p></div>
-          <div class="grid-item"><img src="p10/9.png" alt="AMG GT"><p>AMG GT</p></div>
-          <div class="grid-item"><img src="p10/10.png" alt="930 Turbo 1975"><p>930 TURBO 1975</p></div>
-          <div class="grid-item"><img src="p10/11.png" alt="Jaguar Type E 1962"><p>JAGUAR TYPE E 1962</p></div>
-          <div class="grid-item"><img src="p10/12.png" alt="Testarossa TR 1992"><p>TESTAROSSA TR 1992</p></div>
+      <div class="grid">
+        <div class="grid-item"><img src="p10/1.png" alt="992 Turbo S"><p>992 TURBO S</p></div>
+        <div class="grid-item"><img src="p10/2.png" alt="992 GT3 RS"><p>992 GT3 RS</p></div>
+        <div class="grid-item"><img src="p10/3.png" alt="992 Targa 4 GTS"><p>992 TARGA 4 GTS</p></div>
+        <div class="grid-item"><img src="p10/4.png" alt="Spider 720 S"><p>SPIDER 720 S</p></div>
+        <div class="grid-item"><img src="p10/5.png" alt="Huracan STO"><p>HURACAN STO</p></div>
+        <div class="grid-item"><img src="p10/6.png" alt="296 GTB"><p>296 GTB</p></div>
+        <div class="grid-item"><img src="p10/7.png" alt="G63 AMG"><p>G63 AMG</p></div>
+        <div class="grid-item"><img src="p10/8.png" alt="Cayenne Turbo S"><p>CAYENNE TURBO S</p></div>
+        <div class="grid-item"><img src="p10/9.png" alt="AMG GT"><p>AMG GT</p></div>
+        <div class="grid-item"><img src="p10/10.png" alt="930 Turbo 1975"><p>930 TURBO 1975</p></div>
+        <div class="grid-item"><img src="p10/11.png" alt="Jaguar Type E 1962"><p>JAGUAR TYPE E 1962</p></div>
+        <div class="grid-item"><img src="p10/12.png" alt="Testarossa TR 1992"><p>TESTAROSSA TR 1992</p></div>
       </div>
-    </div>
+  </div>
 
     <!-- Zona inferior -->
     <div class="bottom">
