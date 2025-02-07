@@ -89,50 +89,58 @@
 
     /* Última imagen que ocupa todo el ancho */
     .full-width-item {
-      grid-column: span 3;
-      width: 90%;
-      height: auto;
-      max-width: 640px;
-      aspect-ratio: 2  / 1;
-      border: 1px solid white;
-      overflow: hidden;
-      cursor: pointer;
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-left: auto; /* Centra el div */
-      margin-right: auto;
-      position: relative;
-  }
+  grid-column: span 3;
+  width: 90%;
+  max-width: 640px;
+  aspect-ratio: 2 / 1;
+  border: 1px solid white;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Asegura que el contenido se acomode al fondo */
+  margin-left: auto; /* Centra el div */
+  margin-right: auto;
+  position: relative;
+  background-color: black; /* Fondo negro para el texto */
+}
 
-  .full-width-item::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 75%;
-      background: rgba(0, 0, 0, 0.35); /* Ajusta el nivel de opacidad */
-      pointer-events: none; /* Para que no bloquee clics */
+.full-width-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    }
+.full-width-item .text-container {
+  padding: 3px;
+  color: white;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro translúcido */
+  width: 100%;
+}
 
-    .full-width-item img {
-      width: 100%;
-      height: 85%;
-      object-fit: cover;
-    }
+.full-width-item p {
+  margin: 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  z-index: 10000;
+}
 
-    .full-width-item p {
-      margin-top: 0px;
-      margin-bottom: 18px;
-      font-size: 18px;
-      text-transform: uppercase;
-      word-wrap: break-word; /* Para que las palabras largas se ajusten al contenedor */
-      overflow-wrap: break-word;
-    }
+.full-width-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35); /* Ajusta el nivel de opacidad */
+  pointer-events: none; /* Para que no bloquee clics */
+}
+
+
 
     @media (max-width: 375px) {
       .full-width-item {
@@ -195,22 +203,26 @@
 
     <!-- Zona central -->
     <div class="middle">
-      <!-- Imagen grande de ancho completo -->
       <div class="full-width-item" onclick="selectItem(this)">
         <img src="p9/villa.jpeg" alt="Special Choice">
-        <p>IN A LUXURIOUS VILLA IN THE MEDITERANEAN</p>
+        <div class="text-container">
+          <p>IN A LUXURIOUS VILLA IN THE MEDITERANEAN</p>
+        </div>
       </div>
-
+    
       <div class="full-width-item" onclick="selectItem(this)">
         <img src="p9/snow.jpg" alt="Special Choice">
-        <p>IN A COZY CHALET SURROUNDED BY ALPINE VIEWS</p>
+        <div class="text-container">
+          <p>IN A COZY CHALET SURROUNDED BY ALPINE VIEWS</p>
+        </div>
       </div>
-
-      <div class="full-width-item" onclick="selectItem(this)">  
+    
+      <div class="full-width-item" onclick="selectItem(this)">
         <img src="p9/europe.jpg" alt="Special Choice">
-        <p>IN A STYLISH LOFT IN THE HEART OF A EUROPEAN CITY</p>
+        <div class="text-container">
+          <p>IN A STYLISH LOFT IN THE HEART OF A EUROPEAN CITY</p>
+        </div>
       </div>
-
     </div>
     
     <!-- Zona inferior -->

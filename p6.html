@@ -72,21 +72,15 @@
       margin-top: 9px;
     }
 
-    /* Cuadrícula de fotos 3x3 */
+    /* Cuadrícula de fotos con 2 elementos por las 4 primeras filas y 1 centrado en la última */
     .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-  grid-template-rows: repeat(4, auto); /* 4 filas de altura automática */
-  gap: 10px;
-  justify-items: center; /* Centra los elementos en cada celda */
-  
-}
-/* Centra el último ítem (el noveno) */
-.grid-item:nth-child(9) {
-  grid-column: span 2; /* Hace que ocupe ambas columnas */
-  justify-self: center; /* Alinea este ítem al centro */
-}
-    /* Cada item de la cuadrícula */
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+      grid-template-rows: repeat(4, auto) 1fr; /* 4 filas de altura automática y una fila final */
+      gap: 10px;
+      justify-items: center; /* Centra los elementos en cada celda */
+    }
+
     .grid-item {
       width: 100%;
       aspect-ratio: 1 / 1.65;
@@ -126,67 +120,11 @@
       transform: scale(1.00); /* Efecto de agrandar ligeramente */
     }
 
-    /* Medias queries para pantallas pequeñas */
-    @media screen and (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-  }
-}
-
-    @media screen and (max-height: 680px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 80px; /* Reducir aún más el tamaño máximo de los rectángulos */
-        max-height: 200px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 8px; /* Reducir el tamaño del texto */
-      }
+    /* Centra el último ítem (el noveno) */
+    .grid-item:nth-child(9) {
+      grid-column: span 2; /* Hace que ocupe ambas columnas */
+      justify-self: center; /* Alinea este ítem al centro */
     }
-
-    @media screen and (max-height: 740px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr); /* Mantener 3 columnas */
-      }
-
-      .grid-item {
-        max-width: 80px; /* Reducir aún más el tamaño máximo de los rectángulos */
-        max-height: 200px; /* Ajustar la altura máxima */
-      }
-
-      .grid-item p {
-        font-size: 8px; /* Reducir el tamaño del texto */
-      }
-    }
-
-    @media screen and (width: 820px) and (height: 1180px) {
-    .grid-item {
-      max-width: 180px; /* Ajustar el tamaño máximo de las imágenes */
-      max-height: 350px; /* Ajustar la altura máxima */
-    }
-
-    .grid-item img {
-      height: 85%; /* Ajustar la altura de las imágenes */
-    }
-
-    .grid-item p {
-      font-size: 12px; /* Reducir el tamaño del texto */
-    }
-  }
-
-    
-
-    
 
     .bottom {
       display: flex;
@@ -210,11 +148,6 @@
       color: black;
     }
 
-    @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
-      .bottom button {
-        margin-bottom: env(safe-area-inset-bottom); /* Se ajusta automáticamente en dispositivos con notch o gestos (iOS) */
-      }
-    }
   </style>
 </head>
 <body>
