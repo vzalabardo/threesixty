@@ -19,8 +19,8 @@
       font-family: 'Bai Jamjuree', sans-serif;
       color: white;
       background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.454) 0.15%, black 100%);
-   
     }
+    
 
     .container {
       display: flex;
@@ -78,20 +78,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
+      padding-bottom: 20px;
     }
 
     .middle h3 {
-      font-size: 26px;
+      font-size: 28px;
       color: rgb(224, 184, 109);
       margin-bottom: 40px;
-      font-weight: bold;
     }
 
     .info-box {
       border: 0px;
       color: white;
       font-size: 24px;
-      font-weight: 100 ;
       padding: 0px 0px;
       width: 100%;
       max-width: 500px;
@@ -132,13 +131,7 @@
 
     /* Estilos adicionales font-style: italic;*/
     .italic {
-      font-weight: bold;
-      font-size: 26px;
-    }
-
-    .italic2 {
       font-style: italic;
-      font-weight: bold;
     }
 
     .invest {
@@ -171,6 +164,51 @@
       background: white;
       color: black;
     }
+
+    .video-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .videos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  .video-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px; /* Ajusta el ancho según necesites */
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+    border-radius: 12px; /* Bordes redondeados */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .video-item:hover {
+    background: rgba(224, 184, 109, 0.7); /* Color dorado más visible */
+    transform: scale(1.05); /* Pequeño efecto de zoom */
+  }
+
+  .video-icon {
+    width: 24px; /* Ajusta el tamaño del icono */
+    height: 24px;
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+  }
+
+  .arrow {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
   </style>
 </head>
 <body>
@@ -189,15 +227,37 @@
 
       <!-- Zona central -->
       <div class="middle">
-        <div class="info-box"><span class="invest">Oh... We almost forgot</span></div>
-        <div class="info-box">The club will provide you<br> with the most exclusive<br> villas around Europe. From<br> South Portugal, to<br> Toscana, beautiful villas in <br> la Costa Brava... and more.</div>
-        <div class="info-box">Free acces only for<br> <span class="italic">FOUNDER</span> members and <br> their guests, all year <br> round.</div>
-        <div class="info-box"><span class="italic2">Are you ready to <br> discover the real <br> Europe?</span> </div>
+        <div class="info-box"><span class="invest">A video is worth a million <br>words so…</span></div>
+        <div class="info-box video-list">
+          <div class="videos">
+            <a href="video1.html" class="video-item">
+              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
+              Video 1 <span class="arrow">→</span>
+            </a>
+            <a href="video2.html" class="video-item">
+              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
+              Video 2 <span class="arrow">→</span>
+            </a>
+            <a href="video3.html" class="video-item">
+              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
+              Video 3 <span class="arrow">→</span>
+            </a>
+            <a href="video4.html" class="video-item">
+              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
+              Video 4 <span class="arrow">→</span>
+            </a>
+            <a href="video5.html" class="video-item">
+              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
+              Video 5 <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="info-box" style="font-weight:lighter;"></div>
       </div>
 
       <!-- Zona inferior -->
       <div class="bottom">
-        <a href="p14.html">
+        <a href="p15.html">
           <button>KEEP GOING</button>
         </a>
       </div>

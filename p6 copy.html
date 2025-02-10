@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ThreeSixty Experience - Learn More</title>
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+  <!-- jQuery (necesario para Owl Carousel) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Owl Carousel JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
   <style>
     * {
       margin: 0;
@@ -52,10 +62,13 @@
     }
 
     .middle {
-      padding: 0px;
-      padding-top: 0px;
-      text-align: center;
-    }
+  padding: 0;
+  text-align: center;
+  height: 80vh; /* Hacer que el carrusel ocupe el 80% de la altura de la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centra los elementos vertical y horizontalmente */
+}
 
     .top h2 {
       font-size: 30px;
@@ -148,6 +161,39 @@
       color: black;
     }
 
+    .owl-carousel {
+  width: 90%;
+  height: 1200px; 
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: center; /* Alinea horizontalmente */
+}
+
+.grid-item {
+  text-align: center;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.grid-item.active-center {
+  transform: scale(1.5) translateZ(100px); /* Aumentar el tamaño sin que se corte tanto */
+  z-index: 2;
+  max-width: 100%; /* Asegura que ocupe todo el espacio */
+}
+
+/* Efecto para los lados */
+.grid-item.prev, .grid-item.next {
+  transform: scale(0.8) translateY(10px); /* Reducir el tamaño de los ítems laterales */
+  opacity: 0.6; /* Hacer los laterales un poco más opacos */
+}
+
+/* Asegura que las imágenes en el carrusel no se corten */
+.grid-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Ajuste sin recortar la imagen */
+}
+
   </style>
 </head>
 <body>
@@ -164,47 +210,20 @@
     </div>
 
     <!-- Zona central -->
-    <div class="middle">
-      <div class="grid">
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/Foodie.jpg" alt="Foodie">
-          <p>Foodie</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/Challenger.jpg" alt="Challenger">
-          <p>Challenger</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/RacingAddict.jpg" alt="Racing Addict">
-          <p>Racing Addict</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/SagradaFamilia.jpg" alt="Europe Lover">
-          <p>Europe Lover</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/SportsFan.jpg" alt="Sports Fan">
-          <p>Sports Fan</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/WellnessSeeker.jpg" alt="Wellness Seeker">
-          <p>Wellness Seeker</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/ArtCulture.jpg" alt="Art & Culture">
-          <p>Art & Culture</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/F1fan.jpg" alt="F1 Fan">
-          <p>F1 Fan</p>
-        </div>
-        <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/FashionVictim.jpg" alt="Fashion Victim">
-          <p>Fashion Victim</p>
-        </div>
+    <div class="middle" >
+      <div class="owl-carousel" style="background-color: aqua;">
+        <div class="grid-item"><img src="p6/Foodie.jpg" alt="Foodie"><p>Foodie</p></div>
+        <div class="grid-item"><img src="p6/Challenger.jpg" alt="Challenger"><p>Challenger</p></div>
+        <div class="grid-item"><img src="p6/RacingAddict.jpg" alt="Racing Addict"><p>Racing Addict</p></div>
+        <div class="grid-item"><img src="p6/SagradaFamilia.jpg" alt="Europe Lover"><p>Europe Lover</p></div>
+        <div class="grid-item"><img src="p6/SportsFan.jpg" alt="Sports Fan"><p>Sports Fan</p></div>
+        <div class="grid-item"><img src="p6/WellnessSeeker.jpg" alt="Wellness Seeker"><p>Wellness Seeker</p></div>
+        <div class="grid-item"><img src="p6/ArtCulture.jpg" alt="Art & Culture"><p>Art & Culture</p></div>
+        <div class="grid-item"><img src="p6/F1fan.jpg" alt="F1 Fan"><p>F1 Fan</p></div>
+        <div class="grid-item"><img src="p6/FashionVictim.jpg" alt="Fashion Victim"><p>Fashion Victim</p></div>
       </div>
     </div>
-
+    
     <!-- Zona inferior -->
     <div class="bottom">
       <a href="p7.html">
@@ -214,15 +233,40 @@
   </div>
 
   <script>
-    function selectItem(item) {
-      // Elimina la selección de cualquier otro elemento
-      let items = document.querySelectorAll('.grid-item');
-      items.forEach(function(i) {
-        i.classList.remove('selected');
+    $(document).ready(function(){
+      var carousel = $(".owl-carousel");
+  
+      carousel.owlCarousel({
+        center: true, // Centra el ítem activo
+        loop: true, // Hace que el carrusel sea infinito
+        margin: 12, // Espacio entre elementos
+        nav: false, // Flechas de navegación
+        dots: false, // Ocultar puntos de navegación
+        autoplay: false, // Auto-play activado
+        autoplayTimeout: 3000, // Cambio cada 3s
+        autoplayHoverPause: false, // Pausa cuando pasas el mouse
+        responsive:{
+          0:{ items: 3 }, // 1 ítem en pantallas pequeñas
+          600:{ items: 3 }, // 3 ítems en pantallas medianas
+          1000:{ items: 3 } // 3 ítems en pantallas grandes
+        },
+        onTranslated: updateClasses
       });
-      // Añade la clase 'selected' al elemento clicado
-      item.classList.add('selected');
-    }
+  
+      function updateClasses() {
+        $(".grid-item").removeClass("active-center prev next");
+  
+        var center = $(".owl-item.active").eq(1).find(".grid-item");
+        var prev = $(".owl-item.active").eq(0).find(".grid-item");
+        var next = $(".owl-item.active").eq(2).find(".grid-item");
+  
+        center.addClass("active-center");
+        prev.addClass("prev");
+        next.addClass("next");
+      }
+  
+      updateClasses(); // Aplicar efecto inicial
+    });
   </script>
 
 </body>
