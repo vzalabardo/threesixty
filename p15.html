@@ -29,6 +29,7 @@
       height: 100%;
       width: 100%;  
       background-size: cover;
+      background: url('p15/background.jpg') no-repeat center center;
       position: relative; /* Para que el overlay cubra toda la pantalla */
     }
 
@@ -164,6 +165,30 @@
       background: white;
       color: black;
     }
+
+    .underline-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Solo línea inferior */
+    color: white;
+    font-size: 18px;
+    padding: 10px 0;
+    width: 80%;
+    max-width: 400px;
+    outline: none;
+    margin-top: 15px;
+    text-align: center;
+    transition: border-bottom 0.3s ease;
+  }
+
+  .underline-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .underline-input:focus {
+    border-bottom: 2px solid white; /* Resalta al enfocar */
+  }
+
   </style>
 </head>
 <body>
@@ -183,12 +208,16 @@
       <!-- Zona central -->
       <div class="middle">
         <div class="info-box"><span class="invest">Do you have what it<br>takes to become on of <br>our founder members?</span></div>
+        <div>
+          <input type="text" placeholder="Name and Surname" class="underline-input">
+          <input type="email" placeholder="Email" class="underline-input">
+        </div>
         <div class="info-box" style="font-weight:lighter;">After the verification, you will<br> password to access a website <br>with more detailed <br> informaiton</div>
       </div>
 
       <!-- Zona inferior -->
       <div class="bottom">
-        <a href="p13.html">
+        <a href="index.html">
           <button>KEEP GOING</button>
         </a>
       </div>
