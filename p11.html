@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreeSixty Experience - Learn More</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      font-family: 'Bai Jamjuree', sans-serif;
+      color: white;
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.573) 0.1%, black 100%);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      text-align: center;
+      padding: 20px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    .separator {
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      margin-top: 3px;
+      margin-bottom: 9px;
+    }
+
+    .top h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .middle {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .full-width-item {
+      width: 90%;
+      max-width: 640px;
+      aspect-ratio: 2 / 1;
+      border: 1px solid white;
+      overflow: hidden;
+      cursor: pointer;
+      margin: 10px auto 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .full-width-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 85%;
+      background: rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+    }
+
+    .full-width-item img {
+      width: 100%;
+      height: 85%;
+      object-fit: cover;
+    }
+
+    .full-width-item p {
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .full-width-item.selected {
+      box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8);
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      padding-bottom: 45px;
+    }
+
+    .bottom button {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 24px;
+      padding: 6px 24px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .bottom button:hover {
+      background: white;
+      color: black;
+    }
+
+    @media (max-width: 375px) {
+      .full-width-item {
+        width: 90%;
+        aspect-ratio: 2.5 / 1;
+      }
+    }
+
+    @media (min-width: 600px) and (max-width: 1024px) {
+      .full-width-item {
+        width: 90%;
+        aspect-ratio: 2.5 / 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="top">
+      <div class="logo">
+        <img src="assets/LogoBlanco.png" alt="Logo">
+      </div>
+      <div class="separator"></div>
+      <h2>6/6 .Who are you coming with?</h2>
+      <div class="separator"></div>
+    </div>
+
+    <div class="middle">
+      <div class="full-width-item" onclick="selectItem(this)">
+        <img src="p11/Family.jpg" alt="Adventure">
+        <p>FAMILY</p>
+      </div>
+      
+      <div class="full-width-item" onclick="selectItem(this)">
+        <img src="P11/Corporate.jpg" alt="Relax">
+        <p>CORPORATE</p>
+      </div>
+      
+      <div class="full-width-item" onclick="selectItem(this)">
+        <img src="P11/Friends.jpg" alt="Cultural">
+        <p>FRIENDS</p>
+      </div>
+    </div>
+    
+    <div class="bottom">
+      <a href="p12.html">
+        <button>Next Question</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function selectItem(item) {
+      document.querySelectorAll('.full-width-item').forEach(i => i.classList.remove('selected'));
+      item.classList.add('selected');
+    }
+  </script>
+
+</body>
+</html>
