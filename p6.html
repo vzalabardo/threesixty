@@ -79,6 +79,18 @@
       grid-template-rows: repeat(4, auto) 1fr; /* 4 filas de altura automática y una fila final */
       gap: 10px;
       justify-items: center; /* Centra los elementos en cada celda */
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    /* Animación de aparición */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     .grid-item {
@@ -90,9 +102,8 @@
       text-align: center;
       overflow: hidden;
       position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
     }
-
-
 
     .grid-item img {
       width: 100%;
@@ -111,10 +122,53 @@
       transform: scale(1.00); /* Efecto de agrandar ligeramente */
     }
 
+
+
     /* Centra el último ítem (el noveno) */
     .grid-item:nth-child(9) {
       grid-column: span 2; /* Hace que ocupe ambas columnas */
       justify-self: center; /* Alinea este ítem al centro */
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajusta dinámicamente */
+        grid-template-rows: auto;
+        justify-content: center;
+        gap: 15px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* Desplazar la segunda fila media casilla a la derecha */
+      .grid-item:nth-child(6),
+      .grid-item:nth-child(7),
+      .grid-item:nth-child(8),
+      .grid-item:nth-child(9) {
+        transform: translateX(50%);
+        transform-origin: center center;
+      }
+
+      .grid-item:nth-child(6):hover,
+      .grid-item:nth-child(7):hover,
+      .grid-item:nth-child(8):hover,
+      .grid-item:nth-child(9):hover {
+        transform: translateX(50%) scale(1.1); /* Mantener el desplazamiento y agregar el escalado */
+        box-shadow: 0 0 15px rgba(255, 165, 0, 1), 0 0 20px rgba(255, 165, 0, 0.8), 0 0 25px rgba(255, 165, 0, 0.6);
+        border: 2px solid rgba(255, 165, 0, 1);
+      }
+
+      .grid-item:nth-child(9) {
+        grid-column: auto;
+        justify-self: auto;
+      }
+
+      .grid-item:hover {
+        transform:scale(1.1); /* Mantener el desplazamiento y agregar el escalado */
+        box-shadow: 0 0 15px rgba(255, 165, 0, 1), 0 0 20px rgba(255, 165, 0, 0.8), 0 0 25px rgba(255, 165, 0, 0.6);
+        border: 2px solid rgba(255, 165, 0, 1);
+      }
+    
     }
 
     .bottom {
@@ -122,21 +176,28 @@
       justify-content: center;
       padding: 20px 0;
       padding-bottom: 45px;
+      padding-top: 40px;
     }
 
     .bottom button {
-      background: transparent;
+      background: rgba(255, 165, 0, 1);
       border: 2px solid white;
-      color: white;
+      color: black;
       font-size: 18px;
-      padding: 6px 24px;
+      border-radius: 12px;
+      font-weight: bold;
+      padding: 6px 64px;
       cursor: pointer;
       text-transform: uppercase;
+      font-style: italic;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     .bottom button:hover {
-      background: white;
-      color: black;
+      background: rgba(255, 165, 0, 0.9);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
     }
 
   </style>
