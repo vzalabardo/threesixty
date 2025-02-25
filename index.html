@@ -110,19 +110,24 @@
     }
 
     .bottom button {
-      background: transparent;
+      background: rgba(255, 165, 0, 1);
       border: 2px solid white;
-      color: white;
+      color: black;
       font-size: 18px;
-      padding: 6px 24px;
+      border-radius: 12px;
+      font-weight: bold;
+      padding: 6px 64px;
       cursor: pointer;
       text-transform: uppercase;
-      font-style: italic; /* Cursiva para Learn More */
+      font-style: italic;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     .bottom button:hover {
-      background: white;
-      color: black;
+      background: rgba(255, 165, 0, 0.9);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
     }
   </style>
 </head>
