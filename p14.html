@@ -15,20 +15,21 @@
     body, html {
       height: 100%;
       width: 100%;
-      overflow: hidden;
+      overflow: auto;
       font-family: 'Bai Jamjuree', sans-serif;
       color: white;
       background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.454) 0.15%, black 100%);
+
     }
-    
 
     .container {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
-      width: 100%;  
+      width: 100%;
       background-size: cover;
+      padding: 20px;
       position: relative; /* Para que el overlay cubra toda la pantalla */
     }
 
@@ -57,11 +58,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      z-index: 3;
     }
 
     .logo img {
       max-width: 150px;
       height: auto;
+
     }
 
     .separator {
@@ -73,35 +76,57 @@
     }
 
     .middle {
-      flex-grow: 1; /* Ocupa todo el espacio disponible */
+      flex-grow: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-around;
-      padding-bottom: 20px;
+      justify-content: flex-start;
+      width: 100%;
+      /* Elimina margin-top */
+      z-index: 3;
+      overflow-y: auto; /* Scroll solo en esta sección */
+      max-height: calc(100vh - 150px); /* Ajusta la altura restante (prueba reducir 150px si es mucho) */
+      padding-bottom: 75px;
     }
 
     .middle h3 {
       font-size: 28px;
       color: rgb(224, 184, 109);
       margin-bottom: 40px;
+      font-weight: bold;
     }
 
     .info-box {
-      border: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Distribuye los elementos uniformemente */
+      border: 0px solid white;
       color: white;
-      font-size: 24px;
-      padding: 0px 0px;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 0;
-      text-align: center;
+      font-size: 18px;
+      font-weight: normal;
+      padding: 16px 24px;
+      width: 95%;
+      max-width: 600px;
+      margin: 5px 0;
+      text-align:left;
       opacity: 0; /* Comienza invisible */
-      animation: fadeInUp 1s forwards; /* Aparece y se mueve hacia arriba */
+      animation: fadeInUp 1s forwards;
     }
 
-    /* Definir la animación de aparición */
-    @keyframes fadeInUp {
+    .icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+    }
+
+    .spacer {
+      width: 34px; /* O el mismo ancho del icono */
+      height: 34px;
+    }
+
+
+        /* Definir la animación de aparición */
+        @keyframes fadeInUp {
       0% {
         opacity: 0;
         transform: translateY(20px); /* Comienza un poco hacia abajo */
@@ -129,85 +154,104 @@
       animation-delay: 2s;
     }
 
-    /* Estilos adicionales font-style: italic;*/
-    .italic {
-      font-style: italic;
+    .info-box:nth-child(5) {
+      animation-delay: 2.5s;
     }
 
-    .invest {
-      color: rgb(224, 184, 109);
-      font-style: italic;
-      font-weight: bold;
-
+    .info-box:nth-child(6) {
+      animation-delay: 3s;
     }
+
+    .info-box:nth-child(7) {
+      animation-delay: 3.5s;
+    }
+
+    .info-box:nth-child(8) {
+      animation-delay: 4.0s;
+    }
+
+    .info-box:nth-child(9) {
+      animation-delay: 4.5s;
+    }
+
+    .info-box:nth-child(10) {
+      animation-delay: 5.0s;
+    }
+
+    .info-box:nth-child(11) {
+      animation-delay: 5.5s;
+    }
+
+    .info-box:nth-child(12) {
+      animation-delay: 6.0s;
+    }
+
+    .vacation-text {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: normal;
+    color: white;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      padding-bottom: 15px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      padding: 10px;
+      border-radius: 12px;
+      width: auto; /* Mantiene su tamaño sin ocupar más líneas */
+      white-space: nowrap; /* Evita que el texto del botón se divida *//* Opcional: añadir fondo para visibilidad */
     }
 
     .bottom button {
-      background: transparent;
+      background: rgba(255, 165, 0, 1);
       border: 2px solid white;
-      color: white;
+      color: black;
       font-size: 18px;
-      font-weight: normal;
-      font-style: italic;
-      padding: 6px 32px;
+      border-radius: 12px;
+      font-weight: bold;
+      padding: 6px 64px;
       cursor: pointer;
       text-transform: uppercase;
+      font-style: italic;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     .bottom button:hover {
-      background: white;
-      color: black;
+      background: rgba(255, 165, 0, 0.9);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
     }
 
-    .video-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
+    @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+      .bottom button {
+        margin-bottom: env(safe-area-inset-bottom); /* Se ajusta automáticamente en dispositivos con notch o gestos (iOS) */
+      }
+    }
 
-  .videos {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    font-size: 20px;
-  }
+    
 
-  .video-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 220px; /* Ajusta el ancho según necesites */
-    padding: 12px 20px;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
-    border-radius: 12px; /* Bordes redondeados */
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
+    .invest {
+        color: rgb(224, 184, 109);
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        font-size: 24px;
+        display: block;
+        width: 100%;
+        margin-bottom: 30px; /* Agrega margen inferior para separar de la lista */
+    }
 
-  .video-item:hover {
-    background: rgba(224, 184, 109, 0.7); /* Color dorado más visible */
-    transform: scale(1.05); /* Pequeño efecto de zoom */
-  }
+    
 
-  .video-icon {
-    width: 24px; /* Ajusta el tamaño del icono */
-    height: 24px;
-    margin-right: 10px; /* Espacio entre el icono y el texto */
-  }
-
-  .arrow {
-    font-size: 24px;
-    font-weight: bold;
-  }
 
   </style>
 </head>
@@ -215,52 +259,112 @@
 
   <div class="container">
     <div class="overlay"></div> <!-- Capa oscura -->
-
-    <div class="content"> 
-      <!-- Zona superior -->
-      <div class="top">
-        <div class="logo">
-          <img src="assets/LogoBlanco.png" alt="Logo">
-        </div>
-        <div class="separator"></div>
+    <!-- Zona superior -->
+    <div class="top">
+      <div class="logo">
+        <img src="assets/LogoBlanco.png" alt="Logo">
       </div>
+      <div class="separator"></div>
+    </div>
 
-      <!-- Zona central -->
-      <div class="middle">
-        <div class="info-box"><span class="invest">A video is worth a million <br>words so…</span></div>
-        <div class="info-box video-list">
-          <div class="videos">
-            <a href="video1.html" class="video-item">
-              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
-              Video 1 <span class="arrow">→</span>
-            </a>
-            <a href="video2.html" class="video-item">
-              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
-              Video 2 <span class="arrow">→</span>
-            </a>
-            <a href="video3.html" class="video-item">
-              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
-              Video 3 <span class="arrow">→</span>
-            </a>
-            <a href="video4.html" class="video-item">
-              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
-              Video 4 <span class="arrow">→</span>
-            </a>
-            <a href="video5.html" class="video-item">
-              <img src="p14/video-icon.png" alt="Video Icon" class="video-icon"> 
-              Video 5 <span class="arrow">→</span>
-            </a>
-          </div>
-        </div>
-        <div class="info-box" style="font-weight:lighter;"></div>
-      </div>
+<!-- Zona central -->
+<div class="middle">
+    <div class="invest">What sets us apart from <br> the rest?</div>
 
-      <!-- Zona inferior -->
-      <div class="bottom">
-        <a href="p15.html">
-          <button>KEEP GOING</button>
-        </a>
-      </div>
+
+  <div class="info-box"> 
+    <img src="p14/sitio-web-de-viajes.png" class="icon"> 
+    <span>Picked up at the airport—no
+        stress, just arrival.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/coche-electrico.png" class="icon">
+    <span>We ship your dream car,
+        anywhere in Europe within
+        24/48h.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/equipaje-de-viaje.png" class="icon">
+    <span>Traveling with supercars and
+        luggage? No worries. The club
+        handles it all—your bags will be
+        waiting in your hotel room at
+        every stop.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/camara-reflex-digital.png" class="icon">
+    <span>Every moment captured—
+        personal photographer &
+        videographer for each
+        experience.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/personalizado.png" class="icon">
+    <span>Tailored only to you—our quiz
+        personalizes your experience. No
+        replications. Every member
+        means a world for us.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/idioma-extranjero.png" class="icon">
+    <span>Your rules, your language, our
+        team will speak your way.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/reserva.png" class="icon">
+    <span>No experiences, hotels,
+        restaurants bookings, no
+        hassle—we handle it all.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/tarjeta.png" class="icon">
+    <span>From arrival to departure—no
+        payments, just pure enjoyment.
+        The club takes care of
+        everything upfront.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p14/gasolinera.png" class="icon">
+    <span>Fuel & cleaning? Please... Every
+        morning, your car will be
+        spotless, fueled, and ready to
+        go—just like brand new.</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="vacation-text">
+    <div class="separator" style="margin-bottom: 20px;"></div>
+    <p>And because we know vacations don’t always go as planned...<br></p>
+    <p><br>We design a <strong>Plan A</strong> for you, but we also have <strong>Plan B, C, and D</strong> ready.<br></p>
+    <p><br>Want to sleep in? Change plans last minute?<br></p>
+    <p><strong><br>No problem, amigo.</strong> We make sure your trip is nothing short of unforgettable.</p>
+  </div>
+
+</div>
+
+
+    <!-- Zona inferior -->
+    <div class="bottom">
+        
+      <a href="p15.html">
+        <button>KEEP GOING</button>
+      </a>
     </div>
   </div>
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThreeSixty Experience - Learn More</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <title>ThreeSixty Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,49 +15,40 @@
     body, html {
       height: 100%;
       width: 100%;
-      overflow: hidden;
       font-family: 'Bai Jamjuree', sans-serif;
       color: white;
-      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.454) 0.15%, black 100%);
-    }
-    
-
-    .container {
+      background: black;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      width: 100%;  
-      background-size: cover;
-      background: url('p15/background.jpg') no-repeat center center;
-      position: relative; /* Para que el overlay cubra toda la pantalla */
+      align-items: center;
     }
 
-    /* Capa oscura encima del fondo */
     .overlay {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.65); /* Opacidad del overlay */
-      z-index: 1;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
     }
 
-    .content {
-      position: relative;
-      z-index: 2; /* Para que el contenido esté sobre el overlay */
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      text-align: center;
-      padding: 20px;
-    }
+    .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh; /* Asegura que ocupe toda la pantalla */
+}
 
+    /* Zona superior */
     .top {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
     }
 
     .logo img {
@@ -67,160 +58,134 @@
 
     .separator {
       width: 100%;
-      height: 2px;
+      height: 1px;
       background-color: white;
       margin-top: 3px;
-      margin-bottom: 1px;
     }
 
+    /* Video */
+    .video-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 0; /* Pegado arriba */
+  left: 50%;
+  transform: translateX(-50%); /* Centrado horizontalmente */
+  width: 100%; /* Más ancho */
+  color: white;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3); /* Fondo más oscuro para mejor visibilidad */
+  padding: 0 0; /* Espaciado arriba y abajo */
+  border-radius: 0px 0px 10px 10px; /* Bordes redondeados arriba */
+}
+
+    video {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    /* Zona central */
     .middle {
-      flex-grow: 1; /* Ocupa todo el espacio disponible */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-around;
-      padding-bottom: 20px;
+      flex-grow: 1;
+      text-align: left;
+      padding: 20px 0;
     }
 
-    .middle h3 {
-      font-size: 28px;
-      color: rgb(224, 184, 109);
-      margin-bottom: 40px;
-    }
-
-    .info-box {
-      border: 0px;
-      color: white;
-      font-size: 24px;
-      padding: 0px 0px;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 0;
-      text-align: center;
-      opacity: 0; /* Comienza invisible */
-      animation: fadeInUp 1s forwards; /* Aparece y se mueve hacia arriba */
-    }
-
-    /* Definir la animación de aparición */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px); /* Comienza un poco hacia abajo */
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0); /* Llega a su posición normal */
-      }
-    }
-
-    /* Retrasos para que cada info-box aparezca en secuencia */
-    .info-box:nth-child(1) {
-      animation-delay: 0.5s;
-    }
-
-    .info-box:nth-child(2) {
-      animation-delay: 1s;
-    }
-
-    .info-box:nth-child(3) {
-      animation-delay: 1.5s;
-    }
-
-    .info-box:nth-child(4) {
-      animation-delay: 2s;
-    }
-
-    /* Estilos adicionales font-style: italic;*/
-    .italic {
-      font-style: italic;
-    }
-
-    .invest {
-      color: rgb(224, 184, 109);
+    .middle p {
+      font-size: 26px;
       font-style: italic;
       font-weight: bold;
-
+      line-height: 1.4;
     }
 
+    .middle p span {
+      color: orange;
+    }
+
+    /* Zona inferior */
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      padding-bottom: 15px;
-    }
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto; /* Empuja el botón al fondo */
+  padding-bottom: 20px;
+}
 
     .bottom button {
-      background: transparent;
+      background: rgba(255, 165, 0, 1);
       border: 2px solid white;
-      color: white;
-      font-size: 24px;
-      font-weight: normal;
-      font-style: italic;
-      padding: 6px 32px;
+      color: black;
+      font-size: 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      padding: 6px 64px;
       cursor: pointer;
       text-transform: uppercase;
+      font-style: italic;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      transition: box-shadow 0.3s ease-in-out;
     }
 
     .bottom button:hover {
-      background: white;
-      color: black;
+      background: rgba(255, 165, 0, 0.9);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
     }
-
-    .underline-input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Solo línea inferior */
-    color: white;
-    font-size: 18px;
-    padding: 10px 0;
-    width: 80%;
-    max-width: 400px;
-    outline: none;
-    margin-top: 15px;
-    text-align: center;
-    transition: border-bottom 0.3s ease;
-  }
-
-  .underline-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .underline-input:focus {
-    border-bottom: 2px solid white; /* Resalta al enfocar */
-  }
-
   </style>
 </head>
 <body>
 
+  <div class="overlay"></div>
+
   <div class="container">
-    <div class="overlay"></div> <!-- Capa oscura -->
-
-    <div class="content"> 
-      <!-- Zona superior -->
-      <div class="top">
-        <div class="logo">
-          <img src="assets/LogoBlanco.png" alt="Logo">
-        </div>
-        <div class="separator"></div>
+    <!-- Zona superior -->
+    <div class="top">
+      <div class="logo">
+        <img src="assets/LogoBlanco.png" alt="Logo">
       </div>
+      <div class="separator"></div>
+    </div>
 
-      <!-- Zona central -->
-      <div class="middle">
-        <div class="info-box"><span class="invest">Do you have what it<br>takes to become one of <br>our founder members?</span></div>
-        <div>
-          <input type="text" placeholder="Name and Surname" class="underline-input">
-          <input type="email" placeholder="Email" class="underline-input">
-        </div>
-        <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">After the verification, you will<br> receive an email with a <br> password to access a website <br>with more detailed <br> informaiton</div>
-      </div>
+    
 
-      <!-- Zona inferior -->
-      <div class="bottom">
-        <a href="index.html">
-          <button>SUBMIT</button>
-        </a>
+    <!-- Video justo debajo del separador -->
+    <div class="video-container">
+      <div class="text-overlay">
+        <p>A video is worth a million <br>  
+          words, so... take a look at <br>
+          what you’ll experience with <br>
+          us.</p>
       </div>
+      <video autoplay loop controls playsinline>
+        <source src="p16/video.mp4" type="video/mp4">
+        Tu navegador no soporta videos en HTML5.
+      </video>
+    </div>
+    
+
+    <!-- Zona central -->
+
+
+    <!-- Zona inferior -->
+    <div class="bottom">
+      <a href="p16.html">
+        <button>NEXT</button>
+      </a>
     </div>
   </div>
 
