@@ -20,33 +20,31 @@
       color: white;
       background: black;
     }
-
     .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      width: 100%;
-      background: url('p4/background.jpg') no-repeat center center;
-      background-size: cover;
-      padding: 20px;
-      position: relative; /* Para que el overlay cubra toda la pantalla */
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh; /* Mantener el tamaño completo de la pantalla */
+  width: 100%;
+  background: url('p4/background.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+  position: relative;
+}
 
-    /* Capa oscura encima del fondo */
     .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.65); /* Opacidad del overlay */
+      background: rgba(0, 0, 0, 0.65);
       z-index: 1;
     }
 
     .content {
       position: relative;
-      z-index: 2; /* Para que el contenido esté sobre el overlay */
+      z-index: 2;
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -64,7 +62,6 @@
     .logo img {
       max-width: 150px;
       height: auto;
-
     }
 
     .separator {
@@ -76,103 +73,72 @@
     }
 
     .middle {
-        flex-grow: 1; /* Hace que ocupe todo el espacio disponible */
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: calc(100% + 40px); /* Expande más allá del padding */
-        margin-left: -20px; /* Ajusta el desplazamiento negativo */
-        margin-right: -20px;
-        z-index: 3; /* Asegura que esté sobre el overlay */
-
-    }
-
-    .middle h3 {
-      font-size: 28px;
-      color: rgb(224, 184, 109);
-      margin-bottom: 40px;
-      font-weight: bold;
-    }
-
-    .info-box {
+      flex-grow: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between; /* Distribuye los elementos uniformemente */
+      justify-content: flex-start;
+      width: 100%;
+      /* Elimina margin-top */
+      z-index: 3;
+      overflow-y: auto; /* Scroll solo en esta sección */
+      max-height: calc(100vh - 150px); /* Ajusta la altura restante (prueba reducir 150px si es mucho) */
+      padding-bottom: 20px;
+    }
+
+
+    .box {
       border: 2px solid white;
       color: white;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 6px 24px;
-      text-transform: uppercase;
+      font-size: 18px;
+      padding: 10px 20px;
       width: 90%;
       max-width: 400px;
       margin: 5px 0;
       text-align: center;
-      opacity: 0; /* Comienza invisible */
+      opacity: 0;
       animation: fadeInUp 1s forwards;
     }
 
-    .icon {
-      width: 34px;
-      height: 34px;
-      margin-right: 20px;
+    .box strong {
+      color: rgb(224, 184, 109);
+      font-weight: bold;
+      font-size: 19px;
     }
 
-    .spacer {
-      width: 34px; /* O el mismo ancho del icono */
-      height: 34px;
+    .box br + span {
+      font-weight: normal;
     }
 
-
-        /* Definir la animación de aparición */
-        @keyframes fadeInUp {
+    @keyframes fadeInUp {
       0% {
         opacity: 0;
-        transform: translateY(20px); /* Comienza un poco hacia abajo */
+        transform: translateY(20px);
       }
       100% {
         opacity: 1;
-        transform: translateY(0); /* Llega a su posición normal */
+        transform: translateY(0);
       }
     }
 
-    /* Retrasos para que cada info-box aparezca en secuencia */
-    .info-box:nth-child(1) {
-      animation-delay: 0.5s;
-    }
-
-    .info-box:nth-child(2) {
-      animation-delay: 1s;
-    }
-
-    .info-box:nth-child(3) {
-      animation-delay: 1.5s;
-    }
-
-    .info-box:nth-child(4) {
-      animation-delay: 2s;
-    }
-
-    .info-box:nth-child(5) {
-      animation-delay: 2.5s;
-    }
-
-    .info-box:nth-child(6) {
-      animation-delay: 3s;
-    }
-
-    .info-box:nth-child(7) {
-      animation-delay: 3.5s;
-    }
+    .box:nth-child(1) { animation-delay: 0.5s; }
+    .box:nth-child(2) { animation-delay: 1s; }
+    .box:nth-child(3) { animation-delay: 1.5s; }
+    .box:nth-child(4) { animation-delay: 2s; }
+    .box:nth-child(5) { animation-delay: 2.5s; }
+    .box:nth-child(6) { animation-delay: 3s; }
+    .box:nth-child(7) { animation-delay: 3.5s; }
 
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      z-index: 3;
-      padding-bottom: 20px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      padding: 10px;
+      border-radius: 12px;
+      width: auto; /* Mantiene su tamaño sin ocupar más líneas */
+      white-space: nowrap; /* Evita que el texto del botón se divida *//* Opcional: añadir fondo para visibilidad */
     }
 
     .bottom button {
@@ -186,30 +152,21 @@
       cursor: pointer;
       text-transform: uppercase;
       font-style: italic;
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
       transition: box-shadow 0.3s ease-in-out;
     }
 
     .bottom button:hover {
       background: rgba(255, 165, 0, 0.9);
       color: white;
-      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1);
     }
-
-    @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
-      .bottom button {
-        margin-bottom: env(safe-area-inset-bottom); /* Se ajusta automáticamente en dispositivos con notch o gestos (iOS) */
-      }
-    }
-
-
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="overlay"></div> <!-- Capa oscura -->
-    <!-- Zona superior -->
+    <div class="overlay"></div>
     <div class="top">
       <div class="logo">
         <img src="assets/LogoBlanco.png" alt="Logo">
@@ -217,53 +174,17 @@
       <div class="separator"></div>
     </div>
 
-<!-- Zona central -->
-<div class="middle">
-  <div class="info-box"> 
-    <img src="p4/retorno-de-la-inversion.png" class="icon"> 
-    <span>8% ANUAL CREDIT</span>
-    <div class="spacer"></div>
-  </div>
+    <div class="middle">
+      <div class="box"><strong>Annual Credit:</strong> <br> <span>8% fixed interest (€24,000/year) to be used for Club activities.</span></div>
+      <div class="box"><strong>Membership:</strong> <br> <span>Lifetime access.<br>(Regular members renew their fee every 5 years.)</span></div>
+      <div class="box"><strong>Vehicle Usage:</strong> <br> <span>75% discount on Club vehicle rentals.</span></div>
+      <div class="box"><strong>Property Access:</strong> <br> <span>          Free usage of all Club properties.<br>
+        Priority booking rights for Club properties and vehicles.</span></div>
+      <div class="box"><strong>Right of Sale:</strong> <br> <span>Non-nominal action with 5% annual compound interest.</span></div>
+      <div class="box"><strong>Leadership Role::</strong> <br> <span>          Seat on the non-executive Board of Directors to oversee the acceptance of new members.</span></div>
+      <div class="box"><strong>Concierge and Personal Assistant:</strong> <br> <span>The club will provide you with a concierge and personal assistant to organize your calendars and experiences.</span></div>
+    </div>
 
-  <div class="info-box">
-    <img src="p4/tarjeta-de-membresia.png" class="icon">
-    <span>MEMBERSHIP W/O<br>EXPIRATION</span>
-    <div class="spacer"></div>
-  </div>
-
-  <div class="info-box">
-    <img src="p4/carro-deportivo.png" class="icon">
-    <span>75% OFF ON VEHICLE<br>USAGE</span>
-    <div class="spacer"></div>
-  </div>
-
-  <div class="info-box">
-    <img src="p4/villa.png" class="icon">
-    <span>FREE USAGE OF CLUB<br>PROPERTIES</span>
-    <div class="spacer"></div>
-  </div>
-
-  <div class="info-box">
-    <img src="p4/zakat.png" class="icon">
-    <span>RIGHT OF SALE</span>
-    <div class="spacer"></div>
-  </div>
-
-  <div class="info-box">
-    <img src="p4/cita.png" class="icon">
-    <span>SEAT ON THE NON-<br>EXECUTIVE BOARD</span>
-    <div class="spacer"></div>
-  </div>
-
-  <div class="info-box">
-    <img src="p4/asistente.png" class="icon">
-    <span>CONCIERGE AND<br>PERSONAL ASSISTANT</span>
-    <div class="spacer"></div>
-  </div>
-</div>
-
-
-    <!-- Zona inferior -->
     <div class="bottom">
       <a href="p5.html">
         <button>KEEP GOING</button>

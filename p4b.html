@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreeSixty Experience - Learn More</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      font-family: 'Bai Jamjuree', sans-serif;
+      color: white;
+      background: black;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+      background: url('p4/background.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 20px;
+      position: relative; /* Para que el overlay cubra toda la pantalla */
+    }
+
+    /* Capa oscura encima del fondo */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65); /* Opacidad del overlay */
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2; /* Para que el contenido esté sobre el overlay */
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+
+    }
+
+    .separator {
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      margin-top: 3px;
+      margin-bottom: 1px;
+    }
+
+    .middle {
+        flex-grow: 1; /* Hace que ocupe todo el espacio disponible */
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: calc(100% + 40px); /* Expande más allá del padding */
+        margin-left: -20px; /* Ajusta el desplazamiento negativo */
+        margin-right: -20px;
+        z-index: 3; /* Asegura que esté sobre el overlay */
+
+    }
+
+    .middle h3 {
+      font-size: 28px;
+      color: rgb(224, 184, 109);
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .info-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Distribuye los elementos uniformemente */
+      border: 2px solid white;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 6px 24px;
+      text-transform: uppercase;
+      width: 90%;
+      max-width: 400px;
+      margin: 5px 0;
+      text-align: center;
+      opacity: 0; /* Comienza invisible */
+      animation: fadeInUp 1s forwards;
+    }
+
+    .icon {
+      width: 34px;
+      height: 34px;
+      margin-right: 20px;
+    }
+
+    .spacer {
+      width: 34px; /* O el mismo ancho del icono */
+      height: 34px;
+    }
+
+
+        /* Definir la animación de aparición */
+        @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px); /* Comienza un poco hacia abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Llega a su posición normal */
+      }
+    }
+
+    /* Retrasos para que cada info-box aparezca en secuencia */
+    .info-box:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+
+    .info-box:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .info-box:nth-child(3) {
+      animation-delay: 1.5s;
+    }
+
+    .info-box:nth-child(4) {
+      animation-delay: 2s;
+    }
+
+    .info-box:nth-child(5) {
+      animation-delay: 2.5s;
+    }
+
+    .info-box:nth-child(6) {
+      animation-delay: 3s;
+    }
+
+    .info-box:nth-child(7) {
+      animation-delay: 3.5s;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      z-index: 3;
+      padding-bottom: 20px;
+    }
+
+    .bottom button {
+      background: rgba(255, 165, 0, 1);
+      border: 2px solid white;
+      color: black;
+      font-size: 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      padding: 6px 64px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-style: italic;
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .bottom button:hover {
+      background: rgba(255, 165, 0, 0.9);
+      color: white;
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
+    }
+
+    @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+      .bottom button {
+        margin-bottom: env(safe-area-inset-bottom); /* Se ajusta automáticamente en dispositivos con notch o gestos (iOS) */
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="overlay"></div> <!-- Capa oscura -->
+    <!-- Zona superior -->
+    <div class="top">
+      <div class="logo">
+        <img src="assets/LogoBlanco.png" alt="Logo">
+      </div>
+      <div class="separator"></div>
+    </div>
+
+<!-- Zona central -->
+<div class="middle">
+  <div class="info-box"> 
+    <img src="p4/retorno-de-la-inversion.png" class="icon"> 
+    <span>8% ANUAL CREDIT</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p4/tarjeta-de-membresia.png" class="icon">
+    <span>MEMBERSHIP W/O<br>EXPIRATION</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p4/carro-deportivo.png" class="icon">
+    <span>75% OFF ON VEHICLE<br>USAGE</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p4/villa.png" class="icon">
+    <span>FREE USAGE OF CLUB<br>PROPERTIES</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p4/zakat.png" class="icon">
+    <span>RIGHT OF SALE</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p4/cita.png" class="icon">
+    <span>SEAT ON THE NON-<br>EXECUTIVE BOARD</span>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="info-box">
+    <img src="p4/asistente.png" class="icon">
+    <span>CONCIERGE AND<br>PERSONAL ASSISTANT</span>
+    <div class="spacer"></div>
+  </div>
+</div>
+
+
+    <!-- Zona inferior -->
+    <div class="bottom">
+      <a href="p5.html">
+        <button>KEEP GOING</button>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
