@@ -77,7 +77,6 @@
 
     .full-width-item.selected {
       box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8);
-      transform: scale(1.00);
     }
 
     /* Texto antes de la imagen grande */
@@ -127,7 +126,7 @@
 
     @media (max-width: 375px) {
       .full-width-item {
-        width: 90%; /* Reduce el ancho en móviles */
+        /*width: 90%; /* Reduce el ancho en móviles */
         aspect-ratio: 2.5 / 1; /* Evita que sean demasiado altas */
       }
 
@@ -138,7 +137,7 @@
 
     @media (min-width: 600px) and (max-width: 1024px) {
       .full-width-item {
-        width: 90%; /* Reduce el ancho en móviles */
+        /*width: 90%; /* Reduce el ancho en móviles */
         aspect-ratio: 2.5 / 1; /* Evita que sean demasiado altas */
       }
 
@@ -147,31 +146,31 @@
       }
     }
     @media (min-width: 1024px) {
-  .middle {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
-    gap: 10px;
-    justify-items: center;
-  }
+      .middle {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto auto;
+        gap: 10px;
+        justify-items: center;
+      }
 
-  .full-width-item {
-    max-width: 400px; /* Ajusta el tamaño según necesites */
-    width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-  }
+      .full-width-item {
+        max-width: 400px; /* Ajusta el tamaño según necesites */
+        width: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      }
 
-  .full-width-item:nth-child(3) {
-    grid-column: span 2; /* Hace que la última imagen ocupe las dos columnas */
-    justify-self: center;
-  }
+      .full-width-item:nth-child(3) {
+        grid-column: span 2; /* Hace que la última imagen ocupe las dos columnas */
+        justify-self: center;
+      }
 
-  .full-width-item:hover {
-  transform: scale(1.07); /* Efecto de escalado */
-  box-shadow: 0 0 15px rgba(255, 165, 0, 1), 0 0 20px rgba(255, 165, 0, 0.8), 0 0 25px rgba(255, 165, 0, 0.6); /* Sombra */
-  border: 2px solid rgba(255, 165, 0, 1); /* Borde con el mismo color de la sombra */
-}
-}
+      .full-width-item:hover {
+      transform: scale(1.07); /* Efecto de escalado */
+      box-shadow: 0 0 15px rgba(255, 165, 0, 1), 0 0 20px rgba(255, 165, 0, 0.8), 0 0 25px rgba(255, 165, 0, 0.6); /* Sombra */
+      border: 2px solid rgba(255, 165, 0, 1); /* Borde con el mismo color de la sombra */
+    }
+    }
 
     .bottom {
       display: flex;
