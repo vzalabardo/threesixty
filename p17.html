@@ -71,6 +71,31 @@
       color: black;
     }
 
+    .separator {
+      width: 75%;
+      height: 1px;
+      background: white;
+      margin-top: 40px;
+    }
+
+    .quote-container {
+      width: 100%;
+      text-align: center;
+      font-style: italic;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .quote {
+      font-size: 18px;
+    }
+
+    .author {
+      text-align: right;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -87,8 +112,16 @@
 
   <div id="animation-container"></div>
 
-  <div class="message thank-you">Thank you for submitting!</div>
-  <div class="message sub-message">We’ll be in touch soon—<br>your journey is just beginning.</div>
+  <div class="message thank-you">Thank you!</div>
+  <div class="message sub-message" style="font-weight: bold;">We want you to be part of<br> our world!</div>
+
+
+  <div class="separator"></div>
+  <div class="quote-container">
+    <div class="quote" style="padding: 16px;">And remember:</div>
+    <div class="quote">"Racing is life,<br>Anything before or after is just <br> waiting."</div>
+    <div class="author" style="padding-right: 16px; padding-top: 16px;">Steve McQueen</div>
+  </div>
 
   <button class="home-btn" onclick="window.location.href='index.html'">Home</button>
 
