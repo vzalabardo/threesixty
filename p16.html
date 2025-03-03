@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ThreeSixty Experience - Learn More</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -194,39 +195,59 @@
   </style>
 </head>
 <body>
-
   <div class="container">
-    <div class="overlay"></div> <!-- Capa oscura -->
-
+    <div class="overlay"></div>
     <div class="content"> 
-      <!-- Zona superior -->
       <div class="top">
-        <div class="logo">
-          <img src="assets/LogoBlanco.png" alt="Logo">
-        </div>
+        <div class="logo"><img src="assets/LogoBlanco.png" alt="Logo"></div>
         <div class="separator"></div>
       </div>
-
-      <!-- Zona central -->
-      <div class="middle">
-        <div class="info-box"><span class="invest">Do you have what it<br>takes to become one of <br>our founder members?</span></div>
-        <div>
-          <input type="text" placeholder="Name and Surname" class="underline-input">
-          <input type="email" placeholder="Email" class="underline-input">
-          <input type="email" placeholder="Phone Number" class="underline-input">
-          
-        </div>
-        <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">After the verification, you will<br> receive an email with a <br> password to access a website <br>with more detailed <br> informaiton</div>
-      </div>
-
-      <!-- Zona inferior -->
-      <div class="bottom">
-        <a href="p17.html">
-          <button>SUBMIT</button>
-        </a>
-      </div>
+      <form id="contact-form" class="middle">
+        <div class="info-box"><span class="invest">Do you have what it takes to become one of our founder members?</span></div>
+        <input type="text" id="name" placeholder="Name and Surname" class="underline-input" required>
+        <input type="email" id="email" placeholder="Email" class="underline-input" required>
+        <input type="tel" id="phone" placeholder="Phone Number (optional)" class="underline-input">
+        <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">After the verification, you will receive an email with a password to access a website with more detailed information.</div>
+        <div class="bottom"><button type="submit">SUBMIT</button></div>
+      </form>
     </div>
   </div>
-
+</form>
+  <script>
+    (function(){
+      emailjs.init("Ud01URTpcBo1Vs04_"); // Reemplaza con tu User ID de EmailJS
+    })();
+  
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      // Obtener valores del formulario
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+  
+      // Validar que el nombre y el email no estén vacíos
+      if (!name || !email) {
+        alert("Name and Email are required.");
+        return;
+      }
+  
+      // Datos para EmailJS
+      const templateParams = {
+        to_email: email,   // Email del usuario
+        to_name: name,     // Nombre del usuario
+        phone: phone || "Not provided" // Si no hay teléfono, se indica "Not provided"
+      };
+  
+      // Enviar email
+      emailjs.send("service_gw7bwmi", "template_be8iolf", templateParams)
+        .then(function(response) {
+          window.location.href = "p17.html";
+        }, function(error) {
+          alert("Error sending email. Try again later.");
+        });
+    });
+  </script>
+  
 </body>
 </html>
