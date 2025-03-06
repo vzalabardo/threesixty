@@ -207,7 +207,8 @@
         <input type="text" id="name" placeholder="Name and Surname" class="underline-input" required>
         <input type="email" id="email" placeholder="Email" class="underline-input" required>
         <input type="tel" id="phone" placeholder="Phone Number (optional)" class="underline-input">
-        <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">After the verification, you will receive an email with a password to access a website with more detailed information.</div>
+        <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">
+          We will get in touch with you as soon as possible via email.<br>Please check your inbox (and your SPAM folder, just in case).</div>
         <div class="bottom"><button type="submit">SUBMIT</button></div>
       </form>
     </div>
@@ -240,7 +241,7 @@
       };
   
       // Enviar email User
-      emailjs.send("service_gw7bwmi", "template_be8iolf", templateParams)
+      emailjs.send("service_zlydamd", "template_bhy9mtr", templateParams)
         .then(function(response) {
           window.location.href = "p17.html";
         }, function(error) {
@@ -248,7 +249,7 @@
         });
 
       // Enviar email Nosotros
-      emailjs.send("service_gw7bwmi", "template_abltlfp", templateParams)
+      emailjs.send("service_zlydamd", "template_abltlfp", templateParams)
         .then(function(response) {
           window.location.href = "p17.html";
         }, function(error) {
