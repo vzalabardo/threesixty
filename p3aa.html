@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThreeSixty Experience - Learn More</title>
+  <title>ThreeSixty Club</title>
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -141,9 +141,48 @@
     }
 
     .highlight {
-      font-style: italic;
-      text-decoration: underline;
-      color: rgb(224, 184, 109);
+  font-style: italic;
+  text-decoration: underline;
+  color: rgb(224, 184, 109);
+  text-shadow: 0 0 10px rgba(224, 184, 109, 0.8), 
+               0 0 20px rgba(224, 184, 109, 0.6), 
+               0 0 30px rgba(224, 184, 109, 0.4);
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.highlight:hover {
+  text-shadow: 0 0 15px rgba(224, 184, 109, 1), 
+               0 0 25px rgba(224, 184, 109, 0.9), 
+               0 0 35px rgba(224, 184, 109, 0.8);
+  cursor: pointer;
+}
+
+
+        /* Estilo para la flecha estilizada */
+        .arrow {
+      position: relative;
+      display: inline-block;
+      width: 2px; /* El "palo" de la flecha */
+      height: 30px; /* Longitud del "palo" */
+      background-color: white;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      bottom: -10px; /* Mueve la punta más abajo */
+      left: 50%; /* Centra la punta */
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 10px solid white; /* Punta de la flecha */
+      transform: translateX(-50%); /* Centra la punta con el palo */
     }
 
     .bottom {
@@ -203,8 +242,10 @@
           before you even think about it.</div>
 
         <div class="info-box small-italic">For a deeper look at what we <br>
-          offer, explore our <br>
-          <span class="highlight">[16 Areas of Expertise]</span>
+          offer, explore our: <br>
+          <div class="arrow"></div><br>
+          <a href="p3aa/16 B'es Three SIxty Club.pdf" download class="highlight">16 AREAS OF EXPERTISE</a> <br>
+          <span style="font-style: italic; font-size: 16px;">(Click to download)</span>
         </div>
       </div>
 
