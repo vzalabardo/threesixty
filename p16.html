@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThreeSixty Experience - Learn More</title>
+  <title>ThreeSixty Club</title>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   <style>
@@ -234,19 +234,29 @@
   
       // Datos para EmailJS
       const templateParams = {
-        to_email: email,   // Email del usuario
-        to_name: name,     // Nombre del usuario
-        phone: phone || "Not provided" // Si no hay teléfono, se indica "Not provided"
+        form_email: email,   // Email del usuario
+        form_name: name,     // Nombre del usuario
+        form_phone: phone || "Not provided" // Si no hay teléfono, se indica "Not provided"
       };
   
-      // Enviar email
+      // Enviar email User
       emailjs.send("service_gw7bwmi", "template_be8iolf", templateParams)
         .then(function(response) {
           window.location.href = "p17.html";
         }, function(error) {
-          alert("Error sending email. Try again later.");
+          alert("Error sending email1. Try again later.");
+        });
+
+      // Enviar email Nosotros
+      emailjs.send("service_gw7bwmi", "template_abltlfp", templateParams)
+        .then(function(response) {
+          window.location.href = "p17.html";
+        }, function(error) {
+          alert("Error sending email2. Try again later.");
         });
     });
+
+    
   </script>
   
 </body>
