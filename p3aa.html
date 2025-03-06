@@ -141,25 +141,24 @@
     }
 
     .highlight {
-  font-style: italic;
-  text-decoration: underline;
-  color: rgb(224, 184, 109);
-  text-shadow: 0 0 10px rgba(224, 184, 109, 0.8), 
-               0 0 20px rgba(224, 184, 109, 0.6), 
-               0 0 30px rgba(224, 184, 109, 0.4);
-  transition: text-shadow 0.3s ease-in-out;
-}
+      font-style: italic;
+      text-decoration: underline;
+      color: rgb(224, 184, 109);
+      text-shadow: 0 0 10px rgba(224, 184, 109, 0.8), 
+                   0 0 20px rgba(224, 184, 109, 0.6), 
+                   0 0 30px rgba(224, 184, 109, 0.4);
+      transition: text-shadow 0.3s ease-in-out;
+    }
 
-.highlight:hover {
-  text-shadow: 0 0 15px rgba(224, 184, 109, 1), 
-               0 0 25px rgba(224, 184, 109, 0.9), 
-               0 0 35px rgba(224, 184, 109, 0.8);
-  cursor: pointer;
-}
+    .highlight:hover {
+      text-shadow: 0 0 15px rgba(224, 184, 109, 1), 
+                   0 0 25px rgba(224, 184, 109, 0.9), 
+                   0 0 35px rgba(224, 184, 109, 0.8);
+      cursor: pointer;
+    }
 
-
-        /* Estilo para la flecha estilizada */
-        .arrow {
+    /* Estilo para la flecha estilizada */
+    .arrow {
       position: relative;
       display: inline-block;
       width: 2px; /* El "palo" de la flecha */
@@ -244,7 +243,10 @@
         <div class="info-box small-italic">For a deeper look at what we <br>
           offer, explore our: <br>
           <div class="arrow"></div><br>
-          <a href="p3aa/16 B'es Three SIxty Club.pdf" download class="highlight">16 AREAS OF EXPERTISE</a> <br>
+          <a href="p3aa/16%20B'es%20Three%20SIxty%20Club.pdf" class="highlight" id="download-pdf" onclick="downloadPDF(event)">16 AREAS OF EXPERTISE</a>
+
+
+          <br>
           <span style="font-style: italic; font-size: 16px;">(Click to download)</span>
         </div>
       </div>
@@ -256,6 +258,16 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function downloadPDF(event) {
+      event.preventDefault(); // Evitar que el enlace cambie de ventana
+      const link = document.createElement('a');
+      link.href = 'https://raw.githubusercontent.com/vzalabardo/threesixty/main/p3aa/16%20B\'es%20Three%20SIxty%20Club.pdf';
+      link.download = '16_Bes_Three_SIxty_Club.pdf';
+      link.click(); // Iniciar la descarga
+    }
+  </script>
 
 </body>
 </html>
