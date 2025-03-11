@@ -81,6 +81,7 @@
       justify-items: center; /* Centra los elementos en cada celda */
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
+      padding-bottom: 100px;
     }
 
     /* Animación de aparición */
@@ -172,11 +173,16 @@
     }
 
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      padding-bottom: 45px;
-      padding-top: 40px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      padding: 10px;
+      padding-bottom: 20px;
+      border-radius: 12px;
+      width: auto; /* Mantiene su tamaño sin ocupar más líneas */
+      white-space: nowrap; /* Evita que el texto del botón se divida *//* Opcional: añadir fondo para visibilidad */
     }
 
     .bottom button {
@@ -190,14 +196,14 @@
       cursor: pointer;
       text-transform: uppercase;
       font-style: italic;
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
       transition: box-shadow 0.3s ease-in-out;
     }
 
     .bottom button:hover {
       background: rgba(255, 165, 0, 0.9);
       color: white;
-      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
+      box-shadow: 0 0 20px rgba(255, 165, 0, 1);
     }
 
   </style>
@@ -227,7 +233,7 @@
           <p>Challenger</p>
         </div>
         <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/RacingAddict.jpg" alt="Racing Addict">
+          <img src="p6/F1fan.jpg" alt="Racing Addict">
           <p>Racing Addict</p>
         </div>
         <div class="grid-item" onclick="selectItem(this)">
@@ -247,7 +253,7 @@
           <p>Art & Culture</p>
         </div>
         <div class="grid-item" onclick="selectItem(this)">
-          <img src="p6/F1fan.jpg" alt="F1 Fan">
+          <img src="p6/RacingAddict.jpg" alt="F1 Fan"> 
           <p>F1 Fan</p>
         </div>
         <div class="grid-item" onclick="selectItem(this)">

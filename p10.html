@@ -55,6 +55,7 @@
       padding: 0px;
       padding-top: 0px;
       text-align: center;
+      padding-bottom: 100px;
     }
 
     .top h2 {
@@ -116,6 +117,32 @@
       }
     }
 
+    @media (max-width: 380px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px; /* Reduce el espacio entre los elementos */
+  }
+
+  .grid-item {
+    max-width: 150px; /* Reduce el tamaño máximo de las tarjetas */
+    font-size: 12px; /* Reduce el tamaño del texto */
+  }
+
+  .grid-item img {
+    height: 70%; /* Reduce la altura de la imagen */
+  }
+
+  .top h2 {
+    font-size: 20px; /* Reduce el tamaño del título */
+  }
+
+  .bottom button {
+    font-size: 14px; /* Reduce el tamaño del botón */
+    padding: 5px 40px; /* Ajusta el padding */
+  }
+}
+
+
     @media (min-width: 768px) {
 
       .grid-item:hover {
@@ -128,11 +155,17 @@
     
 
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      padding-bottom: 45px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      padding: 10px;
+      border-radius: 12px;
+      width: auto; /* Mantiene su tamaño sin ocupar más líneas */
+      white-space: nowrap; /* Evita que el texto del botón se divida *//* Opcional: añadir fondo para visibilidad */
     }
+
 
     .bottom button {
       background: rgba(255, 165, 0, 1);
