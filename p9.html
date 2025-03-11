@@ -62,6 +62,7 @@
       text-align: center;
       display: flex;
       flex-direction: column;
+      padding-bottom: 100px;
     }
 
     .full-width-item {
@@ -105,6 +106,8 @@
       box-shadow: 0 0 15px 5px rgba(255, 165, 0, 0.8);
     }
 
+    
+
     @media (min-width: 1024px) {
       .middle {
         display: grid;
@@ -133,10 +136,15 @@
     }
 
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      padding-bottom: 45px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      padding: 10px;
+      border-radius: 12px;
+      width: auto; /* Mantiene su tamaño sin ocupar más líneas */
+      white-space: nowrap; /* Evita que el texto del botón se divida *//* Opcional: añadir fondo para visibilidad */
     }
 
     .bottom button {
