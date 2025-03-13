@@ -64,18 +64,7 @@
       margin-top: 3px;
     }
 
-    .text-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 28px;
-      font-style: italic;
-      font-weight: bold;
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 2s forwards, fadeOut 2s forwards 4s;
-    }
+
 
     .video-container {
       position: relative;
@@ -84,8 +73,6 @@
       align-items: center;
       width: 100%;
       padding-top: 24px;
-      opacity: 0;
-      animation: fadeIn 2s forwards 6s;
     }
 
     video {
@@ -100,8 +87,6 @@
       width: 100%;
       margin-top: auto;
       padding-bottom: 20px;
-      opacity: 0;
-      animation: fadeIn 2s forwards 6s;
     }
 
     .bottom button {
@@ -127,15 +112,7 @@
       box-shadow: 0 0 20px rgba(255, 165, 0, 1);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
 
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
   </style>
 </head>
 <body>
@@ -149,13 +126,10 @@
       <div class="separator"></div>
     </div>
 
-    <div class="text-overlay">
-      <p>A video is worth a million <br> words, so... take a look at <br> what you’ll experience with <br> us.</p>
-    </div>
 
     <div class="video-container">
       <video autoplay loop controls playsinline>
-        <source src="p16/video.mp4" type="video/mp4">
+        <source src="p16/video.mov" type="video/mp4">
         Tu navegador no soporta videos en HTML5.
       </video>
     </div>
