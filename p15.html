@@ -42,7 +42,8 @@
       width: 100%;
       text-align: center;
       padding: 20px;
-      min-height: 100vh;
+      height: 100vh; /* Ocupa toda la altura de la pantalla */
+      overflow: hidden; /* Evita el scroll */
     }
 
     .top {
@@ -83,11 +84,13 @@
     }
 
     .bottom {
+      position: fixed; /* Fija el botón en la parte inferior */
+      bottom: 20px; /* Espaciado desde abajo */
+      left: 50%;
+      transform: translateX(-50%); /* Centra el botón horizontalmente */
       display: flex;
       justify-content: center;
       width: 100%;
-      margin-top: auto;
-      padding-bottom: 20px;
     }
 
     .bottom button {
