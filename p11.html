@@ -62,6 +62,7 @@
       text-align: center;
       display: flex;
       flex-direction: column;
+      padding-bottom: 125px;
     }
 
     .full-width-item {
@@ -133,10 +134,15 @@
     }
 
     .bottom {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0;
-      padding-bottom: 45px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      padding: 10px;
+      border-radius: 12px;
+      width: auto; /* Mantiene su tamaño sin ocupar más líneas */
+      white-space: nowrap; /* Evita que el texto del botón se divida *//* Opcional: añadir fondo para visibilidad */
     }
 
     .bottom button {

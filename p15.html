@@ -38,10 +38,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       width: 100%;
       text-align: center;
       padding: 20px;
-      min-height: 100vh;
+      height: 100vh; /* Ocupa toda la altura de la pantalla */
+      overflow: hidden; /* Evita el scroll */
     }
 
     .top {
@@ -64,18 +66,6 @@
       margin-top: 3px;
     }
 
-    .text-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 28px;
-      font-style: italic;
-      font-weight: bold;
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 2s forwards, fadeOut 2s forwards 4s;
-    }
 
     .video-container {
       position: relative;
@@ -84,8 +74,7 @@
       align-items: center;
       width: 100%;
       padding-top: 24px;
-      opacity: 0;
-      animation: fadeIn 2s forwards 6s;
+      flex-grow: 1;
     }
 
     video {
@@ -95,17 +84,16 @@
     }
 
     .bottom {
+      position: fixed; /* Fija el botón en la parte inferior */
+      bottom: 20px; /* Espaciado desde abajo */
+      left: 50%;
+      transform: translateX(-50%); /* Centra el botón horizontalmente */
       display: flex;
       justify-content: center;
       width: 100%;
-      margin-top: auto;
-      padding-bottom: 20px;
-      opacity: 0;
-      animation: fadeIn 2s forwards 6s;
     }
 
     .bottom button {
-      padding-top: 8px;
       background: rgba(255, 165, 0, 1);
       border: 2px solid white;
       color: black;
@@ -116,9 +104,8 @@
       cursor: pointer;
       text-transform: uppercase;
       font-style: italic;
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
       transition: box-shadow 0.3s ease-in-out;
-      
     }
 
     .bottom button:hover {
@@ -127,15 +114,6 @@
       box-shadow: 0 0 20px rgba(255, 165, 0, 1);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
   </style>
 </head>
 <body>
@@ -149,9 +127,6 @@
       <div class="separator"></div>
     </div>
 
-    <div class="text-overlay">
-      <p>A video is worth a million <br> words, so... take a look at <br> what you’ll experience with <br> us.</p>
-    </div>
 
     <div class="video-container">
       <video autoplay loop controls playsinline>
@@ -161,7 +136,7 @@
     </div>
 
     <div class="bottom">
-      <a href="p16.html">
+      <a href="p3b.html">
         <button>NEXT</button>
       </a>
     </div>

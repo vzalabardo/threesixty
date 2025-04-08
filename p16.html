@@ -220,42 +220,57 @@
     })();
   
     document.getElementById("contact-form").addEventListener("submit", function(event) {
-      event.preventDefault();
-  
-      // Obtener valores del formulario
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-  
-      // Validar que el nombre y el email no estén vacíos
-      if (!name || !email) {
-        alert("Name and Email are required.");
-        return;
-      }
-  
-      // Datos para EmailJS
-      const templateParams = {
-        form_email: email,   // Email del usuario
-        form_name: name,     // Nombre del usuario
-        form_phone: phone || "Not provided" // Si no hay teléfono, se indica "Not provided"
-      };
-  
-      // Enviar email User
-      emailjs.send("service_zlydamd", "template_bhy9mtr", templateParams)
-        .then(function(response) {
-          window.location.href = "p17.html";
-        }, function(error) {
-          alert("Error sending email1. Try again later.");
-        });
+  event.preventDefault();
 
-      // Enviar email Nosotros
-      emailjs.send("service_zlydamd", "template_abltlfp", templateParams)
-        .then(function(response) {
-          window.location.href = "p17.html";
-        }, function(error) {
-          alert("Error sending email2. Try again later.");
-        });
+  // Obtener el botón y desactivarlo
+  const submitButton = document.querySelector(".bottom button");
+  submitButton.disabled = true;
+  submitButton.textContent = "Processing...";
+  submitButton.style.opacity = "0.7";
+
+  // Obtener valores del formulario
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+
+  // Validar que el nombre y el email no estén vacíos
+  if (!name || !email) {
+    alert("Name and Email are required.");
+    submitButton.disabled = false;
+    submitButton.textContent = "SUBMIT";
+    submitButton.style.opacity = "1";
+    return;
+  }
+
+  // Datos para EmailJS
+  const templateParams = {
+    form_email: email,  
+    form_name: name,     
+    form_phone: phone || "Not provided"
+  };
+
+  // Enviar email User
+  emailjs.send("service_zlydamd", "template_bhy9mtr", templateParams)
+    .then(function(response) {
+      window.location.href = "p17.html";
+    }, function(error) {
+      //alert("Error sending email. Try again later.");
+      submitButton.disabled = false;
+      submitButton.textContent = "SUBMIT";
+      submitButton.style.opacity = "1";
     });
+
+  // Enviar email Nosotros
+  emailjs.send("service_zlydamd", "template_abltlfp", templateParams)
+    .then(function(response) {
+      window.location.href = "p17.html";
+    }, function(error) {
+      //alert("Error sending email. Try again later.");
+      submitButton.disabled = false;
+      submitButton.textContent = "SUBMIT";
+      submitButton.style.opacity = "1";
+    });
+});
 
     
   </script>
