@@ -192,6 +192,17 @@
     border-bottom: 2px solid white; /* Resalta al enfocar */
   }
 
+  .disclaimer {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  text-align: center;
+  margin: 20px auto 10px;
+  max-width: 500px;
+  line-height: 1.5em;
+}
+
+
   </style>
 </head>
 <body>
@@ -209,7 +220,11 @@
         <input type="tel" id="phone" placeholder="Phone Number (optional)" class="underline-input">
         <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">
           We will get in touch with you as soon as possible via email.<br>Please check your inbox (and your SPAM folder, just in case).</div>
-        <div class="bottom"><button type="submit">SUBMIT</button></div>
+        <p class="disclaimer">
+          All information provided in this survey will be used solely for internal purposes. We guarantee that your responses will be treated with strict confidentiality and will not be shared with third parties under any circumstances. Your participation is completely voluntary.
+        </p>
+
+          <div class="bottom"><button type="submit">SUBMIT</button></div>
       </form>
     </div>
   </div>

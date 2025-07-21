@@ -27,7 +27,7 @@
       justify-content: space-between;
       height: 100%;
       width: 100%;
-      background: url('p3b/background_phone.jpg') no-repeat center center;
+      background: url('p13c/fondo.JPG') no-repeat center center;
       background-size: cover;
       position: relative; /* Para que el overlay cubra toda la pantalla */
     }
@@ -186,45 +186,35 @@
       </div>
 
       <!-- Zona central -->
-      <div class="middle">
-        <div class="info-box">THIS IS NOT JUST A <br> MEMBERSHIP.<br><br>IT'S A UNIQUE <br><span class="opportunity">OPPORTUNITY</span></div>
-      
-        <div class="info-box">
-          OUR FOUNDER MEMBERS,<br>
-          <span id="changing-word" class="invest">INVEST</span><br>
-          WITH US
-        </div>
-      </div>
+<div class="middle">
+  <h3 style="font-style: italic; margin-bottom: 10px;">Casa Club ThreeSixty</h3>
+
+  <ul style="list-style: none; padding: 0; margin: 0; font-size: 18px; font-weight: 400; line-height: 1.8em; text-align: center;">
+    <li>66 hectares of private estate</li>
+    <li>22,000 m² of gardens & outdoor event spaces</li>
+    <li>28 rooms</li>
+    <li>Tennis & padel courts</li>
+    <li>Heated spa & wellness area</li>
+    <li>Michelin-level gastronomy with 4 dining zones</li>
+    <li>Exclusive driving & seasonal experiences</li>
+    <li>Helicopter trips to the Pyrenees</li>
+    <li>Luxury yachting on Costa Brava</li>
+  </ul>
+
+  <p style="margin-top: 20px; font-size: 14px; color: rgb(224, 184, 109); font-style: italic;">
+    Want to explore more? Complete the form at the end and we’ll send you a link to your exclusive virtual tour.
+  </p>
+</div>
+
+
 
       <!-- Zona inferior -->
       <div class="bottom">
-        <a href="p4.html">
-          <button>SEE BENEFITS</button>
+        <a href="p14.html">
+          <button>KEEP GOING</button>
         </a>
       </div>
     </div>
   </div>
-<script>
-  const words = ['INVEST', 'TRAVEL', 'DRIVE', 'RACE','DISCOVER', 'LIVE', 'HAVE FUN'];
-  const colors = [
-    'rgb(224, 184, 109)', // dorado original
-    '#d92c2c', // rojo elegante
-    '#1e90ff', // azul sobrio
-    '#32a852', // verde sofisticado
-    '#ff8c00', // naranja quemado
-    '#a020f0',  // morado oscuro
-    '#32a852', // verde sofisticado
-  ];
-
-  let index = 0;
-  const span = document.getElementById('changing-word');
-
-  setInterval(() => {
-    index = (index + 1) % words.length;
-    span.textContent = words[index];
-    span.style.color = colors[index];
-  }, 1800); // cada 1.8 segundos cambia
-</script>
-
 </body>
 </html>
