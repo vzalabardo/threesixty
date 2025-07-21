@@ -168,6 +168,20 @@
       background: white;
       color: black;
     }
+
+    .animated-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -188,9 +202,9 @@
       <div class="middle">
         <div class="info-box"><span class="invest">This is just the beginning but...</span></div>
         
-      <img src="p13b/foto.png" alt="foto" style="width: 100%; max-width: 600px; height: auto; margin-bottom: 10px;">
+      <img src="p13b/foto.png" alt="foto" style="width: 100%; max-width: 400px; height: auto; margin-bottom: 10px;">
 
-        <div class="info-box" style="font-size: 17px;">What began as a vision is now becoming a home for the club, rooted in Costa Brava, deisgned for what comes next.</div>
+        <div class="info-box" style="font-size: 17px;">The first Casa Club is officially ours. What began as a vision is now becoming a home for the club, rooted in Costa Brava, deisgned for what comes next.</div>
           <div class="info-box" style="font-size: 17px;">The world's first true automotive lifestyle hotel, created around the way we live, drive and connect.</div>
       </div>
 
