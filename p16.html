@@ -14,25 +14,26 @@
     }
 
     body, html {
-      height: 100%;
+      min-height: 100%;
       width: 100%;
-      overflow: hidden;
+      overflow-y: auto; /* permite scroll vertical */
       font-family: 'Bai Jamjuree', sans-serif;
       color: white;
       background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.454) 0.15%, black 100%);
     }
     
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      width: 100%;  
-      background-size: cover;
-      background: url('p16/background.jpg') no-repeat center center;
-      position: relative; /* Para que el overlay cubra toda la pantalla */
-    }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%; /* en lugar de height: 100% */
+    width: 100%;  
+    background-size: cover;
+    background: url('p16/background.jpg') no-repeat center center;
+    position: relative;
+  }
+
 
     /* Capa oscura encima del fondo */
     .overlay {
@@ -228,16 +229,17 @@
         <input type="text" id="name" placeholder="Name and Surname" class="underline-input" required>
         <input type="email" id="email" placeholder="Email" class="underline-input" required>
         <input type="tel" id="phone" placeholder="Phone Number (optional)" class="underline-input">
-        <div class="info-box" style="font-weight:lighter; font-size: 18px; font-style: italic;">
+        <div class="info-box" style="font-weight:lighter; font-size: 16px; font-style: italic; margin-top: 5px;">
           We will get in touch with you as soon as possible via email.<br>Please check your inbox (and your SPAM folder, just in case).</div>
         <p class="disclaimer">
           All information provided in this survey will be used solely for internal purposes. We guarantee that your responses will be treated with strict confidentiality and will not be shared with third parties under any circumstances. Your participation is completely voluntary.
         </p>
         <a href="https://drive.google.com/file/d/13oo7Yp-ByZdNZgKOW5FwaAmOzsEb1zl7/view?usp=sharing" class="legal-link">
-          <p>Legal Disclaimer</p>
+          <p style="margin-bottom: 10px;">Legal Disclaimer<br></p>
+
         </a>
 
-          <div class="bottom"><button type="submit">SUBMIT</button></div>
+          <div class="bottom"><button type="submit" style="padding-top: 10px;">SUBMIT</button></div>
       </form>
     </div>
   </div>
