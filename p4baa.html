@@ -51,7 +51,7 @@
       border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;
     }
     .media{
-      width:100%;aspect-ratio:5/3; /* horizontal ratio para lucir bien en desktop */
+      width:100%;aspect-ratio:5/3; /* desktop */
       background:#111;position:relative;overflow:hidden;
     }
     .media img{width:100%;height:100%;object-fit:cover;display:block}
@@ -99,9 +99,17 @@
       box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:pointer
     }
     .m-arrow svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+
+    /* ======= MOBILE TWEAKS PARA QUE QUEPA EL BOTÓN ======= */
     @media (max-width:640px){
-      .controls{display:flex;}
-      .dots{gap:10px}
+      .media{ aspect-ratio:2.2; }      /* fotos un poco más bajas */
+      .slide{ flex-basis:78vw; padding:10px; } /* slide más compacto */
+      .pair{ gap:10px; }
+      .controls{ display:flex; margin-top:8px; }
+      .dots{ gap:8px; }
+      .middle{ gap:10px; }              /* menos separación vertical global */
+      .bottom{ padding:12px 0; }        /* botón pegadito pero visible */
+      .title{ font-size:18px; }
     }
 
     /* Footer */
@@ -118,7 +126,7 @@
       box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1)
     }
 
-        .title{
+    .title{
       font-size:28px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
       color:rgb(224,184,109);
     }
@@ -307,7 +315,7 @@
         if(e.key === 'ArrowLeft')  { e.preventDefault(); goTo(Math.max(0, currentIndex - 1)); }
       });
 
-      // Sincronizar dots al hacer scroll
+      // Sync dots on scroll
       let ticking = false;
       carousel.addEventListener('scroll', () => {
         if (ticking) return;
@@ -319,7 +327,7 @@
         ticking = true;
       });
 
-      // Mantener índice tras resize
+      // Keep index after resize
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
@@ -336,14 +344,12 @@
         currentIndex = index;
         dots.forEach((d,i)=>d.classList.toggle('active', i===index));
 
-        // Estado de flechas (desktop)
         if (left && right){
           left.style.opacity = index === 0 ? .45 : .85;
           left.style.pointerEvents = index === 0 ? 'none' : 'auto';
           right.style.opacity = index === slides.length-1 ? .45 : .85;
           right.style.pointerEvents = index === slides.length-1 ? 'none' : 'auto';
         }
-        // Estado de flechas (móvil)
         if (mLeft && mRight){
           mLeft.style.opacity = index === 0 ? .45 : .95;
           mLeft.style.pointerEvents = index === 0 ? 'none' : 'auto';

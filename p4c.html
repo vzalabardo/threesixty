@@ -17,7 +17,7 @@
     .content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;text-align:center;padding:20px}
 
     /* Header */
-    .top{display:flex;flex-direction:column;align-items:center}
+    .top{display:flex;flex-direction:column;align-items:center;animation:fadeUp 1s ease-out forwards;opacity:0;animation-delay:.2s}
     .logo img{max-width:150px;height:auto}
     .separator{width:100%;height:2px;background:#fff;margin:3px 0 1px}
 
@@ -32,30 +32,44 @@
       font-weight:700;
       letter-spacing:.8px;
       font-size:clamp(14px, 2.2vw, 18px);
+      opacity:0;
+      animation:fadeUp 1s ease-out forwards;
+      animation-delay:.5s;
     }
 
     .scheme{
       position:relative;
       width:min(100%, 980px);
       display:grid;
-      grid-template-columns: 1fr 1.1fr;   /* SIEMPRE dos columnas (también en móvil) */
+      grid-template-columns: 1fr 1.1fr;
       gap: clamp(12px, 2.2vw, 28px);
       padding: 10px;
       align-items:stretch;
+      opacity:0;
+      animation:fadeUp 1s ease-out forwards;
+      animation-delay:.8s;
     }
 
-    /* Ajuste fino para móviles muy estrechos: reducimos un 8% el conjunto para que quepa */
+    /* Animación general */
+    @keyframes fadeUp {
+      0% {opacity:0; transform:translateY(40px);}
+      100% {opacity:1; transform:translateY(0);}
+    }
+
     @media (max-width: 380px){
       .scheme{ transform: scale(.92); transform-origin: top center; }
     }
 
-    /* Columna izquierda (stack) */
+    /* Columna izquierda */
     .stack{
       position:relative;
       display:grid;
-      grid-template-rows: 1fr auto;  /* caja verde más alta, flota sobre la inferior */
+      grid-template-rows: 1fr auto;
       gap: clamp(10px, 1.8vw, 16px);
       align-content:stretch;
+      animation:fadeUp 1s ease-out forwards;
+      animation-delay:1s;
+      opacity:0;
     }
 
     .card{
@@ -65,7 +79,13 @@
       background:rgba(255,255,255,.08);
       box-shadow:0 8px 28px rgba(0,0,0,.35);
       display:flex;align-items:center;
+      transform:translateY(40px);
+      opacity:0;
+      animation:fadeUp 1s ease-out forwards;
     }
+    .card:nth-child(1){animation-delay:1.1s}
+    .card:nth-child(2){animation-delay:1.3s}
+
     .card--green{ background:#3f5c3b; }
     .card--grey { background:rgba(255,255,255,.12); }
 
@@ -89,24 +109,26 @@
       margin-top:4px;
     }
 
-    /* Llave con carácter } grande colocado entre las dos cajas */
+    /* Llave */
     .brace{
       position:absolute;
-      right:-16px;             /* pegada al borde derecho del stack */
-      top:0; bottom:0;
+      right:-16px;top:0;bottom:0;
       display:flex;align-items:center;justify-content:center;
       width: clamp(16px, 3vw, 26px);
       pointer-events:none;
+      opacity:0;
+      animation:fadeUp 1s ease-out forwards;
+      animation-delay:1.4s;
     }
     .brace span{
-      font-size: clamp(40px, 12vh, 86px); /* escala según alto de viewport */
-      line-height: 1;
+      font-size: clamp(40px, 12vh, 86px);
+      line-height:1;
       opacity:.95;
-      transform: translateY(-2px); /* ajuste óptico */
-      color: #fff;
+      transform: translateY(-2px);
+      color:#fff;
     }
 
-    /* Columna derecha (equity) */
+    /* Derecha */
     .equity{
       border-radius:14px;
       border:1px solid rgba(255,255,255,.18);
@@ -115,6 +137,10 @@
       display:flex;align-items:center;justify-content:center;
       padding: clamp(16px, 3.2vw, 24px) clamp(14px, 3vw, 20px);
       min-height: clamp(240px, 40vh, 420px);
+      transform:translateY(40px);
+      opacity:0;
+      animation:fadeUp 1s ease-out forwards;
+      animation-delay:1.5s;
     }
     .equity__text{
       font-size: clamp(15px, 2.2vw, 22px);
@@ -130,7 +156,12 @@
     .accent{ color: rgb(224,184,109); }
 
     /* Footer */
-    .bottom{display:flex;justify-content:center;padding:20px 0}
+    .bottom{
+      display:flex;justify-content:center;padding:20px 0;
+      opacity:0;
+      animation:fadeUp 1s ease-out forwards;
+      animation-delay:1.8s;
+    }
     .bottom a{text-decoration:none}
     .bottom button{
       background:rgba(255,165,0,1);border:2px solid #fff;color:#000;font-size:18px;border-radius:12px;font-weight:bold;
@@ -161,8 +192,8 @@
         <div class="eyebrow">PROJECT STRUCTURE &amp; FINANCIALS</div>
 
         <div class="scheme">
-          <!-- Izquierda: dos cajas apiladas -->
-          <div class="stack"style="padding-right: 25px;">
+          <!-- Izquierda -->
+          <div class="stack" style="padding-right: 25px;">
             <div class="card card--green">
               <div class="card__inner">
                 <div class="title-block">COSTA BRAVA’S<br>HOUSE</div>
@@ -177,12 +208,11 @@
               </div>
             </div>
 
-            <!-- Llave sencilla con carácter } -->
-            <div class="brace" aria-hidden="true" style="font-weight: 10;"><span>}</span></div>
+            <div class="brace" aria-hidden="true"><span>}</span></div>
           </div>
 
-          <!-- Derecha: equity block -->
-          <div class="equity" style="margin-left: 15px; ">
+          <!-- Derecha -->
+          <div class="equity" style="margin-left: 15px;">
             <div class="equity__text">
               Equity capital divided<br> between <strong>25 owners</strong>
               <div class="equity__highlight"><span class="accent">4%</span> &nbsp;€600k</div>
