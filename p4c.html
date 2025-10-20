@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Club — Project Structure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;width:100%;overflow:hidden;font-family:'Bai Jamjuree',sans-serif;color:#fff;background:#000}
+
+    .container{
+      display:flex;flex-direction:column;justify-content:space-between;height:100%;width:100%;
+      background:url('p3a/background.png') no-repeat center/cover;position:relative
+    }
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:1}
+    .content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;text-align:center;padding:20px}
+
+    /* Header */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin:3px 0 1px}
+
+    /* Middle */
+    .middle{
+      flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px 0
+    }
+
+    .eyebrow{
+      color:rgb(224,184,109);
+      text-transform:uppercase;
+      font-weight:700;
+      letter-spacing:.8px;
+      font-size:clamp(14px, 2.2vw, 18px);
+    }
+
+    .scheme{
+      position:relative;
+      width:min(100%, 980px);
+      display:grid;
+      grid-template-columns: 1fr 1.1fr;   /* SIEMPRE dos columnas (también en móvil) */
+      gap: clamp(12px, 2.2vw, 28px);
+      padding: 10px;
+      align-items:stretch;
+    }
+
+    /* Ajuste fino para móviles muy estrechos: reducimos un 8% el conjunto para que quepa */
+    @media (max-width: 380px){
+      .scheme{ transform: scale(.92); transform-origin: top center; }
+    }
+
+    /* Columna izquierda (stack) */
+    .stack{
+      position:relative;
+      display:grid;
+      grid-template-rows: 1fr auto;  /* caja verde más alta, flota sobre la inferior */
+      gap: clamp(10px, 1.8vw, 16px);
+      align-content:stretch;
+    }
+
+    .card{
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      box-shadow:0 8px 28px rgba(0,0,0,.35);
+      display:flex;align-items:center;
+    }
+    .card--green{ background:#3f5c3b; }
+    .card--grey { background:rgba(255,255,255,.12); }
+
+    .card__inner{
+      width:100%;
+      padding: clamp(16px, 2.4vw, 22px) clamp(14px, 2vw, 18px);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    }
+
+    .title-block{
+      text-transform:uppercase;
+      font-weight:800;
+      font-size: clamp(13px, 2.1vw, 20px);
+      line-height:1.25;
+      letter-spacing:.3px;
+      text-align:center;
+    }
+    .amount{
+      font-size: clamp(13px, 2vw, 18px);
+      font-weight:800;
+      margin-top:4px;
+    }
+
+    /* Llave con carácter } grande colocado entre las dos cajas */
+    .brace{
+      position:absolute;
+      right:-16px;             /* pegada al borde derecho del stack */
+      top:0; bottom:0;
+      display:flex;align-items:center;justify-content:center;
+      width: clamp(16px, 3vw, 26px);
+      pointer-events:none;
+    }
+    .brace span{
+      font-size: clamp(40px, 12vh, 86px); /* escala según alto de viewport */
+      line-height: 1;
+      opacity:.95;
+      transform: translateY(-2px); /* ajuste óptico */
+      color: #fff;
+    }
+
+    /* Columna derecha (equity) */
+    .equity{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(15,15,15,.55);
+      box-shadow:0 8px 28px rgba(0,0,0,.35);
+      display:flex;align-items:center;justify-content:center;
+      padding: clamp(16px, 3.2vw, 24px) clamp(14px, 3vw, 20px);
+      min-height: clamp(240px, 40vh, 420px);
+    }
+    .equity__text{
+      font-size: clamp(15px, 2.2vw, 22px);
+      line-height:1.35;
+      font-weight:700;
+      max-width: 380px;
+    }
+    .equity__highlight{
+      margin-top: clamp(8px, 1.4vw, 14px);
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight:800;
+    }
+    .accent{ color: rgb(224,184,109); }
+
+    /* Footer */
+    .bottom{display:flex;justify-content:center;padding:20px 0}
+    .bottom a{text-decoration:none}
+    .bottom button{
+      background:rgba(255,165,0,1);border:2px solid #fff;color:#000;font-size:18px;border-radius:12px;font-weight:bold;
+      padding:6px 64px;cursor:pointer;text-transform:uppercase;font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .3s ease-in-out
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9);color:#fff;
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1)
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+    <div class="content">
+      <!-- Header -->
+      <div class="top">
+        <div class="logo">
+          <img src="assets/LogoBlanco.png" alt="ThreeSixty Club logo">
+        </div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Middle: Scheme -->
+      <div class="middle">
+        <div class="eyebrow">PROJECT STRUCTURE &amp; FINANCIALS</div>
+
+        <div class="scheme">
+          <!-- Izquierda: dos cajas apiladas -->
+          <div class="stack"style="padding-right: 25px;">
+            <div class="card card--green">
+              <div class="card__inner">
+                <div class="title-block">COSTA BRAVA’S<br>HOUSE</div>
+                <div class="amount">€12M</div>
+              </div>
+            </div>
+
+            <div class="card card--grey">
+              <div class="card__inner">
+                <div class="title-block">10 selected supercars &amp; 1 yacht</div>
+                <div class="amount">€3M</div>
+              </div>
+            </div>
+
+            <!-- Llave sencilla con carácter } -->
+            <div class="brace" aria-hidden="true" style="font-weight: 10;"><span>}</span></div>
+          </div>
+
+          <!-- Derecha: equity block -->
+          <div class="equity" style="margin-left: 15px; ">
+            <div class="equity__text">
+              Equity capital divided<br> between <strong>25 owners</strong>
+              <div class="equity__highlight"><span class="accent">4%</span> &nbsp;€600k</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="bottom">
+        <a href="p5.html">
+          <button>NEXT</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

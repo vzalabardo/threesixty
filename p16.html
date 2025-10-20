@@ -7,303 +7,202 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    html,body{
+      height:100%;
+      width:100%;
+      overflow-y:auto;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;
+      background:linear-gradient(to bottom right, rgba(0,0,0,.454) 0.15%, #000 100%);
     }
 
-    body, html {
-      min-height: 100%;
-      width: 100%;
-      overflow-y: auto; /* permite scroll vertical */
-      font-family: 'Bai Jamjuree', sans-serif;
-      color: white;
-      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.454) 0.15%, black 100%);
-    }
-    
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100%; /* en lugar de height: 100% */
-    width: 100%;  
-    background-size: cover;
-    background: url('p16/background.jpg') no-repeat center center;
-    position: relative;
-  }
-
-
-    /* Capa oscura encima del fondo */
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.65); /* Opacidad del overlay */
-      z-index: 1;
+    .container{
+      min-height:100vh;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      background:url('p16/background.jpg') no-repeat center/cover;
+      position:relative;
     }
 
-    .content {
-      position: relative;
-      z-index: 2; /* Para que el contenido esté sobre el overlay */
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      text-align: center;
-      padding: 20px;
+    .overlay{position:absolute; inset:0; background:rgba(0,0,0,.65); z-index:1;}
+
+    .content{
+      position:relative; z-index:2;
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      padding:10px;
+      text-align:center;
     }
 
-    .top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* Header */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin:3px 0 1px}
+
+    /* Middle (form) */
+    .middle{
+      flex:1;
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:top;
+      gap:clamp(10px,2.2vh,18px);
+      padding-block:clamp(24px,10vh,96px);
+      max-width:720px;
+      margin:0 auto;
     }
 
-    .logo img {
-      max-width: 150px;
-      height: auto;
-    }
-
-    .separator {
-      width: 100%;
-      height: 2px;
-      background-color: white;
-      margin-top: 3px;
-      margin-bottom: 1px;
-    }
-
-    .middle {
-      flex-grow: 1; /* Ocupa todo el espacio disponible */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      padding-bottom: 20px;
-    }
-
-    .middle h3 {
-      font-size: 28px;
-      color: rgb(224, 184, 109);
-      margin-bottom: 40px;
-    }
-
-    .info-box {
-      border: 0px;
-      color: white;
-      font-size: 24px;
-      padding: 0px 0px;
-      width: 100%;
-      max-width: 500px;
-      margin: 0 0;
-      text-align: center;
-      opacity: 0; /* Comienza invisible */
-      animation: fadeInUp 1s forwards; /* Aparece y se mueve hacia arriba */
-    }
-
-    /* Definir la animación de aparición */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px); /* Comienza un poco hacia abajo */
+    /* 💻 Solo desktop: más aire y distribución space-around */
+    @media (min-width: 992px){
+      .middle{
+        justify-content:space-around;
+        gap:48px;                 /* más separación vertical */
+        padding-block:7vh;       /* baja el bloque y lo airea */
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0); /* Llega a su posición normal */
-      }
+      .underline-input{ margin-top:16px; } /* un pelín más de respiro entre inputs */
+      .disclaimer{ margin-top:4px; }
+      .bottom{ margin-top:4px; }
     }
 
-    /* Retrasos para que cada info-box aparezca en secuencia */
-    .info-box:nth-child(1) {
-      animation-delay: 0.5s;
+    .middle h3{font-size:28px; color:rgb(224,184,109); margin-bottom:40px;}
+
+    .info-box{
+      color:#fff; font-size:24px; max-width:640px; margin:0 auto;
+      opacity:0; animation:fadeInUp 1s forwards;
+    }
+    .info-box:nth-child(1){animation-delay:.2s}
+    .info-box:nth-child(2){animation-delay:.4s}
+    .info-box:nth-child(3){animation-delay:.6s}
+    .info-box:nth-child(4){animation-delay:.8s}
+
+    @keyframes fadeInUp{from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)}}
+
+    .italic{font-style:italic}
+    .invest{color:rgb(224,184,109);font-style:italic;font-weight:700}
+
+    .underline-input{
+      background:transparent; border:none; border-bottom:2px solid rgba(255,255,255,.5);
+      color:#fff; font-size:18px; padding:12px 0;
+      width:min(90%, 420px); outline:none; text-align:center;
+      transition:border-bottom .3s ease; margin-top:10px;
+    }
+    .underline-input::placeholder{color:rgba(255,255,255,.6)}
+    .underline-input:focus{border-bottom:2px solid #fff}
+
+    .disclaimer{
+      font-size:13px; color:rgba(255,255,255,.7); font-style:italic;
+      text-align:center; max-width:560px; line-height:1.5; margin:8px auto 4px;
     }
 
-    .info-box:nth-child(2) {
-      animation-delay: 1s;
+    .legal-link p{color:#80aaff; text-decoration:underline; font-weight:700; margin-bottom:8px;}
+    .legal-link p:hover{color:#bfd3ff}
+
+    .bottom{display:flex;justify-content:center;margin-top:8px}
+    .bottom button{
+      background:rgba(255,165,0,1); border:2px solid #fff; color:#000;
+      font-size:18px; border-radius:12px; font-weight:700; padding:10px 64px;
+      cursor:pointer; text-transform:uppercase; font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .3s ease-in-out, transform .05s ease-in-out;
     }
-
-    .info-box:nth-child(3) {
-      animation-delay: 1.5s;
+    .bottom button:hover{
+      background:rgba(255,165,0,.9); color:#fff;
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1)
     }
-
-    .info-box:nth-child(4) {
-      animation-delay: 2s;
-    }
-
-    /* Estilos adicionales font-style: italic;*/
-    .italic {
-      font-style: italic;
-    }
-
-    .invest {
-      color: rgb(224, 184, 109);
-      font-style: italic;
-      font-weight: bold;
-
-    }
-
-    .bottom button {
-      background: rgba(255, 165, 0, 1);
-      border: 2px solid white;
-      color: black;
-      font-size: 18px;
-      border-radius: 12px;
-      font-weight: bold;
-      padding: 6px 64px;
-      cursor: pointer;
-      text-transform: uppercase;
-      font-style: italic;
-      box-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.7), 0 0 30px rgba(255, 165, 0, 0.7);
-      transition: box-shadow 0.3s ease-in-out;
-    }
-
-    .bottom button:hover {
-      background: rgba(255, 165, 0, 0.9);
-      color: white;
-      box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165, 0, 1);
-    }
-
-    .bottom button:hover {
-      background: white;
-      color: black;
-    }
-
-    .underline-input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Solo línea inferior */
-    color: white;
-    font-size: 18px;
-    padding: 10px 0;
-    width: 80%;
-    max-width: 400px;
-    outline: none;
-    margin-top: 15px;
-    text-align: center;
-    transition: border-bottom 0.3s ease;
-  }
-
-  .underline-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .underline-input:focus {
-    border-bottom: 2px solid white; /* Resalta al enfocar */
-  }
-
-  .disclaimer {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
-  font-style: italic;
-  text-align: center;
-  margin: 20px auto 10px;
-  max-width: 500px;
-  line-height: 1.5em;
-}
-
-.legal-link p {
-  color: #0056b3; /* Azul fuerte accesible */
-  text-decoration: underline; /* Más visible */
-  font-weight: bold; /* Mayor énfasis */
-}
-
-.legal-link p:hover {
-  color: #003366; /* Más oscuro al pasar el mouse */
-}
-
-
+    .bottom button:active{transform:scale(.98)}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="overlay"></div>
-    <div class="content"> 
+
+    <div class="content">
+      <!-- Header -->
       <div class="top">
         <div class="logo"><img src="assets/LogoBlanco.png" alt="Logo"></div>
         <div class="separator"></div>
       </div>
+
+      <!-- Middle: Form -->
       <form id="contact-form" class="middle">
-        <div class="info-box"><span class="invest">Do you have what it takes to become one of our founder members?</span></div>
+        <div class="info-box">
+          <span class="invest">Do you have what it takes to become one of our founder members?</span>
+        </div>
+
         <input type="text" id="name" placeholder="Name and Surname" class="underline-input" required>
         <input type="email" id="email" placeholder="Email" class="underline-input" required>
-        <input type="tel" id="phone" placeholder="Phone Number (optional)" class="underline-input">
-        <div class="info-box" style="font-weight:lighter; font-size: 16px; font-style: italic; margin-top: 5px;">
-          We will get in touch with you as soon as possible via email.<br>Please check your inbox (and your SPAM folder, just in case).</div>
-        <p class="disclaimer">
-          All information provided in this survey will be used solely for internal purposes. We guarantee that your responses will be treated with strict confidentiality and will not be shared with third parties under any circumstances. Your participation is completely voluntary.
-        </p>
-        <a href="https://drive.google.com/file/d/13oo7Yp-ByZdNZgKOW5FwaAmOzsEb1zl7/view?usp=sharing" class="legal-link">
-          <p style="margin-bottom: 10px;">Legal Disclaimer<br></p>
+        <input type="tel" id="phone" placeholder="Phone Number" class="underline-input" required>
 
+        <div class="info-box" style="font-weight:300; font-size:16px; font-style:italic;">
+          We will get in touch with you as soon as possible via email.<br>
+          Please check your inbox (and your SPAM folder, just in case).
+        </div>
+
+        <p class="disclaimer">
+          All information provided in this survey will be used solely for internal purposes.
+          We guarantee that your responses will be treated with strict confidentiality and will not be shared with third parties under any circumstances.
+          Your participation is completely voluntary.
+        </p>
+
+        <a href="https://drive.google.com/file/d/13oo7Yp-ByZdNZgKOW5FwaAmOzsEb1zl7/view?usp=sharing" class="legal-link" target="_blank" rel="noopener">
+          <p>Legal Disclaimer</p>
         </a>
 
-          <div class="bottom"><button type="submit" style="padding-top: 10px;">SUBMIT</button></div>
+        <div class="bottom">
+          <button type="submit">SUBMIT</button>
+        </div>
       </form>
+      <!-- /Middle -->
     </div>
   </div>
-</form>
+
   <script>
     (function(){
-      emailjs.init("Ud01URTpcBo1Vs04_"); // Reemplaza con tu User ID de EmailJS
+      emailjs.init("Ud01URTpcBo1Vs04_");
     })();
-  
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
-  event.preventDefault();
 
-  // Obtener el botón y desactivarlo
-  const submitButton = document.querySelector(".bottom button");
-  submitButton.disabled = true;
-  submitButton.textContent = "Processing...";
-  submitButton.style.opacity = "0.7";
+    document.getElementById("contact-form").addEventListener("submit", function(event){
+      event.preventDefault();
 
-  // Obtener valores del formulario
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
+      const submitButton = document.querySelector(".bottom button");
+      submitButton.disabled = true;
+      submitButton.textContent = "Processing...";
+      submitButton.style.opacity = "0.7";
 
-  // Validar que el nombre y el email no estén vacíos
-  if (!name || !email) {
-    alert("Name and Email are required.");
-    submitButton.disabled = false;
-    submitButton.textContent = "SUBMIT";
-    submitButton.style.opacity = "1";
-    return;
-  }
+      const name  = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
 
-  // Datos para EmailJS
-  const templateParams = {
-    form_email: email,  
-    form_name: name,     
-    form_phone: phone || "Not provided"
-  };
+      if(!name || !email){
+        alert("Name and Email are required.");
+        submitButton.disabled = false;
+        submitButton.textContent = "SUBMIT";
+        submitButton.style.opacity = "1";
+        return;
+      }
 
-  // Enviar email User
-  emailjs.send("service_zlydamd", "template_bhy9mtr", templateParams)
-    .then(function(response) {
-      window.location.href = "p17.html";
-    }, function(error) {
-      //alert("Error sending email. Try again later.");
-      submitButton.disabled = false;
-      submitButton.textContent = "SUBMIT";
-      submitButton.style.opacity = "1";
+      const templateParams = {
+        form_email: email,
+        form_name: name,
+        form_phone: phone || "Not provided"
+      };
+
+      emailjs.send("service_zlydamd", "template_bhy9mtr", templateParams)
+        .then(() => { window.location.href = "p17.html"; })
+        .catch(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = "SUBMIT";
+          submitButton.style.opacity = "1";
+        });
+
+      emailjs.send("service_zlydamd", "template_abltlfp", templateParams)
+        .catch(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = "SUBMIT";
+          submitButton.style.opacity = "1";
+        });
     });
-
-  // Enviar email Nosotros
-  emailjs.send("service_zlydamd", "template_abltlfp", templateParams)
-    .then(function(response) {
-      window.location.href = "p17.html";
-    }, function(error) {
-      //alert("Error sending email. Try again later.");
-      submitButton.disabled = false;
-      submitButton.textContent = "SUBMIT";
-      submitButton.style.opacity = "1";
-    });
-});
-
-    
   </script>
-  
 </body>
 </html>

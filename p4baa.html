@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;width:100%;overflow:hidden;font-family:'Bai Jamjuree',sans-serif;color:#fff;background:#000}
+
+    .container{
+      display:flex;flex-direction:column;justify-content:space-between;height:100%;width:100%;
+      background:url('p3a/background.png') no-repeat center/cover;position:relative
+    }
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:1}
+    .content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;text-align:center;padding:20px}
+
+    /* Header */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin:3px 0 1px}
+
+    /* Middle (carousel) */
+    .middle{
+      flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px 0
+    }
+
+    .carousel-wrap{position:relative;width:min(100%,1000px);padding:0 35px}
+    .carousel{
+      display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;padding-bottom:2px;
+      scroll-padding-inline:40px;
+    }
+    .carousel::-webkit-scrollbar{display:none}
+
+    .slide{
+      flex:0 0 85vw;max-width:920px;scroll-snap-align:center;position:relative;
+      border-radius:18px;overflow:visible;
+      padding:16px;background:rgba(0,0,0,.25);
+    }
+
+    .pair{
+      display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;
+    }
+    .pair > *{min-width:0;}
+    @media (max-width:640px){ .pair{grid-template-columns:1fr} }
+
+    .card{
+      display:flex;flex-direction:column;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;
+    }
+    .media{
+      width:100%;aspect-ratio:5/3; /* horizontal ratio para lucir bien en desktop */
+      background:#111;position:relative;overflow:hidden;
+    }
+    .media img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .caption{
+      padding:10px 12px;font-size:14px;letter-spacing:.3px;line-height:1.2;text-transform:uppercase;
+      border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:center
+    }
+    .caption span{color:#fff;font-weight:700}
+    .caption .accent{color:rgb(224,184,109)}
+
+    /* Dots */
+    .dots{display:flex;justify-content:center;align-items:center;gap:8px}
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.35);
+      border:1px solid rgba(255,255,255,.7);cursor:pointer;
+      transition:transform .2s ease, background .2s ease, width .2s ease
+    }
+    .dot.active{background:rgb(224,184,109);width:22px}
+
+    /* Flechas laterales (desktop) */
+    .arrow{
+      position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.35);backdrop-filter:blur(2px);
+      display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;
+      opacity:.85;transition:opacity .2s ease, transform .1s ease; z-index:3;
+    }
+    .arrow:hover{opacity:1}
+    .arrow:active{transform:translateY(-50%) scale(.98)}
+    .arrow svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2}
+    .arrow.left{left:6px}
+    .arrow.right{right:6px}
+
+    /* En móviles, ocultamos flechas laterales… */
+    @media (pointer:coarse){
+      .arrow{display:none}
+      .carousel-wrap{padding:0 12px}
+    }
+
+    /* Controles inferiores (SOLO móvil): flechas a izquierda/derecha de los dots */
+    .controls{display:none;margin-top:12px;align-items:center;justify-content:center;gap:12px}
+    .m-arrow{
+      width:40px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.5);
+      background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;
+      box-shadow:0 2px 10px rgba(0,0,0,.35);cursor:pointer
+    }
+    .m-arrow svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+    @media (max-width:640px){
+      .controls{display:flex;}
+      .dots{gap:10px}
+    }
+
+    /* Footer */
+    .bottom{display:flex;justify-content:center;padding:20px 0}
+    .bottom a{text-decoration:none}
+    .bottom button{
+      background:rgba(255,165,0,1);border:2px solid #fff;color:#000;font-size:18px;border-radius:12px;font-weight:bold;
+      padding:6px 64px;cursor:pointer;text-transform:uppercase;font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .3s ease-in-out
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9);color:#fff;
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1)
+    }
+
+        .title{
+      font-size:28px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+      color:rgb(224,184,109);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+    <div class="content">
+      <!-- Header -->
+      <div class="top">
+        <div class="logo">
+          <img src="assets/LogoBlanco.png" alt="ThreeSixty Club logo">
+        </div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Middle: Carousel -->
+      <div class="middle">
+        <h2 class="title">THE CARS</h2>
+        <div class="carousel-wrap">
+          <!-- Flechas laterales (desktop) -->
+          <button class="arrow left" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+
+          <div class="carousel" id="carousel" aria-label="Gallery" tabindex="0">
+            <!-- Slide 1 -->
+            <section class="slide" aria-roledescription="slide" aria-label="1 of 5">
+              <div class="pair">
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_Ferrari 296 GTB.jpeg" alt="Ferrari 296 GTB in Rosso">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Ferrari</span> 296 GTB</span></figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_WhatsApp Image 2025-07-01 at 16.42.14.jpeg" alt="Porsche 911 Targa 4 GTS in black">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Porsche</span> Targa 4 GTS</span></figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <!-- Slide 2 -->
+            <section class="slide" aria-roledescription="slide" aria-label="2 of 5">
+              <div class="pair">
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_Mercedes AMG GT.jpeg" alt="Mercedes-AMG GT coupé">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Mercedes</span> AMG GT</span></figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_spyder rs.jpeg" alt="Porsche 718 Spyder RS roadster">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Porsche</span> Spyder RS</span></figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <!-- Slide 3 -->
+            <section class="slide" aria-roledescription="slide" aria-label="3 of 5">
+              <div class="pair">
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_Ferrari+Testarrossa+512+TR+(1992)+(1).jpg" alt="Ferrari Testarossa 512 TR 1992">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Ferrari</span> Testarossa TR</span></figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_fordgt40.jpeg" alt="Ford GT40 Replica">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Ford</span> GT40 Replica</span></figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <!-- Slide 4 -->
+            <section class="slide" aria-roledescription="slide" aria-label="4 of 5">
+              <div class="pair">
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_Porsche 930 Turbo 1975.jpg" alt="Porsche 930 Turbo 1975 classic">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Porsche</span> 930 Turbo 1975</span></figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_mclaren spider.avif" alt="McLaren 720S Spider">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">McLaren</span> 720S Spider</span></figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <!-- Slide 5 -->
+            <section class="slide" aria-roledescription="slide" aria-label="5 of 5">
+              <div class="pair">
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_Mercedes G63 AMG.jpg" alt="Mercedes G63 AMG SUV">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Mercedes</span> G63 AMG</span></figcaption>
+                </figure>
+                <figure class="card">
+                  <div class="media">
+                    <img src="p4baa/web_huracan.jpg" alt="Lamborghini Huracán STO">
+                  </div>
+                  <figcaption class="caption"><span><span class="accent">Lamborghini</span> Huracán STO</span></figcaption>
+                </figure>
+              </div>
+            </section>
+          </div>
+
+          <button class="arrow right" aria-label="Next slide">
+            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <!-- CONTROLES INFERIORES: solo móvil (flechas + dots) -->
+        <div class="controls" id="controls">
+          <button class="m-arrow m-left" aria-label="Previous slide (mobile)">
+            <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+
+          <div class="dots" id="dots" aria-label="Slide indicators" role="tablist"></div>
+
+          <button class="m-arrow m-right" aria-label="Next slide (mobile)">
+            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="bottom">
+        <a href="p4baaa.html">
+          <button>NEXT</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const carousel = document.getElementById('carousel');
+      const slides = Array.from(carousel.querySelectorAll('.slide'));
+      const dotsContainer = document.getElementById('dots');
+      const left = document.querySelector('.arrow.left');
+      const right = document.querySelector('.arrow.right');
+      const mLeft = document.querySelector('.m-arrow.m-left');
+      const mRight = document.querySelector('.m-arrow.m-right');
+
+      let currentIndex = 0;
+      const gap = 16;
+      const getSnapWidth = () => slides[0].getBoundingClientRect().width + gap;
+
+      // Dots
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot' + (i===0 ? ' active' : '');
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-label', `Go to slide ${i+1}`);
+        b.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(b);
+      });
+      const dots = Array.from(dotsContainer.querySelectorAll('.dot'));
+
+      // Flechas desktop
+      if (left && right){
+        left.addEventListener('click', () => goTo(Math.max(0, currentIndex - 1)));
+        right.addEventListener('click', () => goTo(Math.min(slides.length - 1, currentIndex + 1)));
+      }
+      // Flechas móvil (inferiores)
+      if (mLeft && mRight){
+        mLeft.addEventListener('click', () => goTo(Math.max(0, currentIndex - 1)));
+        mRight.addEventListener('click', () => goTo(Math.min(slides.length - 1, currentIndex + 1)));
+      }
+
+      // Teclado
+      carousel.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.min(slides.length - 1, currentIndex + 1)); }
+        if(e.key === 'ArrowLeft')  { e.preventDefault(); goTo(Math.max(0, currentIndex - 1)); }
+      });
+
+      // Sincronizar dots al hacer scroll
+      let ticking = false;
+      carousel.addEventListener('scroll', () => {
+        if (ticking) return;
+        window.requestAnimationFrame(() => {
+          const idx = Math.round(carousel.scrollLeft / getSnapWidth());
+          if (idx !== currentIndex) setActive(idx);
+          ticking = false;
+        });
+        ticking = true;
+      });
+
+      // Mantener índice tras resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => goTo(currentIndex, false), 120);
+      });
+
+      function goTo(index, smooth=true){
+        currentIndex = index;
+        const x = index * getSnapWidth();
+        carousel.scrollTo({left:x, behavior: smooth ? 'smooth' : 'auto'});
+        setActive(index);
+      }
+      function setActive(index){
+        currentIndex = index;
+        dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+
+        // Estado de flechas (desktop)
+        if (left && right){
+          left.style.opacity = index === 0 ? .45 : .85;
+          left.style.pointerEvents = index === 0 ? 'none' : 'auto';
+          right.style.opacity = index === slides.length-1 ? .45 : .85;
+          right.style.pointerEvents = index === slides.length-1 ? 'none' : 'auto';
+        }
+        // Estado de flechas (móvil)
+        if (mLeft && mRight){
+          mLeft.style.opacity = index === 0 ? .45 : .95;
+          mLeft.style.pointerEvents = index === 0 ? 'none' : 'auto';
+          mRight.style.opacity = index === slides.length-1 ? .45 : .95;
+          mRight.style.pointerEvents = index === slides.length-1 ? 'none' : 'auto';
+        }
+      }
+
+      setActive(0);
+    })();
+  </script>
+</body>
+</html>
