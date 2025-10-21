@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{
+      height:100%;width:100%;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;background:#000;
+      overflow:hidden; /* sin scroll */
+    }
+
+    .container{
+      display:flex;flex-direction:column;justify-content:space-between;
+      height:100%;width:100%;
+      background:url('p4caa/background.png') no-repeat center/cover; /* cambia si quieres la foto del Ferrari */
+      position:relative;
+    }
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:1}
+
+    .content{
+      position:relative;z-index:2;
+      display:flex;flex-direction:column;
+      min-height:100svh;
+      text-align:center;padding:20px;
+    }
+
+    /* Header igual */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:2px;opacity:.9}
+
+    /* ====== MIDDLE NUEVO ====== */
+    .middle{
+      flex:1;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:clamp(10px, 2vh, 18px);
+      padding:clamp(6px, 2vh, 20px) 0;
+    }
+
+    .kicker{
+      color:rgb(224,184,109);
+      font-weight:900;
+      font-style:italic;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+      text-shadow:0 1px 2px rgba(0,0,0,.45);
+      font-size:clamp(16px, 2.1vh + .6rem, 24px);
+    }
+
+    .lede{
+      max-width:56ch;
+      font-weight:400;
+      font-size:clamp(14px, 1.2vh + .6rem, 18px);
+      line-height:1.5;
+      opacity:.98;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+    }
+    .lede strong{font-weight:800;}
+
+    .closer{
+      margin-top:clamp(6px, 1.2vh, 10px);
+      color:rgb(224,184,109);
+      font-weight:700;
+      font-size:clamp(13px, 1.1vh + .5rem, 16px);
+      line-height:1.35;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+    }
+
+    /* Footer igual */
+    .bottom{display:flex;justify-content:center;padding:16px 0 18px}
+    .bottom button{
+      background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
+      font-size:clamp(14px, 1.2vh + .6rem, 16px);
+      border-radius:12px;font-weight:800;padding:8px 48px;cursor:pointer;
+      text-transform:uppercase;font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .25s ease, background .2s ease, color .2s ease;
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9);color:#fff;
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1);
+    }
+
+    /* Compacto si la altura es justa (SE, etc.) */
+    @media (max-height:700px){
+      .logo img{max-width:130px}
+      .bottom{padding:12px 0 14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <!-- Header -->
+      <div class="top">
+        <div class="logo">
+          <img src="assets/LogoBlanco.png" alt="Logo">
+        </div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- ====== MIDDLE NUEVO ====== -->
+      <div class="middle">
+        <div class="kicker">WAIT… THAT’S NOT ALL.</div>
+
+        <p class="lede">
+          As part of this project, you’ll gain access to
+          <strong>ThreeSixty Club’s private experiences:</strong>
+          tailor-made journeys across Europe, exclusive driving routes in the world’s finest cars,
+          and curated moments of gastronomy, culture, and celebration — all designed for those
+          who live without limits.
+        </p>
+
+        <div class="closer">For you, your friends, family and business.</div>
+      </div>
+
+      <!-- Footer -->
+      <div class="bottom">
+        <a href="p4c.html">
+          <button>NEXT</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
