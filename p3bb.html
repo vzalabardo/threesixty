@@ -1,71 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ThreeSixty Club</title>
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html {
-      height: 100%; width: 100%; overflow: hidden;
-      font-family: 'Bai Jamjuree', sans-serif; color: white; background: black;
-    }
-    .container {
-      display: flex; flex-direction: column; justify-content: space-between;
-      height: 100%; width: 100%;
-      background: url('p3bb/background.png') no-repeat center center; background-size: cover;
-      position: relative;
-    }
-    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.65); z-index: 1; }
-    .content { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; text-align: center; padding: 20px; }
-
-    .top { display: flex; flex-direction: column; align-items: center; }
-    .logo img { max-width: 150px; height: auto; }
-    .separator { width: 100%; height: 2px; background-color: white; margin-top: 3px; margin-bottom: 1px; }
-
-    .middle {
-      flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-around;
-      padding-top: 48px; gap: 18px;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{
+      height:100%;
+      width:100%;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;
+      background:#000;
+      overflow:hidden;               /* sin scroll */
     }
 
-    /* Color dorado existente */
-    .accent, .middle h3 { color: rgb(224,184,109); }
-    .middle h3 {
-      font-size: 28px; margin-bottom: 6px; font-weight: 700; letter-spacing: 1px;
-      text-transform: uppercase;
+    .container{
+      display:flex;flex-direction:column;justify-content:space-between;
+      height:100%;width:100%;
+      background:url('p3bb/background.png') no-repeat center/cover;
+      position:relative;
+    }
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:1}
+
+    .content{
+      position:relative;z-index:2;
+      display:flex;flex-direction:column;
+      min-height:100svh;            /* estable en móvil */
+      text-align:center;
+      padding:16px;
     }
 
-    .list {
-      font-size: 30px; font-weight: 800; text-transform: uppercase; line-height: 1.4;
-      opacity: 0; transform: translateY(20px); animation: fadeInUp 0.9s ease-out forwards 0.5s;
-    }
-    .tagline {
-      font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-      opacity: 0; transform: translateY(20px); animation: fadeInUp 0.9s ease-out forwards 0.9s;
+    /* Header */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin-top:8px;opacity:.9}
+
+    /* MIDDLE – versiones grandes y bien distribuido */
+    .middle{
+      flex:1;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:clamp(8px, 1.6vh, 16px);
+      padding:clamp(8px, 2vh, 20px) 0;
     }
 
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-    .bottom { display: flex; justify-content: center; padding: 20px 0 20px; }
-    .bottom button {
-      background: rgba(255,165,0,1); border: 2px solid white; color: black; font-size: 18px;
-      border-radius: 12px; font-weight: bold; padding: 6px 64px; cursor: pointer;
-      text-transform: uppercase; font-style: italic;
-      box-shadow: 0 0 10px rgba(255,165,0,0.7), 0 0 20px rgba(255,165,0,0.7), 0 0 30px rgba(255,165,0,0.7);
-      transition: box-shadow 0.3s ease-in-out;
-    }
-    .bottom button:hover {
-      background: rgba(255,165,0,0.9); color: white;
-      box-shadow: 0 0 20px rgba(255,165,0,1), 0 0 40px rgba(255,165,0,1), 0 0 60px rgba(255,165,0,1);
+    .middle h3{
+      font-weight:900;
+      letter-spacing:.2px;
+      text-shadow:0 1px 2px rgba(0,0,0,.45);
+      font-size:clamp(22px, 2.2vh + 1rem, 32px);
+      margin-bottom:clamp(4px, .8vh, 8px);
     }
 
-    /* Responsivo sencillo */
-    @media (max-width: 480px) {
-      .middle h3 { font-size: 22px; }
-      .list { font-size: 24px; }
-      .tagline { font-size: 20px; }
-      .logo img { max-width: 130px; }
+    .items{
+      width:100%;
+      max-width:min(640px, 92vw);    /* ancho cómodo */
+      display:flex;flex-direction:column;align-items:center;
+      gap:clamp(10px, 1.6vh, 18px);
+    }
+
+    .item{
+      opacity:0;transform:translateY(18px);
+      animation:fadeInUp .65s ease-out forwards;
+      text-transform:none;
+      padding:8px;
+    }
+    .item:nth-child(1){animation-delay:.20s}
+    .item:nth-child(2){animation-delay:.35s}
+    .item:nth-child(3){animation-delay:.50s}
+    .item:nth-child(4){animation-delay:.65s}
+
+    .kicker{
+      color:rgb(224,184,109);
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.6px;
+      text-shadow:0 1px 2px rgba(0,0,0,.45);
+      font-size:clamp(20px, 2.2vh + .9rem, 28px);
+      line-height:1.15;
+    }
+    .sub{
+      margin-top:6px;
+      opacity:.98;
+      font-weight:400;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+      font-size:clamp(13px, 1.2vh + .55rem, 16px);
+      line-height:1.38;
+      max-width:52ch;
+      margin-left:auto;margin-right:auto;
+    }
+
+    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+
+    /* Footer */
+    .bottom{display:flex;justify-content:center;padding:14px 0 16px}
+    .bottom button{
+      background:rgba(255,165,0,1); border:2px solid #fff; color:#000;
+      font-size:clamp(14px, 1.2vh + .6rem, 16px);
+      border-radius:12px; font-weight:800; padding:8px 48px;
+      cursor:pointer; text-transform:uppercase; font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .25s ease, background .2s ease, color .2s ease;
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9); color:#fff;
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1);
+    }
+
+    /* Compacto para pantallas muy bajas (SE / Android pequeños) */
+    @media (max-height:700px){
+      .logo img{max-width:130px}
+      .separator{height:1.5px}
+      .bottom{padding:10px 0 12px}
     }
   </style>
 </head>
@@ -82,24 +129,40 @@
         <div class="separator"></div>
       </div>
 
-      <!-- Centro -->
+      <!-- Middle -->
       <div class="middle">
-        <h3 class="accent">WHAT'S INCLUDED</h3>
-        <div class="list">
-          1 Hotel<br>
-          10 Cars<br>
-          1 Yacht
+        <h3>What’s included?</h3>
+
+        <div class="items">
+          <div class="item">
+            <div class="kicker">1 PRIVATE HOTEL</div>
+            <div class="sub">Historic Spanish masia reborn as a luxury private house.</div>
+          </div>
+
+          <div class="item">
+            <div class="kicker">10 SUPERCARS</div>
+            <div class="sub">Curated collection of Europe’s most iconic machines.</div>
+          </div>
+
+          <div class="item">
+            <div class="kicker">1 YACHT</div>
+            <div class="sub">De Antonio D42; freedom on the Mediterranean.</div>
+          </div>
+
+          <div class="item">
+            <div class="kicker">1 CLUB</div>
+            <div class="sub">We manage it all; your ownership and your experiences.</div>
+          </div>
         </div>
-        <div class="tagline accent">ONE DREAM</div>
       </div>
 
       <!-- Footer -->
       <div class="bottom">
-        <a href="p13c.html">
-          <button>SEE BENEFITS</button>
+        <a href="p13d.html">
+          <button>NEXT</button>
         </a>
       </div>
     </div>
-  </div>  
+  </div>
 </body>
 </html>

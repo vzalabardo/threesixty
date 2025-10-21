@@ -191,8 +191,7 @@
       
         <div class="info-box">
           OUR 25 OWNERS,<br>
-          <span id="changing-word" class="invest">INVEST</span><br>
-          WITH US
+          <span id="changing-word" class="invest">ONE LIFE.<br>ONE DREAM.<br>ONE CLUB.</span><br>
         </div>
       </div>
 
@@ -205,25 +204,23 @@
     </div>
   </div>
 <script>
-  const words = ['INVEST', 'TRAVEL', 'DRIVE', 'RACE','DISCOVER', 'LIVE', 'HAVE FUN'];
   const colors = [
     'rgb(224, 184, 109)', // dorado original
     '#d92c2c', // rojo elegante
     '#1e90ff', // azul sobrio
     '#32a852', // verde sofisticado
     '#ff8c00', // naranja quemado
-    '#a020f0',  // morado oscuro
-    '#32a852', // verde sofisticado
+    '#a020f0'  // morado oscuro
   ];
 
-  let index = 0;
+  let colorIndex = 0;
   const span = document.getElementById('changing-word');
 
   setInterval(() => {
-    index = (index + 1) % words.length;
-    span.textContent = words[index];
-    span.style.color = colors[index];
-  }, 1800); // cada 1.8 segundos cambia
+    colorIndex = (colorIndex + 1) % colors.length;
+    span.style.transition = 'color 0.8s';
+    span.style.color = colors[colorIndex];
+  }, 1800); // cada 1.8 segundos cambia de color
 </script>
 
 </body>

@@ -182,6 +182,85 @@
   }
 }
 
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 40px;
+  justify-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+  filter: brightness(0) invert(1); /* blanco */
+}
+
+.feature p {
+  font-size: 16px;
+  line-height: 1.4em;
+  font-weight: 400;
+}
+/* ===== Responsive sin scroll en móviles ===== */
+@media (max-width: 430px) {
+  .top .logo img { max-width: 110px; }
+  .separator { height: 1px; }
+
+  .middle { justify-content: center; gap: 8px; }
+
+  .middle h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 10px 14px;
+    max-width: 340px;        /* compacta el grid */
+  }
+
+  .feature img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
+  }
+
+  .feature p {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  /* texto pequeño bajo el grid */
+  .middle p[style*="exclusive virtual tour"] {
+    font-size: 11px !important;
+    margin-top: 8px !important;
+  }
+
+  /* Botón más compacto para que todo quepa */
+  .bottom { padding: 10px 0; }
+  .bottom button {
+    font-size: 14px;
+    padding: 6px 28px;
+    border-radius: 10px;
+  }
+}
+
+/* Ajuste extra si la pantalla es muy baja (p.ej. iPhone SE en horizontal) */
+@media (max-height: 700px) and (max-width: 430px) {
+  .feature img { width: 32px; height: 32px; }
+  .feature p { font-size: 11px; }
+  .middle h3 { font-size: 18px; }
+}
+
     
   </style>
 </head>
@@ -202,21 +281,46 @@
       <!-- Zona central -->
 
 <div class="middle">
-  <h3 class="animated-item" style="font-style: italic; margin-bottom: 10px;">Casa Club ThreeSixty</h3>
+  <h3 class="animated-item" style="font-style: italic; margin-bottom: 30px;">
+    Casa Club ThreeSixty
+  </h3>
 
-  <ul style="list-style: none; padding: 0; margin: 0; font-size: 18px; font-weight: 400; line-height: 1.8em; text-align: center;">
-    <li class="animated-item" style="animation-delay: 0.5s;">66 hectares of private estate</li>
-    <li class="animated-item" style="animation-delay: 0.7s;">22,000 m² of gardens & outdoor event spaces</li>
-    <li class="animated-item" style="animation-delay: 0.9s;">28 rooms</li>
-    <li class="animated-item" style="animation-delay: 1.1s;">Tennis & padel courts</li>
-    <li class="animated-item" style="animation-delay: 1.3s;">Heated spa & wellness area</li>
-    <li class="animated-item" style="animation-delay: 1.5s;">Michelin-level gastronomy with 4 dining zones</li>
-    <li class="animated-item" style="animation-delay: 1.7s;">Exclusive driving & seasonal experiences</li>
-    <li class="animated-item" style="animation-delay: 1.9s;">Helicopter trips to the Pyrenees</li>
-    <li class="animated-item" style="animation-delay: 2.1s;">Luxury yachting on Costa Brava</li>
-  </ul>
+  <div class="features-grid">
+    <div class="feature animated-item" style="animation-delay: 0.4s;">
+      <img src="icons/mapa (1).png" alt="Estate" />
+      <p>66 hectares of private estate</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 0.6s;">
+      <img src="icons/arbol.png" alt="Gardens" />
+      <p>22,000 m² of gardens & event spaces</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 0.8s;">
+      <img src="icons/cama (1).png" alt="Rooms" />
+      <p>28 rooms & suites</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 1s;">
+      <img src="icons/raqueta-de-tenis.png" alt="Tennis" />
+      <p>Tennis court & outdoor pool</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 1.2s;">
+      <img src="icons/piscina.png" alt="Spa" />
+      <p>Luxury spa & wellness area</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 1.4s;">
+      <img src="icons/comida.png" alt="Gastronomy" />
+      <p>Michelin-level gastronomy</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 1.6s;">
+      <img src="icons/gimnasia.png" alt="Masia" />
+      <p>Gym & fitness area</p>
+    </div>
+    <div class="feature animated-item" style="animation-delay: 1.8s;">
+      <img src="icons/ciclismo.png" alt="Cycling" />
+      <p>Cycling paradise in the heart of Catalonia</p>
+    </div>
+  </div>
 
-  <p class="animated-item" style="animation-delay: 2.5s; margin-top: 20px; font-size: 14px; color: rgb(224, 184, 109); font-style: italic;">
+  <p class="animated-item" style="animation-delay: 2.2s; margin-top: 25px; font-size: 14px; color: rgb(224, 184, 109); font-style: italic;">
     Want to explore more? Complete the form at the end and we’ll send you a link to your exclusive virtual tour.
   </p>
 </div>
