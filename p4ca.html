@@ -11,90 +11,105 @@
       height:100%;width:100%;
       font-family:'Bai Jamjuree',sans-serif;
       color:#fff;background:#000;
-      overflow:hidden;               /* sin scroll en móvil */
+      overflow:hidden;               /* sin scroll */
     }
 
     .container{
       display:flex;flex-direction:column;justify-content:space-between;
       height:100%;width:100%;
-      /* Usa tu fondo habitual; si quieres el mapa cambia esta ruta */
-      background:url('p3a/background.png') no-repeat center/cover;
+      background:url('p3a/background.png') no-repeat center/cover;             /* fondo liso; el mapa va como imagen dentro */
       position:relative;
     }
-    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:1}
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:1;pointer-events:none}
 
     .content{
       position:relative;z-index:2;
       display:flex;flex-direction:column;
-      min-height:100svh;             /* viewport estable en móvil */
+      min-height:100svh;
       text-align:center;padding:20px;
     }
 
     /* Header igual */
     .top{display:flex;flex-direction:column;align-items:center}
     .logo img{max-width:150px;height:auto}
-    .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:2px;opacity:.9}
+    .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:10px;opacity:.9}
 
-    /* ===== MIDDLE NUEVO ===== */
+    /* ===== MIDDLE EDITADO ===== */
     .middle{
       flex:1;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
       gap:clamp(10px, 2vh, 18px);
       padding:clamp(6px, 2vh, 20px) 0;
     }
 
-    .soon{
+    .eyebrow{
       color:rgb(224,184,109);
       font-weight:900;
       letter-spacing:.5px;
       text-transform:uppercase;
-      text-shadow:0 1px 2px rgba(0,0,0,.45);
-      font-size:clamp(18px, 2.2vh + .7rem, 28px);
+      font-style:italic;
+      font-size:clamp(18px, 2.2vh + .7rem, 20px);
     }
 
-    .subsoon{
+    .headline{
       color:rgb(224,184,109);
-      font-weight:700;
-      text-shadow:0 1px 2px rgba(0,0,0,.35);
-      font-size:clamp(14px, 1.6vh + .55rem, 18px);
+      font-weight:900;
+      max-width:28ch;
+      line-height:1.2;
+      font-size:clamp(15px, 1.6vh + .6rem, 20px);
+    }
+
+    .intro{
+      max-width:32ch;
+      line-height:1.35;
+      font-weight:400;
+      opacity:.95;
+      font-size:clamp(14px, 1.4vh + .55rem, 15px);
+    }
+
+    .map{
+      width:100%;
+      max-width:min(860px, 92vw);
+      margin-top:6px;
+      border-radius:6px;
+      /* coloca aquí tu imagen de mapa */
+      background:url('p4ca/mapa.png') no-repeat center/cover;
+      aspect-ratio: 16 / 6; /* se adapta; cambia si tu imagen es distinta */
     }
 
     .timeline{
       width:100%;
-      max-width:min(720px, 92vw);
+      max-width:min(760px, 92vw);
       display:flex;flex-direction:column;align-items:center;
-      gap:clamp(10px, 2vh, 16px);
-      margin-top:clamp(4px, .8vh, 8px);
+      gap:clamp(6px, 1.5vh, 10px);
+      margin-top:clamp(8px, 1.6vh, 12px);
+      text-align:left;
+      font-weight: 100;
     }
 
-    .milestone{
-      opacity:0;transform:translateY(16px);
-      animation:fadeInUp .65s ease-out forwards;
-      text-shadow:0 1px 2px rgba(0,0,0,.35);
-      font-weight:800;
-      font-size:clamp(16px, 2vh + .6rem, 22px);
-      line-height:1.25;
-      padding:0 8px;
+    .row{
+      width:100%;
+      max-width:28ch;
+      line-height:1.3;
+      font-style:italic;
+      font-weight:400;
+      font-size:clamp(15px, 1.6vh + .55rem, 15px);
     }
-    .milestone:nth-child(1){animation-delay:.2s}
-    .milestone:nth-child(2){animation-delay:.35s}
-    .milestone:nth-child(3){animation-delay:.5s}
+    .year{color:rgb(224,184,109);font-weight:900}
+    .place{color:#fff}
 
-    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
-
-    /* Footer igual */
+    /* Footer igual PERO SIN SOMBRAS en el botón */
     .bottom{display:flex;justify-content:center;padding:16px 0 18px}
     .bottom button{
       background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
       font-size:clamp(14px, 1.2vh + .6rem, 16px);
       border-radius:12px;font-weight:800;padding:8px 48px;cursor:pointer;
       text-transform:uppercase;font-style:italic;
-      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
-      transition:box-shadow .25s ease, background .2s ease, color .2s ease;
+      box-shadow:none;               /* <- sin sombras */
+      transition:background .2s ease, color .2s ease, transform .2s ease;
     }
     .bottom button:hover{
-      background:rgba(255,165,0,.9);color:#fff;
-      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1);
+      background:rgba(255,165,0,.9);color:#fff;transform:translateY(-1px);
     }
 
     /* Compacto si la altura es justa (iPhone SE, etc.) */
@@ -119,20 +134,29 @@
 
       <!-- Middle -->
       <div class="middle">
-        <div class="soon">&amp; COMING SOON...</div>
-        <div class="subsoon">Expanding our legacy across Europe</div>
+        <div class="eyebrow">&amp; NEXT CHAPTERS...</div>
+
+        <div class="headline">Our ambitions are as big as your dreams.</div>
+
+        <p class="intro">
+          In the coming years, we’ll expand our legacy; replicating our ownership model across Europe’s most extraordinary destinations.
+        </p>
+
+        <!-- Imagen del mapa (sustituye la ruta en .map) -->
+        <div class="map" aria-label="Map of Europe with routes"></div>
 
         <div class="timeline">
-          <div class="milestone">2026 — Costa Brava, Spain</div>
-          <div class="milestone">2027 — Tuscany, Italy</div>
-          <div class="milestone">2028 — Algarve, Portugal</div>
+          <div class="row"><span class="year">2026</span> — <span class="place">Costa Brava, Spain</span></div>
+          <div class="row"><span class="year">2027</span> — <span class="place">Tuscany, Italy</span></div>
+          <div class="row"><span class="year">2028</span> — <span class="place">Algarve, Portugal</span></div>
+          <div class="row"><span class="year">2029, 30, 31…</span> — <span class="place">Paris, South of France, Greece, South Italy, Mallorca…</span></div>
         </div>
       </div>
 
       <!-- Footer -->
       <div class="bottom">
         <a href="p4caa.html">
-          <button>NEXT</button>
+          <button>DISCOVER</button>
         </a>
       </div>
     </div>

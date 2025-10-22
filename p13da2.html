@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    html,body{
+      height:100%;width:100%;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;background:#000;
+      overflow:hidden; /* el scroll solo en el área central */
+    }
+
+    .container{
+      height:100svh;width:100%;
+      display:flex;flex-direction:column;
+      background:url('p3bb/background.png') no-repeat center/cover; /* pon aquí tu fondo */
+      position:relative;
+    }
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.8));z-index:1}
+
+    .content{
+      position:relative;z-index:2;
+      height:100%;display:flex;flex-direction:column;
+      padding:16px 18px 0;text-align:center;
+    }
+
+    /* HEADER (igual) */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{
+      max-width:150px;height:auto;opacity:0;transform:translateY(-8px) scale(.98);
+      animation:fadeInDown .7s .15s ease-out forwards;
+    }
+    .separator{
+      width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:8px;opacity:.95;
+      position:relative;overflow:hidden
+    }
+    .separator::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+      transform:translateX(-120%);
+      animation:lineSweep 2s .3s ease-out forwards;
+    }
+
+    /* MIDDLE SCROLLABLE (une las dos pantallas) */
+    .middle{
+      flex:1;min-height:0;
+      display:flex;flex-direction:column;align-items:center;
+      padding:10px 0 16px;
+    }
+    .scrollarea{
+      width:100%;max-width:760px;
+      margin:0 auto;
+      overflow-y:auto; -webkit-overflow-scrolling:touch;
+      padding:6px 4px 90px;            /* espacio para que no tape el botón */
+      text-align:left;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,255,255,.35) transparent;
+    }
+    .scrollarea::-webkit-scrollbar{width:6px}
+    .scrollarea::-webkit-scrollbar-thumb{background:rgba(255,255,255,.35);border-radius:6px}
+
+    .title-wrap{
+      text-align:center;margin:6px 0 16px;
+      opacity:0;transform:translateY(12px);animation:fadeUp .6s .25s forwards;
+    }
+    .eyebrow{
+      color:rgb(224,184,109);font-weight:900;font-style:italic;text-transform:uppercase;
+      letter-spacing:.6px;line-height:1.1;
+      font-size:clamp(18px,2.2vh + .7rem,24px);
+    }
+
+    .logos{
+      display:flex;gap:18px;justify-content:center;align-items:center;
+      margin:12px 0 12px;
+      opacity:0;transform:translateY(12px);animation:fadeUp .6s .35s forwards;
+    }
+    .logos img{height:26px;filter:brightness(0) invert(1);opacity:.95}
+
+    .lead{
+      font-size:clamp(15px,1.6vh + .55rem,18px);
+      line-height:1.5;font-weight:600;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+      margin-bottom:14px;
+      opacity:0;transform:translateY(12px);animation:fadeUp .6s .45s forwards;
+    }
+    .lead em{font-style:italic;font-weight:800}
+    .lead strong{font-weight:900}
+
+    /* Lista de puntos (continuación) */
+    .points{
+      margin:16px 0 6px;
+      display:flex;flex-direction:column;gap:14px;
+    }
+    .point{
+      display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;
+      padding:14px 4px;border-bottom:1px dashed rgba(255,255,255,.35);
+      opacity:0;transform:translateY(10px);animation:fadeUp .5s ease forwards;
+    }
+    .point:nth-child(1){animation-delay:.15s}
+    .point:nth-child(2){animation-delay:.25s}
+    .point:nth-child(3){animation-delay:.35s}
+    .point:nth-child(4){animation-delay;.45s}
+
+    .icon{width:30px;height:30px;filter:brightness(0) invert(1)}
+    .pt-text{
+      font-size:clamp(15px,1.4vh + .55rem,18px);
+      line-height:1.35;font-weight:700;
+    }
+    .pt-text em{font-style:italic;color:rgb(224,184,109);font-weight:800}
+
+    .note{
+      margin:16px 4px 0;
+      font-size:clamp(13.5px,1.1vh + .55rem,16px);
+      font-style:italic;font-weight:700;color:rgb(224,184,109);
+      text-align:left;
+      opacity:0;transform:translateY(10px);animation:fadeUp .6s .55s forwards;
+    }
+
+    /* FOOTER FLOTANTE SIEMPRE VISIBLE */
+    .bottom{
+      position:sticky;bottom:0;z-index:3;
+      display:flex;justify-content:center;
+      padding:14px 0 18px;
+    }
+    .bottom button{
+      background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
+      font-size:clamp(14px,1.2vh + .55rem,16px);
+      border-radius:12px;font-weight:800;padding:9px 50px;cursor:pointer;
+      text-transform:uppercase;font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9);color:#fff;transform:translateY(-1px);
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1);
+    }
+
+    /* Animations */
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeInDown{to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes lineSweep{to{transform:translateX(120%)}}
+
+    /* Responsive pequeños (mantén tamaños legibles) */
+    @media (max-width:430px){
+      .logo img{max-width:120px}
+      .logos img{height:22px}
+      .bottom button{font-size:14px;padding:7px 28px;border-radius:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <!-- HEADER -->
+      <div class="top">
+        <div class="logo"><img src="assets/LogoBlanco.png" alt="Logo"></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- MIDDLE (toda la página con scroll: bloque 1 + continuación) -->
+      <div class="middle">
+        <div class="scrollarea">
+          <!-- BLOQUE 1 -->
+          <div class="title-wrap">
+            <div class="eyebrow">A TRUSTED STRUCTURE,<br/>PROVEN WORLDWIDE</div>
+          </div>
+
+          <div class="logos" >
+            <img src="p13da2/LOGO PACASO.png" alt="Pacaso">
+            <img src="assets/LogoBlanco.png" alt="ThreeSixty" style="height:46px">
+          </div>
+
+          <p class="lead" style="font-weight: 300;">
+            Our legal and operational model follows the same co-ownership principles used by international pioneers like <em style="color:rgba(255,165,0,1);">Pacaso</em>; where each owner holds real equity in a managed company that owns the underlying assets.
+          </p>
+
+          <p class="lead" style="font-weight: 300;">
+            <em style="font-weight:900"><b>ThreeSixty</b></em> takes this concept further, extending it from a single property to a portfolio of ultra-luxury assets: a hotel, a curated supercar collection, and a yacht, all <strong>under one structure</strong>.
+          </p>
+
+          <!-- BLOQUE 2 (continuación) -->
+          <div class="points">
+            <div class="point">
+              <img class="icon" src="icons/llave-con-forma-de-casa-colgante.png" alt="">
+              <div class="pt-text">25 owners – <em>4% equity</em> each</div>
+            </div>
+
+            <div class="point">
+              <img class="icon" src="icons/gestion-financiera.png" alt="">
+              <div class="pt-text">Fully managed structure – <em>hotel, supercars &amp; yacht</em></div>
+            </div>
+
+            <div class="point">
+              <img class="icon" src="icons/contrato.png" alt="">
+              <div class="pt-text">Private holding incorporated in Spain</div>
+            </div>
+
+            <div class="point">
+              <img class="icon" src="icons/en-todo-el-mundo.png" alt="">
+              <div class="pt-text">Ultra-exclusive community of global founders</div>
+            </div>
+          </div>
+
+          <p class="note">A dedicated legal team will personally guide you through the full ownership and corporate structure.</p>
+        </div>
+      </div>
+
+      <!-- FOOTER flotante -->
+      <div class="bottom">
+        <a href="p4c.html">
+          <button>KEEP GOING</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

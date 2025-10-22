@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    html, body{
+      height:100%;
+      width:100%;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;background:#000;
+      overflow:hidden; /* no scroll de la página; solo la lista */
+    }
+
+    .container{
+      height:100svh;width:100%;
+      display:flex;flex-direction:column;
+      background:url('p13c/fondo.JPG') no-repeat center/cover;
+      position:relative;
+    }
+    .overlay{position:absolute;inset:0;background:rgba(0,0,0,.75);z-index:1}
+
+    .content{
+      position:relative;z-index:2;
+      height:100%;display:flex;flex-direction:column;
+      padding:16px 18px 0;
+    }
+
+    /* Header (igual) */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:6px;opacity:.95}
+
+    /* Middle scrollable */
+    .middle{
+      flex:1;
+      display:flex;flex-direction:column;align-items:center;
+      gap:10px;
+      padding:10px 0 16px;
+      min-height:0; /* necesario para que overflow funcione dentro de flex */
+    }
+
+    .title{
+      width:100%;
+      max-width:720px;
+      text-align:left;
+      margin:0 auto 8px;
+      line-height:1.15;
+    }
+    .title h1{
+      font-size:clamp(20px, 2.2vh + .7rem, 26px);
+      font-weight:900; letter-spacing:.3px;
+    }
+    .title h2{
+      font-size:clamp(15px, 1.4vh + .6rem, 18px);
+      font-style:italic;
+      color:rgb(224,184,109);
+      font-weight:700;
+      margin-top:4px;
+    }
+
+    /* Área que hace scroll */
+    .list{
+      width:100%;max-width:720px;
+      margin:12px auto 0;
+      padding-right:6px; /* espacio para el scrollbar */
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,255,255,.35) transparent;
+      flex:1;                   /* ocupa el espacio disponible dentro de .middle */
+      min-height:0;
+    }
+    .list::-webkit-scrollbar{width:6px}
+    .list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.35);border-radius:6px}
+
+    .item{
+      display:grid;
+      grid-template-columns:38px 1fr;
+      gap:12px;
+      align-items:start;
+      padding:14px 2px;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      opacity:0; transform:translateY(10px);
+      animation:fadeInUp .5s ease-out forwards;
+    }
+    .item:nth-child(1){animation-delay:.05s}
+    .item:nth-child(2){animation-delay:.12s}
+    .item:nth-child(3){animation-delay:.19s}
+    .item:nth-child(4){animation-delay:.26s}
+    .item:nth-child(5){animation-delay:.33s}
+    .item:nth-child(6){animation-delay:.40s}
+    .item:nth-child(7){animation-delay:.47s}
+
+    .icon{
+      width:28px;height:28px;margin-top:2px;
+      filter:brightness(0) invert(1);
+      opacity:.95;
+    }
+    .text{
+      font-size:clamp(14px, 1.1vh + .55rem, 16px);
+      line-height:1.4;
+      text-align:left;
+    }
+
+    /* Footer flotante SIEMPRE visible */
+    .bottom{
+      position:sticky;
+      bottom:0;
+      z-index:3;
+      display:flex;justify-content:center;
+      padding:14px 0 16px;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 35%, rgba(0,0,0,.85) 100%);
+      backdrop-filter:saturate(1.1);
+    }
+    .bottom button{
+      background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
+      font-size:clamp(14px, 1.2vh + .55rem, 16px);
+      border-radius:12px;font-weight:800;padding:8px 48px;cursor:pointer;
+      text-transform:uppercase;font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .25s ease, background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9);color:#fff;transform:translateY(-1px);
+      box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1);
+    }
+
+    /* Animaciones básicas */
+    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+
+    /* ---- Desktop layout tweak ----
+       Reparte el espacio vertical: más aire arriba y abajo en pantallas grandes,
+       manteniendo la lista con scroll. */
+    @media (min-width: 768px){
+      .middle{
+        justify-content:space-between;          /* reparte verticalmente */
+        padding-top:clamp(24px, 8vh, 72px);     /* baja el bloque */
+        padding-bottom:clamp(16px, 6vh, 56px);  /* deja aire sobre el botón */
+      }
+      /* Limita la altura visible de la lista para que quede equilibrada
+         y el usuario siga pudiendo hacer scroll */
+      .list{
+        max-height:min(60vh, 580px);
+        margin-top:16px;
+      }
+    }
+
+    /* Responsive pequeños ajustes móvil (ya estaba ok) */
+    @media (max-width:430px){
+      .logo img{max-width:120px}
+      .title h1{font-size:22px}
+      .title h2{font-size:16px}
+      .item{grid-template-columns:34px 1fr;padding:12px 0}
+      .icon{width:26px;height:26px}
+      .text{font-size:13.5px}
+      .bottom button{font-size:14px;padding:7px 28px;border-radius:10px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <!-- HEADER (igual) -->
+      <div class="top">
+        <div class="logo"><img src="assets/LogoBlanco.png" alt="Logo"></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- MIDDLE (lista con scroll) -->
+      <div class="middle">
+        <div class="title">
+          <h1>CASA CLUB THREESIXTY</h1>
+          <h2>Costa Brava, Spain</h2>
+        </div>
+
+        <div class="list" id="scroll-list">
+          <div class="item">
+            <img class="icon" src="icons/tiempo-restante.png" alt="">
+            <p class="text">1h 15min from Barcelona &amp; 30min from the Mediterranean Sea. Perfectly connected yet surrounded by silence and nature.</p>
+          </div>
+
+          <div class="item">
+            <img class="icon" src="icons/banco.png" alt="">
+            <p class="text">At the center of a region filled with charm; from ancient stone villages to coastal towns along the Mediterranean.</p>
+          </div>
+
+          <div class="item">
+            <img class="icon" src="icons/golf.png" alt="">
+            <p class="text">10+ world-class golf courses nearby; including PGA Catalunya, future host of the Ryder Cup 2031.</p>
+          </div>
+
+          <div class="item">
+            <img class="icon" src="icons/bandeja.png" alt="">
+            <p class="text">20+ Michelin stars within Girona &amp; Costa Brava; one of Europe’s most celebrated culinary regions.</p>
+          </div>
+
+          <div class="item">
+            <img class="icon" src="icons/soleado.png" alt="">
+            <p class="text">Over 300 days of sunshine and a mild Mediterranean climate all year round.</p>
+          </div>
+
+          <div class="item">
+            <img class="icon" src="icons/esqui.png" alt="">
+            <p class="text">Ski slopes of the Pyrenees just 2h away, from sea to snow in a single day.</p>
+          </div>
+
+          <div class="item">
+            <img class="icon" src="icons/uvas.png" alt="">
+            <p class="text">Surrounded by vineyards &amp; olive groves, in the heart of the Empordà wine region.</p>
+          </div>
+          <div style="height:12px;"></div>
+        </div>
+      </div>
+
+      <!-- FOOTER (botón flotante siempre visible) -->
+      <div class="bottom">
+        <a href="p13d3.html">
+          <button>KEEP GOING</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
