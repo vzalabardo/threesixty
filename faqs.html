@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Experience - FAQS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    html,body{
+      height:100%;width:100%;
+      overflow:auto;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;
+      background:linear-gradient(to bottom right, rgba(0,0,0,0.454) 0.15%, #000 100%);
+    }
+
+    .container{
+      display:flex;flex-direction:column;justify-content:flex-start;
+      min-height:100%;width:100%;
+    }
+
+    .content{
+      position:relative;z-index:2;display:flex;flex-direction:column;
+      min-height:100%;
+      text-align:center;padding:20px;
+      /* espacio para que no lo tape el botón flotante */
+      padding-bottom:120px; /* ≈ alto botón + margen */
+    }
+
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+
+    .separator{
+      width:100%;height:2px;background:#fff;margin-top:3px;margin-bottom:1px
+    }
+
+    .middle{
+      flex-grow:1;
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:flex-start;      /* evita grandes huecos */
+      gap:10px;                        /* controla separación vertical */
+      padding:16px 20px 0;
+    }
+
+    .middle h3{
+      font-size:26px;
+      color:rgb(224,184,109);
+      margin-bottom:12px;              /* menos espacio bajo el título */
+      font-weight:bold;
+      text-transform:uppercase;
+    }
+
+    .accordion{width:100%;max-width:700px;margin-top:6px}
+
+    .accordion-item{
+      border:2px solid #fff;border-radius:5px;margin-bottom:10px;overflow:hidden
+    }
+
+    .accordion-title{
+      background:#000;padding:15px;cursor:pointer;font-size:18px;font-weight:bold;
+      text-align:left;display:flex;justify-content:space-between;align-items:center
+    }
+
+    .arrow-down{font-size:16px;color:rgb(224,184,109);transition:transform .4s ease}
+
+    /* Acordeón con animación suave */
+    .accordion-content{
+      max-height:0;opacity:0;overflow:hidden;
+      padding:0 15px;
+      background:rgba(255,255,255,0.08);
+      text-align:left;
+      transition:max-height .6s ease, opacity .5s ease, padding .4s ease;
+    }
+
+    .accordion-item.open .accordion-content{
+      max-height:800px; /* suficiente para el texto; aumenta si añadís más */
+      opacity:1;padding:15px;
+    }
+
+    .accordion-content p{margin-bottom:10px}
+    .accordion-content p strong{
+      color:rgb(224,184,109);display:block;margin-bottom:5px
+    }
+    ul{margin-left:20px;margin-top:5px}
+
+    /* Botón flotante NEXT */
+    .bottom{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      z-index:9999;
+      display:flex;justify-content:center;align-items:center;
+      width:auto;
+      pointer-events:none; /* evita tapar scroll salvo el botón */
+    }
+    .bottom a{pointer-events:auto}
+
+    .bottom button{
+      background:rgba(255,165,0,1);
+      border:2px solid #fff;
+      color:#000;
+      font-size:18px;
+      border-radius:12px;
+      font-weight:bold;
+      padding:10px 72px;
+      cursor:pointer;
+      text-transform:uppercase;
+      font-style:italic;
+      box-shadow:0 0 10px rgba(255,165,0,.7),0 0 20px rgba(255,165,0,.7),0 0 30px rgba(255,165,0,.7);
+      transition:box-shadow .3s ease-in-out, transform .1s ease-in-out;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bottom button:hover{
+      background:rgba(255,165,0,.9);color:#fff;box-shadow:0 0 20px rgba(255,165,0,1)
+    }
+    .bottom button:active{transform:scale(0.98)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content"> 
+      <div class="top">
+        <div class="logo"><img src="assets/LogoBlanco.png" alt="Logo"></div>
+        <div class="separator"></div>
+      </div>
+
+      <div class="middle">
+        <h3>FAQS</h3>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-title" onclick="toggleAccordion(this)">
+              OWNERSHIP & STRUCTURE <span class="arrow-down">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>How is the co-ownership structured and managed?</strong>
+              Each asset is held through a dedicated entity managed by a professional operations team. This team oversees all legal, financial, and logistical matters, from maintenance and insurance to accounting and member coordination, ensuring seamless operations and transparent governance for all co-owners.</p>
+
+              <p><strong>Can the ownership be held personally or through a company?</strong>
+              Yes. The 4% ownership stake can be held personally, through a family office, holding company, or corporate entity based anywhere in the world.</p>
+
+              <p><strong>Can I sell my share in the future?</strong>
+              Yes, you can sell your share at any time. Our team will assist you in finding a new buyer; there are no commissions involved, only a standard management fee. Over time, as the property evolves through renovations, improvements, and increased market value, your share is expected to appreciate. When you decide to sell, the market value will be professionally appraised to ensure transparency and fairness for all owners.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-title" onclick="toggleAccordion(this)">
+              CASA CLUB & STAYS <span class="arrow-down">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>Can I visit the Casa Club anytime I want? Can I host private events, weddings or celebrations?</strong>
+              Members enjoy unlimited access all year round, with the freedom to stay at the Casa Club whenever they wish. Through our private booking system, each member can also reserve the entire estate for personal events, weddings, or group trips. When the property is not in use, and with the approval of all members, the Casa Club may be rented for third-party events, with all generated revenue reinvested into the company for the maintenance and improvement of the estate.</p>
+
+              <p><strong>What happens if more than one member wants to stay at the Casa Club with family or friends at the same time?</strong>
+              If several members wish to stay at the Casa Club with their guests during the same dates, the 25 rooms will be allocated fairly among them, ensuring comfort and privacy for everyone. A dedicated booking system will manage reservations and guarantee transparent availability for all members.</p>
+
+              <p><strong>Can members book additional rooms for friends or guests?</strong>
+              Yes. Members can book additional rooms for friends, family, or guests through our private reservation system, subject to availability. Guests will enjoy the same five-star services and amenities as members during their stay. All bookings are managed directly by our concierge team to ensure a seamless experience.</p>
+
+              <p><strong>Can I come with children?</strong>
+              Yes, of course. A 24/7 childcare service will be available for those who wish to have it, ensuring that every stay remains a seamless five-star experience for owners and their families at any time.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-title" onclick="toggleAccordion(this)">
+              CARS & EXPERIENCES <span class="arrow-down">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>Can I use the collection of cars without limits?</strong>
+              Each member enjoys 400 km of driving per car per year. With 10 cars in the collection, that represents a total of 4,000 km annually per person. Beyond that, a members-only rate applies, with all proceeds reinvested into future acquisitions for the collection.</p>
+
+              <p><strong>Are the cars insured, and who can drive them?</strong>
+              Yes, all vehicles in the collection are fully insured. To ensure safety and responsible use, drivers must be over 25 years old. Each car includes a high-deductible policy to minimize the risk of accidents or misuse. Tires are replaced every 5,000 km to guarantee maximum performance and safety.</p>
+
+              <p><strong>If I have any issue while using the cars, is there club support?</strong>
+              Absolutely. Members benefit from a 24/7 concierge and support service, available to assist with any needs. In case of any incident or mechanical issue, our team will coordinate assistance based on your location to ensure a seamless experience.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-title" onclick="toggleAccordion(this)">
+              FINANCIALS & RETURNS <span class="arrow-down">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>Are there any annual costs I need to cover as a co-owner of the properties, cars, or yacht?</strong>
+              Annual costs are expected to be minimal, as the property, yacht, and cars will be leased to third parties through a structured business model designed to generate positive returns. These revenues will cover insurance, maintenance, and operational expenses for the Casa Club and the collection. Any additional profits will be reinvested into:</p>
+              <ul>
+                <li>Future renovations or improvements of the property</li>
+                <li>Replacement or upgrades within the car collection</li>
+                <li>Renewal of the yacht when required</li>
+              </ul>
+              <p>The management team will ensure that, through third-party rentals of the venue, events, and experiences, all maintenance and operational costs remain covered. In the unlikely event that such revenues do not fully cover these expenses, the remaining costs would be proportionally shared among all co-owners.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-title" onclick="toggleAccordion(this)">
+              COMMUNITY & MEMBERSHIP <span class="arrow-down">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>Who will I share co-ownership with?</strong>
+              We disclose the identities of fellow co-owners progressively as each co-ownership closes, while respecting strict privacy protocols. All co-owners are invited and vetted and must meet the same non-negotiable criteria:</p>
+              <ul>
+                <li>Successful completion of comprehensive background and compliance checks (KYC/AML)</li>
+                <li>35+ years of age</li>
+                <li>UHNW individual (verified)</li>
+                <li>Proven reputation and alignment with the club’s values and code of conduct</li>
+              </ul>
+              <p>This ensures you join a highly curated peer group of UHNW collectors and entrepreneurs. Introductions are facilitated by mutual consent to preserve discretion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Botón flotante persistente -->
+  <div class="bottom">
+    <a href="p16.html">
+      <button>NEXT</button>
+    </a>
+  </div>
+
+  <script>
+    function toggleAccordion(element){
+      const item = element.parentElement;
+      const arrow = element.querySelector('.arrow-down');
+
+      if(item.classList.contains('open')){
+        item.classList.remove('open');
+        arrow.style.transform='rotate(0deg)';
+      }else{
+        document.querySelectorAll('.accordion-item').forEach(i=>{
+          i.classList.remove('open');
+          const a = i.querySelector('.arrow-down');
+          if(a) a.style.transform='rotate(0deg)';
+        });
+        item.classList.add('open');
+        arrow.style.transform='rotate(180deg)';
+      }
+    }
+  </script>
+</body>
+</html>

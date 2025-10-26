@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThreeSixty Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{
+      height:100%;width:100%;
+      font-family:'Bai Jamjuree',sans-serif;
+      color:#fff;background:#000;
+      overflow:auto;                                  /* permite scroll si hay overflow */
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      display:flex;flex-direction:column;justify-content:space-between;
+      min-height:100svh;width:100%;
+      background:url('p3bb/background.png') no-repeat center/cover; /* usa tu foto */
+      position:relative;
+    }
+    /* overlay con degradado más oscuro arriba como la referencia */
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,.72);z-index:1}
+
+    .content{
+      position:relative;z-index:2;
+      display:flex;flex-direction:column;
+      min-height:100svh;
+      text-align:center;padding:20px;
+      padding-bottom:130px;                            /* espacio para botón flotante */
+    }
+
+    /* ===== Header (igual que las otras) ===== */
+    .top{display:flex;flex-direction:column;align-items:center}
+    .logo img{max-width:150px;height:auto}
+    .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:6px;opacity:.9}
+
+    /* ===== Middle (texto como en la imagen) ===== */
+    .middle{
+      flex:1;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:clamp(10px, 2vh, 18px);
+      padding:clamp(6px, 2vh, 20px) 0;
+      max-width:620px;margin:0 auto;
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+    }
+
+    /* línea dorada inicial (dos líneas) */
+    .kicker{
+      color:rgb(224,184,109);
+      font-weight:900;
+      font-size:clamp(18px, 2vh + .7rem, 24px);
+      line-height:1.25;
+    }
+    .kicker em{
+      font-style:italic;
+      font-weight:900;
+    }
+
+    .lede{
+      font-size:clamp(16px, 1.2vh + .7rem, 20px);
+      line-height:1.55;
+      opacity:.98;
+    }
+
+    .list{
+      font-size:clamp(16px, 1.2vh + .7rem, 20px);
+      line-height:1.55;
+      font-weight:800;                                 /* negrita como en la foto */
+    }
+
+    .closer{
+      margin-top:clamp(6px, 1.2vh, 10px);
+      font-size:clamp(18px, 1.4vh + .8rem, 22px);
+      line-height:1.35;
+      font-weight:800;
+      text-transform:none;
+    }
+
+    /* ===== Botón flotante persistente ===== */
+    .bottom{
+      position:fixed;left:50%;transform:translateX(-50%);
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      z-index:9999;display:flex;justify-content:center;
+      pointer-events:none;
+      padding-bottom: 30px;
+    }
+    .bottom a{pointer-events:auto;text-decoration:none}
+    .bottom button{
+      background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
+      font-size:clamp(14px, 1.2vh + .6rem, 16px);
+      border-radius:12px;font-weight:800;padding:8px 48px;cursor:pointer;
+      text-transform:uppercase;font-style:italic;
+      box-shadow:none;
+      transition:background .2s ease, color .2s ease, transform .12s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .bottom button:hover{background:rgba(255,165,0,.9);color:#fff;transform:translateY(-1px)}
+    .bottom button:active{transform:scale(.98)}
+
+    
+    @media (max-height:700px){
+      .logo img{max-width:130px}
+    }
+
+    /* === Animación para el texto de .middle === */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.middle > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* delays escalonados */
+.middle .kicker { animation-delay: 0.2s; }
+.middle .lede { animation-delay: 0.45s; }
+.middle .list { animation-delay: 0.7s; }
+.middle .closer { animation-delay: 0.95s; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <!-- Header -->
+      <div class="top">
+        <div class="logo">
+          <img src="assets/LogoBlanco.png" alt="Logo">
+        </div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Middle -->
+      <div class="middle">
+        <div class="kicker">Good deal?<br><em>Wait till you hear this.</em></div>
+
+        <p class="lede">
+          Full access, 365 days a year. And yes, you can book the whole estate for anything you can imagine:
+        </p>
+
+        <p class="list">
+          weddings, birthdays, car routes, cycling trips...
+        </p>
+
+        <div class="closer">
+          you name it,<br>we make it happen.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón flotante (footer) -->
+  <div class="bottom">
+    <a href="p13d3.html">
+      <button>NEXT</button>
+    </a>
+  </div>
+</body>
+</html>

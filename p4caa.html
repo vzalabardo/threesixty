@@ -11,13 +11,13 @@
       height:100%;width:100%;
       font-family:'Bai Jamjuree',sans-serif;
       color:#fff;background:#000;
-      overflow:hidden; /* sin scroll */
+      overflow:auto;
     }
 
     .container{
       display:flex;flex-direction:column;justify-content:space-between;
-      height:100%;width:100%;
-      background:url('p4caa/background.png') no-repeat center/cover; /* cambia si quieres la foto del Ferrari */
+      min-height:100svh;width:100%;
+      background:url('p4caa/background.png') no-repeat center/cover;
       position:relative;
     }
     .overlay{position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:1}
@@ -27,6 +27,7 @@
       display:flex;flex-direction:column;
       min-height:100svh;
       text-align:center;padding:20px;
+      padding-bottom:130px; /* espacio para el botón flotante */
     }
 
     /* Header igual */
@@ -34,12 +35,14 @@
     .logo img{max-width:150px;height:auto}
     .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:2px;opacity:.9}
 
-    /* ====== MIDDLE NUEVO ====== */
+    /* ====== MIDDLE ====== */
     .middle{
       flex:1;
       display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:clamp(10px, 2vh, 18px);
+      gap:clamp(12px, 2vh, 20px);
       padding:clamp(6px, 2vh, 20px) 0;
+      max-width:600px;
+      margin:0 auto;
     }
 
     .kicker{
@@ -49,30 +52,48 @@
       text-transform:uppercase;
       letter-spacing:.4px;
       text-shadow:0 1px 2px rgba(0,0,0,.45);
-      font-size:clamp(16px, 2.1vh + .6rem, 24px);
+      font-size:clamp(18px, 2.1vh + .6rem, 24px);
     }
 
     .lede{
       max-width:56ch;
       font-weight:400;
-      font-size:clamp(14px, 1.2vh + .6rem, 18px);
-      line-height:1.5;
+      font-size:clamp(15px, 1.2vh + .6rem, 17px);
+      line-height:1.55;
       opacity:.98;
       text-shadow:0 1px 2px rgba(0,0,0,.35);
     }
-    .lede strong{font-weight:800;}
+    .lede strong{
+      color:rgb(224,184,109);
+      font-style:italic;
+      font-weight:800;
+    }
 
     .closer{
-      margin-top:clamp(6px, 1.2vh, 10px);
-      color:rgb(224,184,109);
-      font-weight:700;
-      font-size:clamp(13px, 1.1vh + .5rem, 16px);
+      margin-top:clamp(10px, 1.5vh, 14px);
+      color:#fff;
+      font-weight:600;
+      font-size:clamp(15px, 1.1vh + .5rem, 17px);
       line-height:1.35;
       text-shadow:0 1px 2px rgba(0,0,0,.35);
     }
 
-    /* Footer igual */
-    .bottom{display:flex;justify-content:center;padding:16px 0 18px}
+    .note{
+      margin-top:clamp(10px, 1.2vh, 12px);
+      color:rgb(224,184,109);
+      font-style:italic;
+      font-size:clamp(13px, 1vh + .45rem, 15px);
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+    }
+
+    /* ===== Botón flotante ===== */
+    .bottom{
+      position:fixed;left:50%;transform:translateX(-50%);
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      z-index:9999;display:flex;justify-content:center;
+      pointer-events:none;
+    }
+    .bottom a{pointer-events:auto;text-decoration:none}
     .bottom button{
       background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
       font-size:clamp(14px, 1.2vh + .6rem, 16px);
@@ -86,10 +107,8 @@
       box-shadow:0 0 20px rgba(255,165,0,1),0 0 40px rgba(255,165,0,1),0 0 60px rgba(255,165,0,1);
     }
 
-    /* Compacto si la altura es justa (SE, etc.) */
     @media (max-height:700px){
       .logo img{max-width:130px}
-      .bottom{padding:12px 0 14px}
     }
   </style>
 </head>
@@ -106,28 +125,30 @@
         <div class="separator"></div>
       </div>
 
-      <!-- ====== MIDDLE NUEVO ====== -->
+      <!-- Middle -->
       <div class="middle">
         <div class="kicker">WAIT… THAT’S NOT ALL.</div>
 
         <p class="lede">
-          As part of this project, you’ll gain access to
-          <strong>ThreeSixty Club’s private experiences:</strong>
-          tailor-made journeys across Europe, exclusive driving routes in the world’s finest cars,
-          and curated moments of gastronomy, culture, and celebration — all designed for those
-          who live without limits.
+          If you become part of this project, you’ll gain access to
+          <strong>ThreeSixty Club’s </strong> <span style="font-weight: bold;"> private experiences:</span><br><br>
+          tailor-made journeys worldwide, exclusive driving routes, racing experiences
+          in the world’s finest cars, and curated moments of gastronomy, culture, and celebration —
+          all designed for those who live without limits.
         </p>
 
         <div class="closer">For you, your friends, family and business.</div>
-      </div>
 
-      <!-- Footer -->
-      <div class="bottom">
-        <a href="p4caab.html">
-          <button>NEXT</button>
-        </a>
+        <div class="note">*Fill the form at the end to discover our 16 areas of expertise of the club</div>
       </div>
     </div>
+  </div>
+
+  <!-- Botón flotante -->
+  <div class="bottom">
+    <a href="p4caab.html">
+      <button>NEXT</button>
+    </a>
   </div>
 </body>
 </html>

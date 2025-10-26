@@ -11,13 +11,14 @@
       height:100%;width:100%;
       font-family:'Bai Jamjuree',sans-serif;
       color:#fff;background:#000;
-      overflow:hidden;               /* sin scroll */
+      overflow:auto; /* scroll si hace falta */
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
     .container{
       display:flex;flex-direction:column;justify-content:space-between;
-      height:100%;width:100%;
-      background:url('p3a/background.png') no-repeat center/cover;             /* fondo liso; el mapa va como imagen dentro */
+      min-height:100svh;width:100%;
+      background:url('p3a/background.png') no-repeat center/cover;
       position:relative;
     }
     .overlay{position:absolute;inset:0;background:rgba(0,0,0,.85);z-index:1;pointer-events:none}
@@ -27,95 +28,109 @@
       display:flex;flex-direction:column;
       min-height:100svh;
       text-align:center;padding:20px;
+      padding-bottom:130px; /* deja hueco para el botón flotante */
     }
 
-    /* Header igual */
+    /* Header (igual) */
     .top{display:flex;flex-direction:column;align-items:center}
     .logo img{max-width:150px;height:auto}
     .separator{width:100%;height:2px;background:#fff;margin-top:6px;margin-bottom:10px;opacity:.9}
 
-    /* ===== MIDDLE EDITADO ===== */
+    /* ===== Middle ===== */
     .middle{
       flex:1;
       display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-      gap:clamp(10px, 2vh, 18px);
-      padding:clamp(6px, 2vh, 20px) 0;
+      gap:12px;
+      padding:10px 0 0;
     }
 
-    .eyebrow{
-      color:rgb(224,184,109);
-      font-weight:900;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-      font-style:italic;
-      font-size:clamp(18px, 2.2vh + .7rem, 20px);
-    }
-
+    /* eyebrow + headline como en la imagen */
     .headline{
       color:rgb(224,184,109);
       font-weight:900;
-      max-width:28ch;
-      line-height:1.2;
-      font-size:clamp(15px, 1.6vh + .6rem, 20px);
+      letter-spacing:.2px;
+      text-transform:uppercase;
+      line-height:1.25;
+      font-style:normal;
+      font-size:clamp(16px, 1.6vh + .75rem, 18px);
+      max-width:26ch;
     }
 
-    .intro{
-      max-width:32ch;
-      line-height:1.35;
-      font-weight:400;
+    /* mapa más grande */
+.map {
+  width: min(1100px, 96vw);           /* antes: 900px → ahora más ancho */
+  height: clamp(260px, 45vh, 440px);  /* un poco más baja, proporción más horizontal */
+  margin: 8px auto 6px;
+  border-radius: 10px;
+  background: url('p4ca/mapa.png') no-repeat center/cover; /* cover para llenar horizontalmente */
+  background-color: transparent;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    /* separador punteado dorado */
+    .dots{
+      width:min(480px, 70vw);
+      margin:12px auto 10px;
+      border:none;border-top:2px dotted rgb(224,184,109);
       opacity:.95;
-      font-size:clamp(14px, 1.4vh + .55rem, 15px);
     }
 
-    .map{
-      width:100%;
-      max-width:min(860px, 92vw);
-      margin-top:6px;
-      border-radius:6px;
-      /* coloca aquí tu imagen de mapa */
-      background:url('p4ca/mapa.png') no-repeat center/cover;
-      aspect-ratio: 16 / 6; /* se adapta; cambia si tu imagen es distinta */
-    }
-
+    /* timeline */
     .timeline{
       width:100%;
       max-width:min(760px, 92vw);
       display:flex;flex-direction:column;align-items:center;
-      gap:clamp(6px, 1.5vh, 10px);
-      margin-top:clamp(8px, 1.6vh, 12px);
-      text-align:left;
-      font-weight: 100;
+      text-align:center;
+      gap:10px;
+      font-weight:100;
     }
-
     .row{
-      width:100%;
-      max-width:28ch;
-      line-height:1.3;
+      line-height:1.35;
+      font-size:clamp(14px, 1.5vh + .55rem, 16px);
       font-style:italic;
-      font-weight:400;
-      font-size:clamp(15px, 1.6vh + .55rem, 15px);
+      color:#cfcfcf;
+    }
+    .row.primary{
+      color:#fff;
+      font-weight:700;
+      font-style:normal;
     }
     .year{color:rgb(224,184,109);font-weight:900}
-    .place{color:#fff}
+    .place{color:inherit}
 
-    /* Footer igual PERO SIN SOMBRAS en el botón */
-    .bottom{display:flex;justify-content:center;padding:16px 0 18px}
+    .soon{
+      color:rgb(224,184,109);
+      font-style:italic;
+      margin:2px 0 2px;
+      font-size:clamp(13px, 1.2vh + .55rem, 15px);
+    }
+
+    /* ===== Botón flotante persistente (mantiene estilo del footer) ===== */
+    .bottom{
+      position:fixed;left:50%;transform:translateX(-50%);
+      bottom:calc(16px + env(safe-area-inset-bottom));
+      z-index:9999;
+      display:flex;justify-content:center;
+      pointer-events:none; /* no tapa el scroll */
+    }
+    .bottom a{pointer-events:auto}
     .bottom button{
       background:rgba(255,165,0,1);border:2px solid #fff;color:#000;
       font-size:clamp(14px, 1.2vh + .6rem, 16px);
       border-radius:12px;font-weight:800;padding:8px 48px;cursor:pointer;
       text-transform:uppercase;font-style:italic;
-      box-shadow:none;               /* <- sin sombras */
+      box-shadow:none;
       transition:background .2s ease, color .2s ease, transform .2s ease;
+      -webkit-tap-highlight-color:transparent;
     }
-    .bottom button:hover{
-      background:rgba(255,165,0,.9);color:#fff;transform:translateY(-1px);
-    }
+    .bottom button:hover{background:rgba(255,165,0,.9);color:#fff;transform:translateY(-1px)}
+    .bottom button:active{transform:scale(.98)}
 
-    /* Compacto si la altura es justa (iPhone SE, etc.) */
+    /* Compacto si la altura es justa */
     @media (max-height:700px){
       .logo img{max-width:130px}
-      .bottom{padding:12px 0 14px}
+      .map{height:clamp(220px, 40vh, 360px)}
     }
   </style>
 </head>
@@ -134,32 +149,37 @@
 
       <!-- Middle -->
       <div class="middle">
-        <div class="eyebrow">&amp; NEXT CHAPTERS...</div>
 
-        <div class="headline">Our ambitions are as big as your dreams.</div>
+        <div class="headline">OUR AMBITIONS GROW<br>WITH OUR MEMBERS.</div>
 
-        <p class="intro">
-          In the coming years, we’ll expand our legacy; replicating our ownership model across Europe’s most extraordinary destinations.
-        </p>
-
-        <!-- Imagen del mapa (sustituye la ruta en .map) -->
+        <!-- Mapa grande -->
         <div class="map" aria-label="Map of Europe with routes"></div>
 
+        <!-- 2026 destacado -->
         <div class="timeline">
-          <div class="row"><span class="year">2026</span> — <span class="place">Costa Brava, Spain</span></div>
+          <div class="row primary"><span class="year">2026</span> — <span class="place">Costa Brava, Spain</span></div>
+        </div>
+
+        <hr class="dots">
+
+        <!-- Coming soon + lista -->
+        <div class="soon">&amp; coming soon...</div>
+
+        <div class="timeline">
           <div class="row"><span class="year">2027</span> — <span class="place">Tuscany, Italy</span></div>
           <div class="row"><span class="year">2028</span> — <span class="place">Algarve, Portugal</span></div>
-          <div class="row"><span class="year">2029, 30, 31…</span> — <span class="place">Paris, South of France, Greece, South Italy, Mallorca…</span></div>
+          <div class="row"><span class="year">2029+</span> — <span class="place">Paris, South of France, Greece, South Italy, Mallorca…</span></div>
         </div>
-      </div>
 
-      <!-- Footer -->
-      <div class="bottom">
-        <a href="p4caa.html">
-          <button>DISCOVER</button>
-        </a>
       </div>
     </div>
+  </div>
+
+  <!-- Footer: botón flotante para que siempre se vea -->
+  <div class="bottom">
+    <a href="p4caa.html">
+      <button>DISCOVER</button>
+    </a>
   </div>
 </body>
 </html>
